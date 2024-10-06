@@ -1,2 +1,2 @@
 # UNG_MT
-Materials (practical exercises) for the course Mobile Technologies at the UNG 
+Materials (practical exercises) for the course Mobile Technologies (2024/25) at the UNG 
