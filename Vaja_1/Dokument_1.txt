@@ -4,9 +4,11 @@ marija.atanackovic@student.ung.si
 i najlepše kad je prestani...
 
 yaroslav.gavryshkiv@student.ung.si
+--- TODO yaroslav
 
 
 eldar.hasanbasic@student.ung.si
+--- TODO eldar
 
 
 izidor.janusic@student.ung.si
@@ -18,6 +20,7 @@ Kolo vodi Vasa...
 
 
 deni.koren@student.ung.si
+--- TODO deni
 
 
 luka.makuc@student.ung.si
