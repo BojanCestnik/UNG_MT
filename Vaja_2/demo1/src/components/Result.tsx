@@ -1,4 +1,20 @@
-import React from 'react';
+import React from "react";
+
+type ResultProps = {
+  result: number;
+};
+
+const Result: React.FC<ResultProps> = ({ result }) => {
+  return (
+    <div className="result">
+      <h3>Result: {result}</h3>
+    </div>
+  );
+};
+
+export default Result;
+
+/* import React from 'react';
 
 const Result = ({ result }) => (
   <div>
@@ -7,4 +23,4 @@ const Result = ({ result }) => (
   </div>
 );
 
-export default Result;
+export default Result; */
