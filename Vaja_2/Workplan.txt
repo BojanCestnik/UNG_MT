@@ -1,0 +1,6 @@
+1. Dodelitev vlog med udeleženci vaj
+2. Namestitev git, VSC, node js, react
+3. Razprava o react js prvi aplikaciji
+4. Pomoč z generativno AI - ChatGPT
+5. Programiranje prve react js aplikacije
+
