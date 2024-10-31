@@ -14,9 +14,11 @@
 form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-top: 20px;
+  gap: 2px;
+  margin-top: 2px;
 }
+
+/*
 
 .result {
   margin-top: 20px;
@@ -66,3 +68,5 @@ form {
 .read-the-docs {
   color: #888;
 } 
+
+*/
