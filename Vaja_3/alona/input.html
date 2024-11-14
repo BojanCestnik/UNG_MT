@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Countdown Timer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<script>
+    let countdownInterval;
+
+function startTimer() {
+    clearInterval(countdownInterval); // Clear any existing timer
+    
+    const timeInput = document.getElementById('timeInput').value;
+    let timer = parseInt(timeInput, 10);
+    
+    if (isNaN(timer) || timer <= 0) {
+        alert("Please enter a valid number greater than 0");
+        return;
+    }
+
+    const display = document.getElementById('countdown');
+
+    countdownInterval = setInterval(() => {
+        const hours = Math.floor((timer / 3600) % 24);
+        const minutes = Math.floor((timer / 60) % 60);
+        const seconds = timer % 60;
+
+        display.textContent = 
+            `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+        if (timer <= 0) {
+            clearInterval(countdownInterval);
+            display.textContent = "Time's up!";
+        }
+
+        timer -= 1;
+    }, 1000);
+}
+</script>
+<body>
+    <div class="timer">
+        <input type="number" id="timeInput" placeholder="Enter seconds" min="1">
+        <button onclick="startTimer()">Start Timer</button>
+        <h1 id="countdown">00:00:00</h1>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
