@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer with Pause, Resume, and Reset</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .timer-container {
+            text-align: center;
+        }
+        input[type="number"] {
+            width: 60px;
+            font-size: 1.2em;
+            text-align: center;
+        }
+        button {
+            font-size: 1em;
+            padding: 0.5em 1em;
+            margin: 0.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="timer-container">
+        <h1>Countdown Timer: <span id="timerDisplay">00:00:00</span></h1>
+        <div>
+            <input id="hoursInput" type="number" placeholder="HH" min="0"> :
+            <input id="minutesInput" type="number" placeholder="MM" min="0" max="59"> :
+            <input id="secondsInput" type="number" placeholder="SS" min="0" max="59">
+        </div>
+        <button id="startButton" onclick="startTimer()">Start</button>
+        <button id="pauseButton" onclick="togglePause()" disabled>Pause</button>
+        <button id="resetButton" onclick="resetTimer()" disabled>Reset</button>
+    </div>
+
+    <script>
+        let totalSeconds = 0;
+        let timerInterval;
+        let isPaused = false;
+
+        function formatTime(totalSeconds) {
+            const hours = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
+            const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
+            const secs = String(totalSeconds % 60).padStart(2, '0');
+            return `${hours}:${minutes}:${secs}`;
+        }
+
+        function startTimer() {
+            const hoursInput = document.getElementById("hoursInput").value || 0;
+            const minutesInput = document.getElementById("minutesInput").value || 0;
+            const secondsInput = document.getElementById("secondsInput").value || 0;
+
+            totalSeconds = parseInt(hoursInput) * 3600 + parseInt(minutesInput) * 60 + parseInt(secondsInput);
+
+            if (totalSeconds <= 0) {
+                alert("Please enter a valid time greater than 0.");
+                return;
+            }
+
+            document.getElementById("hoursInput").disabled = true;
+            document.getElementById("minutesInput").disabled = true;
+            document.getElementById("secondsInput").disabled = true;
+            document.getElementById("startButton").disabled = true;
+            document.getElementById("pauseButton").disabled = false;
+            document.getElementById("resetButton").disabled = false;
+
+            const timerDisplay = document.getElementById("timerDisplay");
+
+            timerInterval = setInterval(() => {
+                if (!isPaused && totalSeconds > 0) {
+                    totalSeconds--;
+                    timerDisplay.textContent = formatTime(totalSeconds);
+                } else if (totalSeconds === 0) {
+                    clearInterval(timerInterval);
+                    alert("Time's up!");
+                    resetTimer();
+                }
+            }, 1000);
+        }
+
+        function togglePause() {
+            const pauseButton = document.getElementById("pauseButton");
+            if (!isPaused) {
+                isPaused = true;
+                pauseButton.textContent = "Resume";
+            } else {
+                isPaused = false;
+                pauseButton.textContent = "Pause";
+            }
+        }
+
+        function resetTimer() {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            totalSeconds = 0;
+            isPaused = false;
+            document.getElementById("timerDisplay").textContent = "00:00:00";
+            document.getElementById("hoursInput").disabled = false;
+            document.getElementById("minutesInput").disabled = false;
+            document.getElementById("secondsInput").disabled = false;
+            document.getElementById("startButton").disabled = false;
+            document.getElementById("pauseButton").disabled = true;
+            document.getElementById("resetButton").disabled = true;
+            document.getElementById("pauseButton").textContent = "Pause";
+        }
+    </script>
+</body>
+</html>
