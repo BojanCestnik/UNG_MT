@@ -1,0 +1,14 @@
+Delo z git in github:
+
+git status
+git add file.tip
+git commit -m "commit message"
+
+git pull
+git push
+
+Delo z react js
+
+cd imenik_z_applikacijo
+npm run dev
+
