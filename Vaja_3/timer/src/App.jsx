@@ -46,17 +46,25 @@ function App() {
     <>
       <div className="card">
         <h1>Timer</h1>
+        {/* <label for="duration">Enter time in seconds:</label><br></br>
+        <input type="number" id="duration" name="duration" min="1" max="1800"></input> */}
         <TimerInput setDuration={setDuration} />
+
+        {/* <p>00</p> */}       
         <TimerDisplay timeLeft={timeLeft} />
+
+        {/* <button id="start">start</button>
+        <button id="pause">pause</button>
+        <button id="reset">reset</button> */}
         <TimerControls onStart={handleStart} onPause={handlePause} onReset={handleReset} />
       </div>
     </>
   )
 }
-export default App
+export default App 
 
 
-/* Previous version:
+/* Previous version: 
 function App() {
   const [count, setCount] = useState(0)
 

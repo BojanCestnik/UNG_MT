@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flexbox Grid</title>
+  <style>
+    /* Container for the grid */
+    .flex-container {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      height: 100vh;
+      gap: 5px; /* Spacing between cells */
+      box-sizing: border-box;
+    }
+
+    /* Each cell */
+    .cell {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f3f3f3;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      color: #333;
+    }
+
+    /* Example of dynamic sizing using CSS variables */
+    .cell {
+      flex: 0 0 calc((100% / 7) * var(--col-span) - 5px);
+      height: calc((100vh / 7) * var(--row-span));
+    }
+  </style>
+</head>
+<body>
+  <div class="flex-container">
+    <!-- Example cells -->
+    <div class="cell" style="--col-span: 1; --row-span: 1;">1x1</div>
+    <div class="cell" style="--col-span: 2; --row-span: 1;">2x1</div>
+    <div class="cell" style="--col-span: 1; --row-span: 2;">1x2</div>
+    <div class="cell" style="--col-span: 3; --row-span: 1;">3x1</div>
+    <div class="cell" style="--col-span: 1; --row-span: 3;">1x3</div>
+    <div class="cell" style="--col-span: 2; --row-span: 2;">2x2</div>
+    <div class="cell" style="--col-span: 3; --row-span: 3;">3x3</div>
+    <!-- Add as many cells as needed -->
+  </div>
+</body>
+</html>
