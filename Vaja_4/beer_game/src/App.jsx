@@ -1,7 +1,10 @@
 import { useState } from 'react'
 import './App.css'
+import BackCentral from "./components/BackCentral";
 import Title from "./components/Title";
 import Role from "./components/Role";
+import BannerLeft from "./components/BannerLeft";
+import BannerRight from "./components/BannerRight";
 
 function App() {
   const [count, setCount] = useState(0)
@@ -12,11 +15,13 @@ function App() {
         <div className="layer layer-back" id="back-layer">
           <div className="cell cell-back" style={{ gridArea: "span 1 / span 12" }}>&nbsp;</div>
 	  
-          <div className="cell cell-back" style={{ gridArea: "span 10 / span 1" }}>B b 1x10</div>
-          <div className="cell cell-back" style={{ gridArea: "span 10 / span 10" }}>B c 10x10</div>
-          <div className="cell cell-back" style={{ gridArea: "span 10 / span 1" }}>B f 1x10</div>
+          <div className="cell cell-back" style={{ gridArea: "span 10 / span 1" }}>&nbsp;</div>
+          <div className="cell cell-back" style={{ gridArea: "span 10 / span 10" }}>
+            <BackCentral />
+          </div>
+          <div className="cell cell-back" style={{ gridArea: "span 10 / span 1" }}>&nbsp;</div>
 	  
-          <div className="cell cell-back" style={{ gridArea: "span 1 / span 12" }}>B z 1x12</div>
+          <div className="cell cell-back" style={{ gridArea: "span 1 / span 12" }}>&nbsp;</div>
         </div>
 
         <div className="layer layer-front" id="front-layer">
@@ -24,7 +29,9 @@ function App() {
             <Title />
           </div>
 	  
-          <div className="cell cell-front" style={{ gridArea: "span 10 / span 1" }}>F b 1x10</div>
+          <div className="cell cell-front" style={{ gridArea: "span 10 / span 1" }}>
+            <BannerLeft />
+          </div>
 	  
           <div className="cell cell-front" style={{ gridArea: "span 2 / span 4" }}>
             <Role title="Pivovarna" stock={200} preorder={30} cost={60} />
@@ -32,7 +39,9 @@ function App() {
           <div className="cell cell-front" style={{ gridArea: "span 2 / span 3" }}>F d 3x2</div>
           <div className="cell cell-front" style={{ gridArea: "span 4 / span 3" }}>F e 3x4</div>
 	  
-          <div className="cell cell-front" style={{ gridArea: "span 10 / span 1" }}>F f 1x10</div>
+          <div className="cell cell-front" style={{ gridArea: "span 10 / span 1" }}>
+            <BannerRight />
+          </div>
 	  
           <div className="cell cell-front" style={{ gridArea: "span 2 / span 2" }}>F g 2x2</div>
           <div className="cell cell-front" style={{ gridArea: "span 2 / span 4" }}>
