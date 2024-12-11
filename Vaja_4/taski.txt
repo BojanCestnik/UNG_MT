@@ -1,0 +1,113 @@
+- Oblikovanje wireframe - grid
+- Seznam komponent
+   - Opis delovanja komponente
+     - naslov
+     - stanje igre
+     - zgodovina igre (naročil)
+     - tabelarični pregledi, statistike
+     - stroški zaloge
+     - posamezne vloge, input naročilo za prihodnji teden
+   - Programiranje komponente
+
+- Kateri podatki so potrebni za delovanje
+   - Kateri podatki se shranjujejo centralno
+   - Kako in kje aplikacija hrani podatke (strežnik, naprava klienta)
+   - Stanja aplikacije (state diagram)
+
+   - podatki: (iz excel tabele)
+     - ime igre
+     - teden
+     - kupec: povpraševanje
+       maloprodaja: naročilo, zaloga, prednaročilo
+       grosist: naročilo, zaloga, prednaročilo
+       distributer: naročilo, zaloga, prednaročilo
+       pivovarna: naročilo, zaloga, prednaročilo
+       kamioni (2 + 2 + 2 + 2) prevažajo zalogo
+     - po zaključku tedna (klik na izvedi teden) se izvršijo dobave, najprej pivovarna , …, kupec;
+       vsaka vloga ima zato še eno variablo: dobavljeno 
+
+- Opis tipičnega poteka uporabe aplikacije
+   - Scenarij sončnega dne
+   - Kaj gre lahko narobe - obravnava napak - scenarij deževnega dne
+
+- 
+
+
+
+
+
+
+Na tabli:
+
+komponente:
+ - igra - ima svoje ime
+ - podjetje
+   - 2 tedna na tovornjakih
+   - centralni del info
+     - input: naročilo
+     - stanje zalog (+prednaročilo)
+   - gumb: oddaj naročilo
+ - kupec
+ - izvedi teden
+ - naslovni del
+ - poročilo o stanju igre (teden, stroški, zaloge)
+ - skupni promet
+
+akcije:
+ - izvedi teden
+
+podatki (DB)
+ - globalna struktura
+   - stanje v verigi
+   - naročila 
+   - stanje zaloge in prednaročil
+   - zgodovina (po tednih)
+
+
+
+
+
+
+{/* Osnova za app enega igralca - Vloge: maloprodaja, grosist, distributer, pivovarna
+
+<div className="layer-container">
+        <div className="layer layer-back" id="back-layer">
+          <div className="cell cell-back" style={{ gridArea: "span 1 / span 12" }}>B a 12x1</div>
+          <div className="cell cell-back" style={{ gridArea: "span 6 / span 1" }}>B b 1x6</div>
+          <div className="cell cell-back" style={{ gridArea: "span 6 / span 10" }}>B c 10x6</div>
+          <div className="cell cell-back" style={{ gridArea: "span 6 / span 1" }}>B f 1x6</div>
+          <div className="cell cell-back" style={{ gridArea: "span 1 / span 12" }}>B z 12x1</div>
+          <div className="cell cell-back" style={{ gridArea: "span 4 / span 12" }}>B z 12x4</div>
+        </div>
+
+        <div className="layer layer-front" id="front-layer">
+          <div className="cell cell-front" style={{ gridArea: "span 1 / span 12" }}>F a 12x1</div>
+          <div className="cell cell-front" style={{ gridArea: "span 6 / span 1" }}>F b 1x6</div>
+          <div className="cell cell-front" style={{ gridArea: "span 4 / span 10" }}>
+            <div className="parent">
+              <div className="child">1</div>
+              <div className="child">2</div>
+              <div className="child">3</div>
+              <div className="parent">
+                <div className="child">41</div>
+                <div className="child">42</div>
+                <div className="child">43</div>
+                <div className="parent">
+                  <div className="child">441</div>
+                  <div className="child">442</div>
+                  <div className="child">443</div>
+                  <div className="child">444</div>
+                </div>
+              </div>
+            </div>
+          </div>
+	  
+        <div className="cell cell-front" style={{ gridArea: "span 6 / span 1" }}>F f 1x6</div>
+        <div className="cell cell-front" style={{ gridArea: "span 2 / span 10" }}>F g 10x2</div>
+        <div className="cell cell-front" style={{ gridArea: "span 1 / span 12" }}>F z 12x1</div>
+        <div className="cell cell-front" style={{ gridArea: "span 4 / span 12" }}>F x 12x4</div>
+
+        </div>
+      </div>
+
+*/}
