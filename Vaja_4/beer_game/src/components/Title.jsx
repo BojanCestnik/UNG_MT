@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useGlobalState } from "./GlobalStateProvider"; // Import global state hook if using Context API
+import { useGlobalState } from "./Variable"; // Import global state hook if using Context API
 
 const Title = () => {
   const [order, setOrder] = useState(0); // Local state for input field

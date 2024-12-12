@@ -4,7 +4,7 @@ import React, { createContext, useContext, useState } from "react";
 const GlobalStateContext = createContext();
 
 // Create a Provider Component
-export const GlobalStateProvider = ({ children }) => {
+export const Variable = ({ children }) => {
   // Define all global variables here
   const [variable1, setVariable1] = useState("value1");
   const [variable2, setVariable2] = useState("value2");
