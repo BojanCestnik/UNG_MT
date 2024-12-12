@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useGlobalState } from "./GlobalStateProvider"; // Import global state hook if using Context API
+import { useGlobalState } from "./Variable"; // Import global state hook if using Context API
 // import backgroundImage from "../../public/BeerBack.png"; // Adjust path as necessary
 
 const BackCentral = () => {

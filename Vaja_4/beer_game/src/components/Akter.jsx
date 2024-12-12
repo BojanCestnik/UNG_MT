@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useGlobalState } from "./GlobalStateProvider"; // Import global state hook if using Context API
+import { useGlobalState } from "./Variable"; // Import global state hook if using Context API
 
-const Role = ({ title, stock, preorder, cost }) => {
+const Akter = ({ title, stock, preorder, cost }) => {
   const [order, setOrder] = useState(0); // Local state for input field
   const { setVariable15 } = useGlobalState(); // Replace `setVariable15` with the relevant global variable setter
 
@@ -33,7 +33,7 @@ const Role = ({ title, stock, preorder, cost }) => {
   );
 };
 
-export default Role;
+export default Akter;
 
 /* import React from "react";
 import { useGlobalState } from "./GlobalStateProvider";
