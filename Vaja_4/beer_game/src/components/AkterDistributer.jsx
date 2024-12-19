@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const AkterDistributer = ({ handleOrderUpdate }) => {
+const AkterDistributer = () => {
   const [stock, setStock] = useState(500);
   const [preorder, setPreorder] = useState(0);
   const [order, setOrder] = useState(0);
@@ -12,12 +12,12 @@ const AkterDistributer = ({ handleOrderUpdate }) => {
     } else {
       setStock(stock - order);
     }
-    handleOrderUpdate(order);
+    // handleOrderUpdate(order);
   };
 
   return (
     <div style={{ width: "100%", padding: "10px", height: "100%" }}>
-      <h1>Distributer</h1>
+      <h1>Distributer - Nova komponenta</h1>
       <p>Stock: {stock}</p>
       <p>Preorder: {preorder}</p>
       <p>Cost: €65</p>

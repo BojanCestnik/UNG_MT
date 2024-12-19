@@ -4,6 +4,7 @@ import BackCentral from "./components/BackCentral";
 import Title from "./components/Title";
 import Akter from "./components/Akter";
 import AkterPivovarna from "./components/AkterPivovarna";
+import AkterDistributer from "./components/AkterDistributer";
 import BannerLeft from "./components/BannerLeft";
 import BannerRight from "./components/BannerRight";
 import BannerNew from "./components/BannerNew";
@@ -47,7 +48,7 @@ function App() {
 	  
           <div className="cell cell-front" style={{ gridArea: "span 2 / span 2" }}>F g 2x2</div>
           <div className="cell cell-front" style={{ gridArea: "span 2 / span 4" }}>
-            <Akter title="Distributer" stock={100} preorder={20} cost={50} />
+            <AkterDistributer />
           </div>
           <div className="cell cell-front" style={{ gridArea: "span 2 / span 1" }}>F i 1x2</div>
 
