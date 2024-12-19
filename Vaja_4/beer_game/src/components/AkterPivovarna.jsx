@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-const AkterPivovarna = ({ handleOrderUpdate }) => {
-  const [stock, setStock] = useState(1000);
+const AkterPivovarna = () => {
+  const [stock, setStock] = useState(900);
   const [preorder, setPreorder] = useState(0);
   const [order, setOrder] = useState(0);
 
@@ -12,15 +12,15 @@ const AkterPivovarna = ({ handleOrderUpdate }) => {
     } else {
       setStock(stock - order);
     }
-    handleOrderUpdate(order);
+    // handleOrderUpdate(order);
   };
 
   return (
     <div style={{ width: "100%", padding: "10px", height: "100%" }}>
-      <h1>Pivovarna</h1>
+      <h1>Pivovarna - nova</h1>
       <p>Stock: {stock}</p>
       <p>Preorder: {preorder}</p>
-      <p>Cost: €60</p>
+      <p>Cost: €33</p>
 
       <div style={{ marginTop: "0px" }}>
         <label htmlFor="order">Order Quantity: </label>

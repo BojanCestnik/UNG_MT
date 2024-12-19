@@ -3,6 +3,7 @@ import './App.css'
 import BackCentral from "./components/BackCentral";
 import Title from "./components/Title";
 import Akter from "./components/Akter";
+import AkterPivovarna from "./components/AkterPivovarna";
 import BannerLeft from "./components/BannerLeft";
 import BannerRight from "./components/BannerRight";
 
@@ -34,7 +35,7 @@ function App() {
           </div>
 	  
           <div className="cell cell-front" style={{ gridArea: "span 2 / span 4" }}>
-            <Akter title="Pivovarna" stock={200} preorder={30} cost={60} />
+            <AkterPivovarna />
           </div>
           <div className="cell cell-front" style={{ gridArea: "span 2 / span 3" }}>F d 3x2</div>
           <div className="cell cell-front" style={{ gridArea: "span 4 / span 3" }}>F e 3x4</div>
