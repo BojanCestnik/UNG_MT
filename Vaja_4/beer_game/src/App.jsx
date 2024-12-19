@@ -6,6 +6,7 @@ import Akter from "./components/Akter";
 import AkterPivovarna from "./components/AkterPivovarna";
 import BannerLeft from "./components/BannerLeft";
 import BannerRight from "./components/BannerRight";
+import BannerNew from "./components/BannerNew";
 
 function App() {
   const [count, setCount] = useState(0)
@@ -31,7 +32,7 @@ function App() {
           </div>
 	  
           <div className="cell cell-front" style={{ gridArea: "span 10 / span 1" }}>
-            <BannerLeft />
+            <BannerNew />
           </div>
 	  
           <div className="cell cell-front" style={{ gridArea: "span 2 / span 4" }}>
