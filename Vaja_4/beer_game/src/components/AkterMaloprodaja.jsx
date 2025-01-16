@@ -23,25 +23,29 @@ const AkterMaloprodaja = ({ handleOrderUpdate }) => {
       boxSizing: "border-box",  // Ensures padding is included in width/height
       overflowX: "auto",  // Prevents horizontal overflow
       margin: "0 auto" }}>
+        <div class="AHA"  >
       <h1>Maloprodaja</h1>
       <p>Stock: {stock}</p>
       <p>Preorder: {preorder}</p>
-      <p>Cost: €80</p>
+      <p>Cost: €80</p></div>
 
-      <div style={{ marginTop: "0px" }}>
+      <div style={{ marginTop: "0px", fontSize:"100%" }}>
         <label htmlFor="order">Order Quantity: </label>
         <input
           type="number"
           id="order"
           value={order}
           onChange={(e) => setOrder(Number(e.target.value))}
-          style={{ marginLeft: "0px", padding: "10px" }}
+          style={{ marginLeft: "3px",
+            padding: "1%",
+            width:"30%"}}
         />
-      </div>
-
-      <button onClick={handleSubmit} style={{ marginTop: "10px" }}>
+        <button onClick={handleSubmit} style={{ marginLeft:"5px", marginTop: "5px", fontSize:"100%"}}>
         Submit Order
       </button>
+      </div>
+
+      
     </div>
   );
 };
