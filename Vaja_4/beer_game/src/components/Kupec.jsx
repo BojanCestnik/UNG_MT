@@ -1,5 +1,5 @@
 import React from "react";
-import { useGlobalState } from "./GlobalStateProvider";
+import { useGlobalState } from "./Variable";
 
 const Kupec = () => {
   const {
@@ -25,7 +25,7 @@ const Kupec = () => {
 
 export default Kupec;
 
-import React, { useState, useEffect } from "react";
+/* import React, { useState, useEffect } from "react";
 
 const kupec = ({ teden, onNarocilo }) => {
   const [narocilo, setNarocilo] = useState(5); // Začetno naročilo je 5 enot
@@ -47,4 +47,4 @@ const kupec = ({ teden, onNarocilo }) => {
       <p>Naročilo za ta teden: {narocilo}</p>
     </div>
   );
-};
+}; */

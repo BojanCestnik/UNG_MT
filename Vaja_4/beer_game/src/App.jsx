@@ -8,6 +8,8 @@ import AkterDistributer from "./components/AkterDistributer";
 import BannerLeft from "./components/BannerLeft";
 import BannerRight from "./components/BannerRight";
 import BannerNew from "./components/BannerNew";
+import Kupec from "./components/Kupec";
+
 
 function App() {
   const [count, setCount] = useState(0)
@@ -66,7 +68,7 @@ function App() {
 	  
           <div className="cell cell-front" style={{ gridArea: "span 2 / span 2" }}>F t 2x2</div>
           <div className="cell cell-front" style={{ gridArea: "span 2 / span 2" }}>
-            F u 2x2 Kupec<br/>Naročilo: 5
+            <Kupec />
           </div>
 	  
           <div className="cell cell-front" style={{ gridArea: "span 1 / span 12" }}>F z 1x12</div>
