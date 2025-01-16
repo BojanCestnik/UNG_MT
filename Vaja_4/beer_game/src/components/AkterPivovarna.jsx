@@ -16,28 +16,43 @@ const AkterPivovarna = () => {
   };
 
   return (
-    <div style={{ width: "100%", padding: "10px", height: "100%" }}>
-      <h1>Pivovarna - nova</h1>
-      <p>Stock: {stock}</p>
-      <p>Preorder: {preorder}</p>
-      <p>Cost: €33</p>
+    <div
+    style={{
+      width: "100%",
+      maxWidth: "100%",  // Prevents overflow by limiting the container's width
+      padding: "10px",
+      height: "100%",
+      boxSizing: "border-box",  // Ensures padding is included in width/height
+      overflowX: "auto",  // Prevents horizontal overflow
+      margin: "0 auto",
+    }}
+  >
+    <h1>Pivovarna - nova</h1>
+    <p>Stock: {stock}</p>
+    <p>Preorder: {preorder}</p>
+    <p>Cost: €33</p>
 
-      <div style={{ marginTop: "0px" }}>
-        <label htmlFor="order">Order Quantity: </label>
-        <input
-          type="number"
-          id="order"
-          value={order}
-          onChange={(e) => setOrder(Number(e.target.value))}
-          style={{ marginLeft: "0px", padding: "10px" }}
-        />
-      </div>
-
-      <button onClick={handleSubmit} style={{ marginTop: "10px" }}>
-        Submit Order
-      </button>
+    <div style={{ marginTop: "0px" }}>
+      <label htmlFor="order">Order Quantity: </label>
+      <input
+        type="number"
+        id="order"
+        value={order}
+        onChange={(e) => setOrder(Number(e.target.value))}
+        style={{
+          marginLeft: "0px",
+          padding: "10px",
+          width: "100%",  // Ensures input doesn't overflow
+          boxSizing: "border-box",  // Ensures padding is included in width calculation
+        }}
+      />
     </div>
-  );
+
+    <button onClick={handleSubmit} style={{ marginTop: "10px" }}>
+      Submit Order
+    </button>
+  </div>
+);
 };
 
 export default AkterPivovarna;

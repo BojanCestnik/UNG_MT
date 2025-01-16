@@ -12,7 +12,7 @@ const AkterGrosisit = ({ handleOrderUpdate }) => {
     } else {
       setStock(stock - order);
     }
-    //handleOrderUpdate(order);
+    handleOrderUpdate(order);
   };
 
   return (
