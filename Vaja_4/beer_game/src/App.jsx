@@ -11,6 +11,7 @@ import BannerNew from "./components/BannerNew";
 import Kupec from "./components/Kupec";
 import AkterGrosisit from './components/AkterGrosist';
 import AkterMaloprodaja from './components/AkterMaloprodaja';
+import Stats from "./components/Stats";
 
 
 function App() {
@@ -44,7 +45,9 @@ function App() {
             <AkterPivovarna />
           </div>
           <div className="cell cell-front" style={{ gridArea: "span 2 / span 3" }}>F d 3x2</div>
-          <div className="cell cell-front" style={{ gridArea: "span 4 / span 3" }}>F e 3x4</div>
+          <div className="cell cell-front" style={{ gridArea: "span 4 / span 3" }}>
+            <Stats />
+          </div>
 	  
           <div className="cell cell-front" style={{ gridArea: "span 10 / span 1" }}>
             <BannerRight />
