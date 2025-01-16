@@ -42,8 +42,6 @@ const AkterPivovarna = () => {
         style={{
           marginLeft: "0px",
           padding: "10px",
-          width: "100%",  // Ensures input doesn't overflow
-          boxSizing: "border-box",  // Ensures padding is included in width calculation
         }}
       />
     </div>

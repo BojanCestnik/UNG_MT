@@ -36,9 +36,7 @@ const AkterDistributer = () => {
           value={order}
           onChange={(e) => setOrder(Number(e.target.value))}
           style={{ marginLeft: "0px",
-            padding: "10px",
-            width: "100%",  // Ensures input doesn't overflow
-            boxSizing: "border-box", }}
+            padding: "10px" }}
         />
       </div>
 

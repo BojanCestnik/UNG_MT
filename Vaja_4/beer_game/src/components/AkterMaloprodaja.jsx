@@ -16,7 +16,13 @@ const AkterMaloprodaja = ({ handleOrderUpdate }) => {
   };
 
   return (
-    <div style={{ width: "100%", padding: "10px", height: "100%" }}>
+    <div style={{ width: "100%",
+      maxWidth: "100%",  // Prevents overflow by limiting the container's width
+      padding: "10px",
+      height: "100%",
+      boxSizing: "border-box",  // Ensures padding is included in width/height
+      overflowX: "auto",  // Prevents horizontal overflow
+      margin: "0 auto" }}>
       <h1>Maloprodaja</h1>
       <p>Stock: {stock}</p>
       <p>Preorder: {preorder}</p>
