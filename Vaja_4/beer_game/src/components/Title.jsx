@@ -12,8 +12,33 @@ const Title = () => {
   };
 
   return (
-    <div style={{ width: "100%", padding: "10px", height: "100%", alignItems: "center", justifyContent: "center", textAlign: "center" }}>
-      <h1>The Beer Game</h1>
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center', // Center text in the middle
+        backgroundColor: '#FFD700', // Golden yellow background
+        width: '100%', // Ensure the banner spans the entire width of the box
+        padding: '15px 0',
+        position: 'relative', // Positioning for the logo
+        fontFamily: 'Arial, sans-serif',
+        color: 'white',
+        fontSize: '24px',
+        boxSizing: 'border-box', // Ensure padding doesn't affect layout
+      }}
+    >
+      {/* Logo in the top-left corner */}
+      <a href="https://www.union-experience.si/sl" style={{ position: 'absolute', left: '20px', top: '50%', transform: 'translateY(-50%)' }}>
+        <img 
+          src="https://atomageindustries.com/cdn/shop/products/BeerButton.png?v=1610655263" // Replace with your logo image URL
+          alt="Beer Company Logo"
+          style={{ width: '50px', height: 'auto' }}
+        />
+      </a>
+
+      {/* Centered Text */}
+      <h1 style={{ margin: 0, textAlign: 'center' }}>THE BEER GAME</h1>
+      <span style={{ position: 'absolute', bottom: '5px', fontSize: '14px', textAlign: 'center', width: '100%' }}>Presented by The Beer Company</span>
     </div>
   );
 };
