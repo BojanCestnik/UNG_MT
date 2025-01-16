@@ -9,6 +9,8 @@ import BannerLeft from "./components/BannerLeft";
 import BannerRight from "./components/BannerRight";
 import BannerNew from "./components/BannerNew";
 import Kupec from "./components/Kupec";
+import AkterGrosisit from './components/AkterGrosist';
+import AkterMaloprodaja from './components/AkterMaloprodaja';
 
 
 function App() {
@@ -57,13 +59,13 @@ function App() {
           <div className="cell cell-front" style={{ gridArea: "span 6 / span 3" }}>F k 3x6</div>
           <div className="cell cell-front" style={{ gridArea: "span 2 / span 1" }}>F l 1x2</div>
           <div className="cell cell-front" style={{ gridArea: "span 2 / span 4" }}>
-            <Akter title="Grosist" stock={300} preorder={40} cost={70} />
+            <AkterGrosisit />
           </div>
           <div className="cell cell-front" style={{ gridArea: "span 2 / span 2" }}>F n 2x2</div>
 	  
           <div className="cell cell-front" style={{ gridArea: "span 4 / span 3" }}>F p 3x4</div>
           <div className="cell cell-front" style={{ gridArea: "span 2 / span 4" }}>
-            <Akter title="Maloprodaja" stock={400} preorder={50} cost={80} />
+            <AkterMaloprodaja />
           </div>
 	  
           <div className="cell cell-front" style={{ gridArea: "span 2 / span 2" }}>F t 2x2</div>
