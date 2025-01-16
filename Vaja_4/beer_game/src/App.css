@@ -75,8 +75,14 @@ display: grid;
   justify-content: center;
   align-items: center;
 }
-
-
+.AHA h1{
+  font-size: 15px;
+  margin:0
+}
+.AHA p {
+  font-size: 100%;
+  margin:2px;
+}
 /*
 
 #root {
