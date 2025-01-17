@@ -8,6 +8,7 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 const Stats = ({ pc, dc, gc, mc }) => {
   const totalCost = pc + dc + gc + mc;
 
+
   // Data for the bar chart
   const data = {
     labels: ["Brewery", "Distributor", "Wholesaler", "Retailer"],
@@ -112,8 +113,3 @@ const Stats = ({ pc, dc, gc, mc }) => {
 };
 
 export default Stats;
-
-//  const pc = 1
-//  const dc = 2
-//  const gc = 3
-//  const mc = 4
