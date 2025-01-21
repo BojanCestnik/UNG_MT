@@ -11,7 +11,7 @@ import BannerNew from "./components/BannerNew";
 import Kupec from "./components/Kupec";
 import AkterGrosisit from './components/AkterGrosist';
 import AkterMaloprodaja from './components/AkterMaloprodaja';
-import Stats from "./components/Stats";
+// import Stats from "./components/Stats";
 
 
   function App() {
@@ -53,7 +53,7 @@ import Stats from "./components/Stats";
           <div className="cell cell-front" style={{ gridArea: "span 2 / span 3" }}>F d 3x2</div>
             {/* dodani argumenti pc={pc} dc={dc} gc={gc} mc={mc} v stats, da prenaša podatke v statistiko*/}
           <div className="cell cell-front" style={{ gridArea: "span 4 / span 3" }}>
-            <Stats pc={pc} dc={dc} gc={gc} mc={mc} />   
+            {/* <Stats pc={pc} dc={dc} gc={gc} mc={mc} /> */}   
           </div>
 	  
           <div className="cell cell-front" style={{ gridArea: "span 10 / span 1" }}>
