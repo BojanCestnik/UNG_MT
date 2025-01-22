@@ -21,7 +21,7 @@ const BackCentral = () => {
         backgroundSize: "cover", // Maintains the original proportions contain
         backgroundRepeat: "no-repeat", // Prevents tiling
         backgroundPosition: "center", // Centers the image
-        filter: "brightness(20%)", // Dims the background
+        filter: "brightness(70%) opacity(30%)", // Dims the background
       }} >
     </div> 
   );
