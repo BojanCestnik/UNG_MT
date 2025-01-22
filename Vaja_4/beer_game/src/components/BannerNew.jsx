@@ -1,19 +1,22 @@
 import React from 'react';
-// import './BannerNew.css'; // Assuming you will style it later
 
-const BannerNew = () => {
-    return (
-        <div className="banner-new">
-            <h1>Gorska kolesa</h1>
-            <h2>Gorska kolesa za nepozabne avanture</h2>
-            <p>
-                Gorsko kolesarstvo je priljubljen šport, ki ljubiteljem omogoča raziskovanje in alallalalalvanturistično vožnjo po raznolikih terenih. Oprema, ki jo kolesar uporablja, je ključnega pomena za varno vožnjo.
-            </p>
-            <a href="#" target="_blank" rel="noopener noreferrer" className="banner-link">
-                Povezava na oglasno stran
-            </a>
-        </div>
-    );
+const BannerWithGif = () => {
+  return (
+    <div
+      style={{
+        width: '100%',
+        height: '100%', // Ensures the container fills the parent container
+        backgroundImage: 'url("https://i.pinimg.com/originals/17/be/5c/17be5c644f35f2b4be5a8bf3dbd30424.gif")', // Replace with your GIF URL
+        backgroundSize: 'cover', // Ensures the GIF covers both width and height without distorting
+        backgroundPosition: 'center', // Centers the GIF in the container
+        backgroundRepeat: 'no-repeat',
+      }}
+    />
+  );
 };
 
-export default BannerNew;
+export default BannerWithGif;
+
+
+
+
