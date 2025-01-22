@@ -18,7 +18,7 @@ const AkterMaloprodaja = ({ handleOrderUpdate }) => {
   return (
     <div style={{ width: "100%",
       maxWidth: "100%",  // Prevents overflow by limiting the container's width
-      padding: "10px",
+      padding: "2px",
       height: "100%",
       boxSizing: "border-box",  // Ensures padding is included in width/height
       overflowX: "auto",  // Prevents horizontal overflow

@@ -28,7 +28,7 @@ const AkterPivovarna = () => {
     }}
   >
     <div class="AHA"  > 
-    <h1>Pivovarna - nova</h1>
+    <h1>Pivovarna</h1>
     <p>Stock: {stock}</p>
     <p>Preorder: {preorder}</p>
     <p>Cost: €33</p></div> 

@@ -18,30 +18,34 @@ const AkterGrosisit = ({ handleOrderUpdate }) => {
   return (
     <div style={{ width: "100%",
       maxWidth: "100%",  // Prevents overflow by limiting the container's width
-      padding: "10px",
+      padding: "2px",
       height: "100%",
       boxSizing: "border-box",  // Ensures padding is included in width/height
       overflowX: "auto",  // Prevents horizontal overflow
       margin: "0 auto" }}>
+        <div class="AHA">
       <h1>Grosisit</h1>
       <p>Stock: {stock}</p>
       <p>Preorder: {preorder}</p>
-      <p>Cost: €70</p>
+      <p>Cost: €70</p></div>
 
-      <div style={{ marginTop: "0px" }}>
+      <div style={{ marginTop: "0px", fontSize:"100%" }}>
         <label htmlFor="order">Order Quantity: </label>
         <input
           type="number"
           id="order"
           value={order}
           onChange={(e) => setOrder(Number(e.target.value))}
-          style={{ marginLeft: "0px", padding: "10px" }}
+          style={{ marginLeft: "3px",
+            padding: "1%",
+            width:"30%" }}
         />
+        <button onClick={handleSubmit} style={{ marginLeft:"5px", marginTop: "5px", fontSize:"100%" }}>
+        Submit Order
+        </button>
       </div>
 
-      <button onClick={handleSubmit} style={{ marginTop: "10px" }}>
-        Submit Order
-      </button>
+      
     </div>
   );
 };
