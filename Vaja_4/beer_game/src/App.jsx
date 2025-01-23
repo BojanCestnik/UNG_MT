@@ -12,7 +12,7 @@ import Kupec from "./components/Kupec";
 import AkterGrosisit from './components/AkterGrosist';
 import AkterMaloprodaja from './components/AkterMaloprodaja';
 import Stats from "./components/Stats";
-
+import IzvediTeden from "./components/IzvediTeden";
 
   function App() {
     // Define cost states for all departments
@@ -23,6 +23,22 @@ import Stats from "./components/Stats";
 
   const [count, setCount] = useState(0)
 
+  // Initial data for roles
+  const initialRolesData = [
+    { role: 'Pivovarna', orders: 0, goods: 0 },
+    { role: 'Grosist', orders: 0, goods: 0 },
+    { role: 'Distributer', orders: 0, goods: 0 },
+    { role: 'Maloprodaja', orders: 0, goods: 0 },
+  ];
+  
+  // State to manage the roles data
+  const [rolesData, setRolesData] = useState(initialRolesData);
+  
+  // Callback function to handle the week transition
+  const handleWeekTransition = (updatedRolesData) => {
+    setRolesData(updatedRolesData); // Update the state with the new data
+  };
+  
   return (
     <>
       <div className="layer-container">
@@ -50,8 +66,10 @@ import Stats from "./components/Stats";
           <div className="cell cell-front" style={{ gridArea: "span 2 / span 4" }}>
             <AkterPivovarna />
           </div>
-          <div className="cell cell-front" style={{ gridArea: "span 2 / span 3" }}>F d 3x2</div>
-            {/* dodani argumenti pc={pc} dc={dc} gc={gc} mc={mc} v stats, da prenaša podatke v statistiko*/}
+          <div className="cell cell-front" style={{ gridArea: "span 2 / span 3" }}>
+            <IzvediTeden rolesData={rolesData} onWeekTransition={handleWeekTransition} />
+          </div>
+          {/* dodani argumenti pc={pc} dc={dc} gc={gc} mc={mc} v stats, da prenaša podatke v statistiko*/}
           <div className="cell cell-front" style={{ gridArea: "span 4 / span 3" }}>
             <Stats pc={pc} dc={dc} gc={gc} mc={mc} />  
           </div>
