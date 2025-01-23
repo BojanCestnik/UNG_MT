@@ -23,7 +23,7 @@ const AkterMaloprodaja = ({ handleOrderUpdate }) => {
       boxSizing: "border-box",  // Ensures padding is included in width/height
       overflowX: "auto",  // Prevents horizontal overflow
       margin: "0 auto" }}>
-        <div class="AHA"  >
+        <div className="AHA"  >
       <h1>Maloprodaja</h1>
       <p>Stock: {stock}</p>
       <p>Preorder: {preorder}</p>
