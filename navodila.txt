@@ -7,8 +7,16 @@ git commit -m "commit message"
 git pull
 git push
 
-Delo z react js
+Delo z react js:
 
 cd imenik_z_applikacijo
 npm run dev
+
+
+Delo z vite:
+
+npm create vite@latest my-app -- --template react 
+                                        (or react-ts for TypeScript)
+cd my-app
+npm install
 
