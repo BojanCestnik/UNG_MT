@@ -1,3 +1,4 @@
 Marija_509
 :0
 1223
+git commit -m "sporocilo"
