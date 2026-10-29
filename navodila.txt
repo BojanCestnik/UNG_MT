@@ -20,3 +20,31 @@ npm create vite@latest my-app -- --template react
 cd my-app
 npm install
 
+
+
+nastavitve:
+
+Create a local config
+$ git config --local user.name "Local User"
+
+# Create a global config
+$ git config --global user.name "Global User"
+
+# Create a system config
+$ sudo git config --system user.name "System User"
+
+git config --list --show-origin
+
+REMOVE:
+git config --global --unset user.name
+git config --global --unset user.email
+
+git config --global --unset-all user.name
+
+
+Priority:
+
+Local > Global > System
+
+
+

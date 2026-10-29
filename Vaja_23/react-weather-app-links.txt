@@ -1,0 +1,6 @@
+https://github.com/esnz/react-weather-app?utm_source=chatgpt.com
+
+https://home.openweathermap.org/myservices
+
+https://esnz-reactweather.netlify.app/
+
