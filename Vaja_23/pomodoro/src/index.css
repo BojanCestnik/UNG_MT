@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+/* Custom colors, usable as classes like bg-cream, text-cocoa, bg-accent. */
+@theme {
+  --color-cream: #fff4e6;
+  --color-peach: #ffe3cc;
+  --color-cocoa: #5b4636;
+  --color-accent: #f6c90f;
+  --color-accent-dark: #e0b400;
+}
+
+body {
+  @apply bg-cream text-cocoa;
+}
