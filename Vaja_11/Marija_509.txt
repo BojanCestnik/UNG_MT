@@ -1,3 +1,18 @@
 Marija_509
-GitHub
-------
+STEP 1: GOAL
+Build a simple but friendly Home Assist app that takes a photo of a broken household item, identifies the fault, lists the materials needed, checks whether the repair is safe to do at home, and guides me step by step.
+
+STEP 2: TECHNOLOGY AND CONSTRAINTS
+Use React + TypeScript, Vite and Tailwind CSS v4.
+Do NOT install any additional packages.
+Do NOT add a backend or database. Do NOT change the config files.
+Photo analysis is a mock function returning one of 5 predefined faults (leaking tap, loose door hinge, flickering lamp, clogged drain, wobbly chair leg), so a real AI service can be added later.
+
+STEP 3: FUNCTIONALITIES
+1. Photo upload: a button "Upload photo" at the top of the screen, accepting JPG/PNG up to 5 MB, with a preview below it. A wrong file type or a larger file shows an error message and does not crash the app.
+2. Fault diagnosis: an "Analyze" button below the preview shows a card with the fault name, a one-sentence description and a confidence value from 0 to 100%.
+3. Materials list: a checklist below the diagnosis, where each item shows a name and quantity.
+4. Safety check: a badge "Safe to do at home" (green) or "Call a professional" (red). Anything involving mains electricity, gas or structural elements is always red, and no repair steps are shown in that case.
+5. Tool comparison: an input field at the bottom where I add the tools I own, saved in localStorage. Each required tool is marked "Have" or "Missing".
+6. Step-by-step guide: one step at a time with "Back" and "Next" buttons and a progress label like "Step 2 of 6". After the last step it shows "Repair complete". It never advances automatically.
+Data model: each repair has id, faultName, safetyLevel, materials[] and steps[].
