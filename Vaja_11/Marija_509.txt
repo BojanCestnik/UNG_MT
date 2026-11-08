@@ -1,18 +1,36 @@
 Marija_509
+
 STEP 1: GOAL
-Build a simple but friendly Home Assist app that takes a photo of a broken household item, identifies the fault, lists the materials needed, checks whether the repair is safe to do at home, and guides me step by step.
+Build a friendly, practical and good-looking guided home repair assistant for a phone screen. It has built-in guides for 8 simple repairs, a "My tools" checklist that is compared with each guide, a step-by-step repair mode and a repair log. A small React front end talks to a small Node back end through a REST API, and the back end stores the data in a JSON file. The feeling for the user: warm, calm, trustworthy, like a helpful neighbour who owns a toolbox. Simple, not overloaded.
+The app does NOT recognise faults from photos, does NOT use any AI service, and NEVER judges automatically whether a repair is safe.
 
 STEP 2: TECHNOLOGY AND CONSTRAINTS
-Use React + TypeScript, Vite and Tailwind CSS v4.
-Do NOT install any additional packages.
-Do NOT add a backend or database. Do NOT change the config files.
-Photo analysis is a mock function returning one of 5 predefined faults (leaking tap, loose door hinge, flickering lamp, clogged drain, wobbly chair leg), so a real AI service can be added later.
+Front end: React + TypeScript, Vite and Tailwind CSS v4, in the folder "frontend".
+Back end: plain Node.js with only the built-in "http" and "fs" modules, written in TypeScript or JavaScript, in the folder "backend". It runs on port 3001. The front end runs on port 5173, so the back end must send CORS headers.
+Do NOT install any additional packages beyond the standard Vite React-TS template and Tailwind CSS v4. No Express, no axios, no router library, no UI library, no icon library (use emoji).
+Do NOT add a database server, authentication, an AI or image-recognition service, or API keys.
+Do NOT change the config files except what Tailwind v4 needs to work.
+Storage: the back end keeps all data in the file backend/data/db.json (guides, tools, log). The front end does not use localStorage for data.
 
 STEP 3: FUNCTIONALITIES
-1. Photo upload: a button "Upload photo" at the top of the screen, accepting JPG/PNG up to 5 MB, with a preview below it. A wrong file type or a larger file shows an error message and does not crash the app.
-2. Fault diagnosis: an "Analyze" button below the preview shows a card with the fault name, a one-sentence description and a confidence value from 0 to 100%.
-3. Materials list: a checklist below the diagnosis, where each item shows a name and quantity.
-4. Safety check: a badge "Safe to do at home" (green) or "Call a professional" (red). Anything involving mains electricity, gas or structural elements is always red, and no repair steps are shown in that case.
-5. Tool comparison: an input field at the bottom where I add the tools I own, saved in localStorage. Each required tool is marked "Have" or "Missing".
-6. Step-by-step guide: one step at a time with "Back" and "Next" buttons and a progress label like "Step 2 of 6". After the last step it shows "Repair complete". It never advances automatically.
-Data model: each repair has id, faultName, safetyLevel, materials[] and steps[].
+1. Built-in guides: 8 repairs stored in db.json: dripping tap washer, loose chair leg, bicycle inner tube, blocked sink, small hole in a wall, loose button, squeaky door hinge, loose cabinet handle. Each guide has id, title, object, problem, difficulty ("easy" or "medium"), minutes, tools[], materials[], safetyNotes[] and steps[] (5 to 7 steps each).
+2. Find a guide (home screen): two dropdowns at the top ("Object" and "Problem"), a search field below them, and a results list below. Each result card shows title, difficulty badge and time like "25 min". If nothing matches, show "No guide found".
+3. My tools (second screen, opened with a bottom tab bar): a checklist of all tools used by the guides. I tick the tools I own. Every tick is sent to the back end immediately. The list is still ticked after I reload the page.
+4. Guide detail: tools and materials are listed. Each tool is marked "Have" (green) or "Missing" (red), compared with My tools. At the top it shows "3 missing". The "Start repair" button is at the bottom.
+5. Safety: every guide shows its safetyNotes in a yellow box at the top of the detail screen. On the home screen a red banner says "Call a professional for electrical, gas and water-mains problems". There are no guides for those problems.
+6. Step-by-step mode: one step per screen, with "Back" and "Next" buttons at the bottom, a progress bar and a label like "Step 2 of 6". "Back" is disabled on step 1. The last screen says "Repair finished" and has a "Save to log" button. It never advances automatically.
+7. Repair log (third tab): a list of finished repairs, newest first, with guide title, date as DD.MM.YYYY and an optional photo (file input, JPG/PNG, max 1 MB). A wrong type or a bigger file shows a red message and does not crash the app. The photo is only stored, never analysed. Each entry has a "Delete" button with a confirm question. An empty log shows "No repairs yet".
+8. API (all responses are JSON, errors look like {"error": "message"} with the right status code):
+   - GET /api/guides and GET /api/guides/:id
+   - GET /api/tools and PUT /api/tools (body: array of owned tool names)
+   - GET /api/log, POST /api/log (guideId, date, optional photo as base64 string) and DELETE /api/log/:id
+   The front end shows "Loading..." while waiting, and "Cannot reach the server" with a "Try again" button if the back end is off.
+9. Edge cases: unknown guide id gives 404 and the screen "Guide not found"; a photo over 1 MB is rejected by BOTH the front end and the back end; a guide with 0 missing tools shows "You have everything".
+Data model: Guide {id, title, object, problem, difficulty, minutes, tools[], materials[], safetyNotes[], steps[]}; LogEntry {id, guideId, date, photo?}.
+
+STEP 4: CODE STRUCTURE
+Vibe coding and real coding are combined, and I decide who writes what:
+- The AI generates: the React components, the Tailwind styling and the db.json with the 8 guides.
+- I write by hand (the AI only creates empty functions with TODO comments and explains them): the back end request handler and routing in backend/server.ts, the photo size validation, and the function compareTools(guideTools, myTools) that returns {have, missing}.
+Front end folders: src/components (GuideCard, ToolItem, StepView, ProgressBar, TabBar, SafetyBox, Banner), src/screens (HomeScreen, ToolsScreen, GuideDetailScreen, StepScreen, LogScreen), src/api (api.ts, the only place that calls fetch), src/types.ts and src/utils (compareTools.ts).
+App holds the state (current screen, selected guide, tools, log) with useState and passes data to the components through props. Data is loaded with useEffect, with correct dependencies
