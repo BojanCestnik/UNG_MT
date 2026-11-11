@@ -1,7 +1,61 @@
 Ema_449
-<<<<<<< HEAD
-…..
+## Step 1: Goal
 
-=======
-cscfjiahdajh
->>>>>>> 80a0a43d49b6110f8c1abd65627e28ad99f211a3
+Build a simple, modern, and user-friendly shopping discount app called **SmartSave**, where users can compare product prices across different stores, find the best discounts, and save money on their shopping.
+
+## Step 2: Technology and Restrictions
+
+- Use React with TypeScript, Vite, and Tailwind CSS v4.
+- Do NOT install any additional packages.
+- Do NOT use external APIs or collect real-time data from store websites.
+- Use only built-in sample data entered manually.
+- Keep the application simple, responsive, and easy to navigate.
+- Use a clean, modern design with soft green and white colors.
+- All prices should be displayed in euros (€).
+- The application should be in Slovenian.
+
+## Step 3: Functional Requirements
+
+1. **Home Page**
+   - Display the app name "SmartSave" at the top.
+   - Show a search bar for products.
+   - Display the best current discounts.
+   - Include navigation to Products, Stores, Shopping List, and Home.
+
+2. **Stores and Products**
+   - Include 5 sample stores: Mercator, Spar, Lidl, Hofer, and Tuš.
+   - Include 25 sample everyday products such as milk, bread, eggs, coffee, pasta, rice, chocolate, and other groceries.
+   - Each product should have a name, store, regular price, discount price, discount start date, and discount end date.
+   - Use realistic but fictional prices and discounts.
+
+3. **Price Comparison**
+   - Allow users to search for a product by name.
+   - Display the product's price in each store.
+   - Sort the results from the cheapest to the most expensive.
+   - Highlight the cheapest option in green.
+   - Show the amount of money users can save.
+
+4. **Store Discounts**
+   - Display a list of all 5 stores.
+   - When users select a store, show its current discounts.
+   - Display regular prices, discounted prices, and discount percentages.
+   - Automatically hide expired discounts based on the current date.
+   - If a discount has expired, use the regular price for price comparisons.
+
+5. **Shopping List**
+   - Allow users to add and remove products from their shopping list.
+   - Allow users to change product quantities.
+   - Calculate the total shopping list price for each store.
+   - Highlight the store with the lowest total price for the entire shopping list.
+   - Display how much money the user can save compared to the most expensive store.
+   - Keep the shopping list saved in localStorage after refreshing the page.
+
+6. **Design and User Experience**
+   - Use a modern, minimalistic design with rounded buttons and cards.
+   - Make the app mobile-friendly.
+   - Use green to highlight savings and discounts.
+   - Keep navigation simple and intuitive.
+   - Show a friendly message when no products are found.
+   - Make sure all buttons, searches, filters, and shopping list functions work correctly.
+
+**Important:** This is a student project. The app must work entirely with manually entered sample data. Do not connect to real stores, use external APIs, or add unnecessary features.
