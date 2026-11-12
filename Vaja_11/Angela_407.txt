@@ -1,3 +1,227 @@
 Angela_407
-:(
-hello github
+
+SHOPWALLET – PERSONAL SHOPPING COUPON WALLET
+
+1.  GOAL AND TONE
+
+Build a simple, modern and functional personal shopping coupon wallet
+application called ShopWallet.
+
+Purpose: ShopWallet helps users store, organize and manage shopping
+coupons, discount codes and promotional offers from different stores in
+one place. It helps users avoid forgetting coupons, missing expiration
+dates or losing promotional codes.
+
+Target audience: The application is designed for all genders and age
+groups, including people with limited technical experience. It should be
+intuitive enough for someone with little experience using technology.
+
+Design: - Primary colour: navy blue (#1E293B). - Background: white
+(#FFFFFF) and light grey (#F8FAFC). - Primary action colour: blue
+(#2563EB). - Use green for success indicators and orange for expiration
+warnings. - Use a clear, readable sans-serif font. - Use simple coupon
+cards, clear spacing and large buttons with descriptive labels. - Keep
+navigation consistent and easy to understand. - Avoid unnecessary
+animations, decorative elements and complicated menus. - Make the
+application responsive on mobile and desktop.
+
+User experience: Prioritize simplicity, accessibility and functionality.
+The main actions should be easy to find: add a coupon, search for a
+coupon, view favourite stores, check expiring coupons and view the
+archive. No registration or login is required.
+
+2.  TECHNOLOGY AND CONSTRAINTS
+
+Required technology stack: - React - TypeScript - Vite - Tailwind CSS v4
+(already configured)
+
+Technical restrictions: - Do NOT install additional packages or
+dependencies. - Do NOT introduce additional libraries or frameworks. -
+Do NOT unnecessarily modify the existing project configuration. - Do NOT
+use a backend or external database. - Use browser localStorage for
+persistent data storage. - Use standard browser APIs whenever
+possible. - Keep the code clean, readable and beginner-friendly. - Use
+TypeScript interfaces and types instead of any. - Do not use external
+APIs or AI services.
+
+Data storage: Store coupons, favourite stores and savings information in
+localStorage. Uploaded images are only temporary previews and must NOT
+be permanently stored. After a coupon is saved, clear the image preview.
+Saved coupon information, favourite stores and savings records must
+remain available after refreshing the browser.
+
+Code structure: Organize the application into reusable React
+components: - App: holds the main application state and coordinates the
+application. - Header: displays the application name and navigation. -
+Dashboard: displays an overview, expiring-soon coupons and savings
+summary. - CouponForm: adds coupons and handles temporary image
+previews. - CouponList: displays, searches and filters coupons. -
+CouponCard: displays an individual coupon preview. - CouponDetails:
+displays the details of a selected coupon. - FavouriteStores: displays
+favourite stores and their active coupons. - Archive: displays used and
+expired coupons.
+
+Use props to pass data and callbacks from parent components to child
+components. Use useState for interactive application state and useEffect
+for loading and synchronizing persistent data where appropriate. Define
+TypeScript interfaces or types for Coupon, Store, Savings and component
+props. Do not use any.
+
+3.  FUNCTIONALITIES
+
+1.  ADD A COUPON
+
+Users must be able to add a coupon through a simple form.
+
+Each coupon contains: - Store name (required). - Description
+(required). - Discount value (required). - Discount type: percentage or
+fixed amount in euros. - Category (required). - Valid from date
+(required). - Valid until date (required). - Optional coupon code.
+
+Requirements: - Validate all required fields. - The expiration date
+cannot be earlier than the start date. - After saving, the coupon
+appears in the coupon list. - Show clear feedback when a coupon is
+successfully added. - Save the coupon in localStorage.
+
+2.  COUPON LIST AND EXPIRATION DATES
+
+Display coupons in an organized list.
+
+Requirements: - Sort coupons by expiration date, with the earliest
+expiration first. - Display store name, discount, category and
+expiration date. - Highlight coupons expiring within the next three days
+using an orange indicator. - Clearly distinguish upcoming, active and
+expired coupons. - Upcoming coupons remain visible but cannot be marked
+as used before their start date. - Expired coupons automatically appear
+in the archive. - Provide a separate “Expiring Soon” section showing
+coupons that expire within the next three days.
+
+3.  FILTER AND SEARCH COUPONS
+
+Allow users to find coupons easily.
+
+Filtering options: - Store name. - Category.
+
+Search functionality: - Search by store name. - Search by coupon
+description. - Update results as the user types. - Allow users to clear
+the search and reset filters. - Search and filters must work together.
+
+4.  MARK A COUPON AS USED
+
+Users must be able to mark an active coupon as used.
+
+Requirements: - Include a clearly visible “Mark as Used” button. - Ask
+for confirmation before changing the coupon status. - Allow the user to
+enter the actual amount saved in euros. - The amount saved must be a
+non-negative number. - Allow the user to skip the savings amount if they
+do not know it. - After confirmation, remove the coupon from the active
+list and move it to the used coupons archive. - Preserve all original
+coupon information. - Update the savings total only when an actual
+savings amount is entered.
+
+5.  ARCHIVE
+
+Create a separate archive section containing: - Used coupons. - Expired
+coupons.
+
+Requirements: - Clearly distinguish used coupons from expired coupons. -
+Display store name, discount and relevant dates. - Allow users to review
+archived coupon details. - Keep archived coupons saved in
+localStorage. - Do not automatically delete archived coupons.
+
+6.  COUPON DETAILS
+
+Every coupon must have an individual detail view.
+
+Display: - Store name. - Description. - Discount value and type. -
+Category. - Validity period. - Coupon code, if available. - Current
+status.
+
+Requirements: - Display coupon codes in large, readable text. - Include
+a “Copy Code” button using the browser clipboard API when available. -
+If no coupon code exists, indicate that the coupon does not require a
+code. - Provide an easy way to return to the coupon list.
+
+7.  FAVOURITE STORES
+
+Users must be able to mark stores as favourites.
+
+Requirements: - Include a heart control next to the store name. -
+Favouriting a store applies to that store across all its coupons. -
+Clicking the control adds or removes the store from favourites. - Save
+favourite stores in localStorage. - Each favourite store appears only
+once. - Create a separate Favourite Stores section. - Display the number
+of active coupons belonging to each favourite store. - Clicking a
+favourite store displays its active coupons. - Show active coupons only,
+excluding upcoming, used and expired coupons. - Keep favourite stores
+saved even if they temporarily have no active coupons.
+
+8.  UPLOAD SOCIAL MEDIA COUPON SCREENSHOTS
+
+Allow users to select screenshots of promotional posts from platforms
+such as Instagram, Facebook, WhatsApp and LinkedIn.
+
+Requirements: - Provide an image upload option. - Accept common image
+formats such as JPG, JPEG and PNG. - Display a temporary preview of the
+selected image. - Allow users to enter coupon details manually. - Clear
+the image preview after saving the coupon. - Do not permanently store
+the image.
+
+Do not implement automatic text recognition or social media
+integrations.
+
+9.  UPLOAD PHOTOS OF PHYSICAL COUPONS
+
+Allow users to select photos of physical coupons, printed vouchers,
+promotional letters and receipts.
+
+Requirements: - Allow image selection from a device. - Support taking a
+photo on compatible mobile devices using a standard browser file input
+with camera capture where supported. - Display a temporary image
+preview. - Allow users to enter coupon details manually. - Clear the
+image preview after saving the coupon. - Do not permanently store the
+image. - Do not implement automatic barcode scanning or recognition.
+
+10. SAVINGS TRACKER
+
+Create a simple savings overview on the dashboard.
+
+Requirements: - Display the total amount saved by using coupons. -
+Update the total when a coupon is marked as used and an actual savings
+amount is entered. - Include a simple summary of individual recorded
+savings. - Calculate the total from recorded savings amounts. - Do not
+estimate savings from coupon percentages. - Exclude unused and expired
+coupons from the savings calculation. - Keep savings information in
+localStorage.
+
+ADDITIONAL DATA REQUIREMENTS
+
+Define a consistent TypeScript data structure for coupons. Each coupon
+should have: - A unique ID. - Store name. - Description. - Discount
+value. - Discount type. - Category. - Start date. - Expiration date. -
+Optional coupon code. - Status (upcoming, active, used or expired). -
+Optional actual savings amount.
+
+Store favourite stores separately, using a consistent store identifier
+or normalized store name so that the same store is not duplicated.
+
+Do not include image data in saved coupon objects.
+
+FINAL REQUIREMENTS
+
+-   Implement all ten defined functionalities.
+-   Keep the application simple and intuitive.
+-   Make sure every button and control works.
+-   Ensure saved data persists after refreshing the browser.
+-   Do not permanently store uploaded images.
+-   Avoid features outside the defined scope.
+-   Do not install additional dependencies.
+-   Follow the specified technology stack and constraints.
+-   Keep the code understandable for a beginner learning React and
+    TypeScript.
+-   Test each functionality individually before considering the
+    application complete.
+
+The priority is a fully functional, reliable and user-friendly
+application rather than unnecessary visual complexity.
+

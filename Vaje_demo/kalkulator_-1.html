@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Statični kalkulator 0</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body1 {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      background: linear-gradient(115deg, #0ab9c5 0%, #00dd9b 100%);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .kalkulator1 {
+      width: min(436px, calc(100vw - 40px));
+      margin: 33px auto 25px;
+    }
+
+    .zaslon1 {
+      height: 126px;
+      background: #00392f;
+      border: 2px solid #172c29;
+      color: #fff;
+      text-align: right;
+      padding: 15px 12px;
+    }
+
+    .izraz1 {
+      font-size: 25px;
+      line-height: 30px;
+      color: #b9d2cb;
+    }
+
+    .rezultat1 {
+      margin-top: 11px;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 44px;
+      line-height: 49px;
+    }
+
+    .tipkovnica1 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(5, 109px);
+    }
+
+    .tipka1 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(204, 247, 244, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      color: #111;
+      font-size: 35px;
+      font-weight: 400;
+    }
+
+    .sirina-21 { grid-column: span 2; }
+    .enako1 { background: #e8faf6; }
+  </style>
+</head>
+<body>
+  <main class="kalkulator" aria-label="Statična slika kalkulatorja">
+    <div class="zaslon">
+      <div class="izraz">25.75 +</div>
+      <div class="rezultat">65.25</div>
+    </div>
+
+    <div class="tipkovnica">
+      <div class="tipka sirina-2">AC</div>
+      <div class="tipka">DEL</div>
+      <div class="tipka">÷</div>
+
+      <div class="tipka">1</div>
+      <div class="tipka">2</div>
+      <div class="tipka">3</div>
+      <div class="tipka">*</div>
+
+      <div class="tipka">4</div>
+      <div class="tipka">5</div>
+      <div class="tipka">6</div>
+      <div class="tipka">+</div>
+
+      <div class="tipka">7</div>
+      <div class="tipka">8</div>
+      <div class="tipka">9</div>
+      <div class="tipka">-</div>
+
+      <div class="tipka">.</div>
+      <div class="tipka">0</div>
+      <div class="tipka enako sirina-2">=</div>
+    </div>
+  </main>
+</body>
+</html>

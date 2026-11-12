@@ -1,2 +1,72 @@
 Tadeja_311
-hello
+Build a cute and modern daily planner app called "Moj Ritem" 
+Create a beautiful, modern and user-friendly daily planning application called Moj Ritem.
+The application helps users organize their everyday lives, plan daily activities, set personal goals, manage events and receive reminders about upcoming obligations.
+The main goal is to help users create a balanced daily routine, stay organized and make time for the things that matter.
+1. Main Dashboard
+•	Display the application name "Moj Ritem".
+•	Show a friendly welcome message.
+•	Display the current date and day of the week.
+•	Show an overview of today's activities.
+•	Display daily task completion progress.
+•	Highlight upcoming events and reminders.
+2. Daily Tasks
+•	Add, edit and delete tasks.
+•	Set task titles, descriptions, dates and times.
+•	Mark tasks as completed.
+•	Organize tasks into categories.
+•	Highlight important and overdue tasks.
+3. Personal Goals
+•	Create daily, weekly and monthly goals.
+•	Set deadlines.
+•	Track progress.
+•	Mark completed goals.
+•	Display progress bars and completion percentages.
+4. Calendar and Events
+•	Include daily, weekly and monthly calendar views.
+•	Add, edit and delete events.
+•	Display events chronologically.
+•	Use different colors for different event categories.
+5. Notifications and Reminders
+•	Send reminders before upcoming events.
+•	Allow users to customize notification times.
+•	Remind users about unfinished tasks.
+•	Display friendly motivational messages.
+6. Statistics and Progress
+•	Show completed and unfinished tasks.
+•	Display daily and weekly productivity.
+•	Track completed goals.
+•	Provide a visual overview of personal progress.
+7. Design and Visual Identity
+The application should have a cute, calming, modern and minimalistic design.
+•	Application name: Moj Ritem.
+•	Use a soft pastel color palette: light blue and lavender.
+•	Use rounded corners (rounded-2xl and rounded-3xl).
+•	Use generous spacing and clean layouts.
+•	Include subtle hover effects and smooth transitions.
+•	Use friendly icons and simple illustrations.
+•	Create a welcoming dashboard.
+•	Make the application responsive for mobile, tablet and desktop.
+8. Navigation
+Include a simple navigation menu:
+•	Domov (Home)
+•	Moje naloge (My Tasks)
+•	Koledar (Calendar)
+•	Moji cilji (My Goals)
+•	Statistika (Statistics)
+•	Nastavitve (Settings)
+9. Language
+The entire user interface must be in Slovenian.
+Use natural, friendly Slovenian language for all buttons, labels, headings, notifications and messages.
+10. Technical Requirements
+Use:
+•	React
+•	TypeScript
+•	Vite
+•	Tailwind CSS v4
+Do not install additional packages.
+Use reusable React components, TypeScript interfaces and React hooks such as useState and useEffect.
+All buttons, forms, navigation elements and application features must work correctly.
+Start by creating a functional frontend with sample data. Prioritize clean code, usability and an attractive design.
+The final application should feel like a personal daily assistant that helps users find their own rhythm and organize everyday life.
+
