@@ -16,33 +16,33 @@ Build a simple, modern, and user-friendly shopping discount app called **SmartSa
 
 ## Step 3: Functional Requirements
 
-1. **Home Page**
+3.1. **Home Page**
    - Display the app name "SmartSave" at the top.
    - Show a search bar for products.
    - Display the best current discounts.
    - Include navigation to Products, Stores, Shopping List, and Home.
 
-2. **Stores and Products**
+3.2. **Stores and Products**
    - Include 5 sample stores: Mercator, Spar, Lidl, Hofer, and Tuš.
    - Include 25 sample everyday products such as milk, bread, eggs, coffee, pasta, rice, chocolate, and other groceries.
    - Each product should have a name, store, regular price, discount price, discount start date, and discount end date.
    - Use realistic but fictional prices and discounts.
 
-3. **Price Comparison**
+3.3. **Price Comparison**
    - Allow users to search for a product by name.
    - Display the product's price in each store.
    - Sort the results from the cheapest to the most expensive.
    - Highlight the cheapest option in green.
    - Show the amount of money users can save.
 
-4. **Store Discounts**
+3.4. **Store Discounts**
    - Display a list of all 5 stores.
    - When users select a store, show its current discounts.
    - Display regular prices, discounted prices, and discount percentages.
    - Automatically hide expired discounts based on the current date.
    - If a discount has expired, use the regular price for price comparisons.
 
-5. **Shopping List**
+3.5. **Shopping List**
    - Allow users to add and remove products from their shopping list.
    - Allow users to change product quantities.
    - Calculate the total shopping list price for each store.
@@ -50,7 +50,7 @@ Build a simple, modern, and user-friendly shopping discount app called **SmartSa
    - Display how much money the user can save compared to the most expensive store.
    - Keep the shopping list saved in localStorage after refreshing the page.
 
-6. **Design and User Experience**
+3.6. **Design and User Experience**
    - Use a modern, minimalistic design with rounded buttons and cards.
    - Make the app mobile-friendly.
    - Use green to highlight savings and discounts.
