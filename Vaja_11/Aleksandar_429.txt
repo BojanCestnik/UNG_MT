@@ -1,1 +1,35 @@
-Aleksandar_429 Hello :)
+# Where's the Party – Structured Prompt
+
+## 1. Goal and Tone
+
+Build a simple, modern and interactive mobile-friendly web application called **"Where's the Party"**.
+
+The main goal is to help people find the best nightlife locations by showing how crowded different bars and clubs currently are. Users should be able to quickly discover where the party is happening without physically visiting multiple locations.
+
+The application should have a modern, energetic and user-friendly atmosphere, suitable for young adults and students.
+
+## 2. Technology Stack
+
+- Use React with TypeScript.
+- Use Vite for the development environment.
+- Use Tailwind CSS v4 for styling.
+- Do not install any additional packages.
+- Use localStorage to save user preferences and favourite locations.
+- The application should work on both mobile phones and computers.
+- Do not use security cameras, live video streaming or external databases.
+
+## 3. Functional Requirements
+
+1. **List of clubs and bars:** Display approximately 10 nightlife locations with their names, addresses, music genres and opening hours.
+
+2. **Crowd level:** Each location should display its current crowd level using three categories: Empty, Lively and Packed.
+
+3. **Crowd updates:** Guests or staff members can report the crowd level by selecting one of the three categories. Display the number of reports and the time of the latest update.
+
+4. **Tonight's events:** Show upcoming events with the venue name, starting time, DJ or music theme.
+
+5. **Search and filters:** Allow users to search for clubs by name, filter locations by music genre and crowd level, and sort them by the most lively locations.
+
+6. **Interactive map:** Display nightlife locations on a simple map where users can select a venue to see its details. For the first version, use a simplified map without external map services.
+
+7. **Favourite locations:** Allow users to save their favourite clubs and bars. Save this information in localStorage so it remains available after closing the application.
