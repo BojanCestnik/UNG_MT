@@ -59,3 +59,72 @@ Build a simple, modern, and user-friendly shopping discount app called **SmartSa
    - Make sure all buttons, searches, filters, and shopping list functions work correctly.
 
 **Important:** This is a student project. The app must work entirely with manually entered sample data. Do not connect to real stores, use external APIs, or add unnecessary features.
+
+## Step 4: Code Structure
+
+Organize the application into six simple React components:
+
+4.1. **App** – Main component that manages the application state, navigation, products, stores, and shopping list.
+4.2. **HomePage** – Displays the app name, search bar, and current discounts.
+4.3. **ProductComparison** – Allows users to search for products and compare prices across stores.
+4.4. **StoreDiscounts** – Displays the five stores and their active discounts.
+4.5. **ShoppingList** – Allows users to add products, change quantities, remove products, and compare total shopping costs.
+4.6. **Navigation** – Allows users to switch between the main sections of the application.
+
+- Use `useState` to manage the selected page, search input, selected store, and shopping list.
+- Use `useEffect` to save the shopping list to localStorage whenever it changes.
+- Store sample product and store data in a separate file.
+- Pass data and functions between components using props.
+- Use TypeScript interfaces for products, stores, discounts, and shopping list items.
+- Do NOT use the `any` type.
+- Keep the code organized, simple, and easy to understand.
+
+## Step 5: Design Requirements
+
+Create a clean, modern, and mobile-friendly shopping application.
+
+5.1. **Colors**
+   - Use a light background color (#F8FAF8).
+   - Use green (#22C55E) as the main accent color for discounts, savings, and buttons.
+   - Use white cards for displaying products and stores.
+   - Use dark gray (#1F2937) for text.
+
+5.2. **Layout**
+   - Use a maximum content width of 480px on mobile.
+   - Center the application on larger screens.
+   - Use rounded-2xl corners for cards and buttons.
+   - Use shadow-sm or shadow-md for subtle shadows.
+   - Keep consistent spacing between elements.
+
+5.3. **Navigation and Buttons**
+   - Place the app name at the top.
+   - Use simple navigation between Home, Products, Stores, and Shopping List.
+   - Make buttons at least 44px high for easy use on mobile devices.
+   - Highlight the selected navigation section in green.
+
+5.4. **Product Display**
+   - Show product names, prices, and discounts clearly.
+   - Display regular prices with a strikethrough when a discount is active.
+   - Highlight the cheapest price in green.
+   - Use simple cards to organize product information.
+
+5.5. **Mobile Experience**
+   - Design primarily for mobile screens around 375px wide.
+   - Make the layout responsive for tablets and computers.
+   - Avoid unnecessary animations and complicated visual effects.
+   - Keep the design minimal, attractive, and easy to navigate.
+
+## Step 6: Code Purpose and Quality
+
+This application is a student project designed to demonstrate basic React and TypeScript skills.
+
+- Keep the code clean, readable, and beginner-friendly.
+- Use simple and meaningful variable and component names.
+- Avoid unnecessary complexity and advanced programming techniques.
+- Make sure all required functions work correctly.
+- Use only the technologies specified in Step 2.
+- Make the application easy to maintain and improve in the future.
+- Prioritize usability, simplicity, and clear price comparisons.
+- The application should help users quickly find the cheapest products and save money on everyday shopping.
+
+The final result should be a simple, functional, and visually attractive shopping comparison app that is easy to understand and use.
