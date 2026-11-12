@@ -1,10 +1,10 @@
 Jan_552
 
-STORAGE.3D - PROMPT, PART 1
+STORAGE.3D - PROMPT
 
 1. GOAL AND TONE
 
-Build a mobile-first filament inventory app for 3D printers, called "Storage.3D".
+Build a mobile-first filament inventory and print log app for 3D printers, called "Storage.3D".
 
 Who it is for: a 3D printing hobbyist who wants to know how much filament is left on each spool, how much material they use each month, and when to restock.
 
@@ -14,6 +14,7 @@ What it should convey: a clean, technical, engineer-made tool. It should feel li
 * Numbers (grams, counts) in a monospace font, small uppercase labels with letter spacing.
 * Designed for a phone screen (like a native app), but it must also look fine on a desktop browser.
 
+This is version 1. It is simple on purpose: a small app that works is better than a big app that does not. Do not make it look or behave like a generic template. Detailed colors and layout rules will follow in a later part.
 
 
 2. TECHNOLOGY STACK
@@ -23,7 +24,13 @@ Already set up in the project:
 * Vite
 * Tailwind CSS (v4, already configured)
 
-Do NOT install any additional packages. Use only what's already there.
+Rules:
+* Do NOT install any additional packages. Do NOT change package.json. Use only what is already there.
+* Do NOT use a different framework, a router, a chart library, a UI component library or an icon library.
+* Icons must be small inline SVG.
+* Do NOT use `any` in TypeScript.
+* Data is stored only in the browser (localStorage). No backend, no database, no login.
+
 
 3. FUNCTIONALITIES
 
@@ -55,7 +62,7 @@ The app has three tabs: Spools, Print Log and Stats. Build exactly the features 
 * If nothing matches, show "No spools match your filters".
 
 3.4 Log a print (Print Log tab)
-* Fields: spool (dropdown of active spools, shown as "Material - Color - remaining g"), grams used (editable-number), date (default today), print name (optional text).
+* Fields: spool (dropdown of active spools, shown as "Material - Color - remaining g"), grams used (number), date (default today), print name (optional text).
 * Validation with clear error messages: a spool must be selected, grams used must be above 0, and grams used must not be higher than the spool's remaining grams.
 * After saving, the remaining weight of that spool updates automatically.
 * Below the form, a list of the 20 newest prints (newest first) with date, print name (or "Untitled"), spool and grams used.
@@ -70,4 +77,131 @@ The app has three tabs: Spools, Print Log and Stats. Build exactly the features 
 3.6 Saving data
 * Spools, prints and the low-stock limit are saved to localStorage and loaded again when the app starts.
 * If the saved data is missing or broken, the app must not crash; it starts with empty data and a 200 g limit.
+
+NOT INCLUDED IN VERSION 1 (do NOT build):
+Editing spools, deleting prints, a search field, showing or restoring archived spools, estimated days of stock left, price and cost calculations, scanning or barcodes, printer management, storage locations, cloud sync, export/import.
+
+Do not invent any other features. If something is unclear, ask me instead of guessing.
+
+
+4. CODE STRUCTURE
+
+I decide the structure of the code, you implement it. Do not put everything in one file. Props are passed from parent to child.
+
+4.1 Files and components (at least 7 components, each in its own file)
+* App - the only place that holds the app data (state) and the handler functions (add spool, mark spool empty, add print, change filters, change tab). It also shows the top row (app name with spool icon, the "+" button) and the page title with subtitle. It passes data and handler functions down to the other components as props.
+* TabBar - bottom navigation (Spools / Print Log / Stats). Receives the active tab and a function to change it.
+* FilterBar - material dropdown, color dropdown and the low-stock limit input. Receives the current values and change functions.
+* SpoolForm - the form for adding a spool. Keeps only its own temporary input values and error messages in local state; when the form is valid it calls the function it received from App.
+* SpoolList - receives the already filtered spools array and the remaining grams for each spool, and renders one card per spool (the card is part of this file).
+* PrintForm - the form for logging a print (same pattern as SpoolForm), plus the list of the 20 newest prints below it.
+* StatsPanel - receives the already calculated monthly stats as props and only displays them (stat tiles and the "use by material" bars).
+* SpoolIcon - a small helper component: the round spool SVG filled with a color it receives as a prop.
+
+Other files:
+* types.ts - all TypeScript types and interfaces.
+* constants.ts - the fixed lists: materials, and colors with their names and default hex codes:
+  Black #111111, White #F2F2F2, Gray #8A8F98, Silver #C0C4CC, Red #E5484D, Orange #F5821F, Yellow #F6C90E, Green #30A46C, Blue #3E63DD, Purple #8E4EC6, Pink #E93D82, Brown #8B5E3C, Beige #D9C3A0, Transparent #9FD3E6, Other #6B7280.
+* utils.ts - small pure helper functions (no React inside): getRemainingGrams, filterSpools, getMonthlyStats, getTodayString.
+
+4.2 Data model
+* Material = "PLA" | "PETG" | "ABS" | "ASA" | "TPU" | "Nylon" | "PC" | "Other"
+* Spool: id, material, colorName, colorHex, brand, startWeightG, purchaseDate, price (number or null), archived
+* PrintLog: id, spoolId, gramsUsed, date, name
+* Remaining weight is NOT stored. It is always calculated: startWeightG minus the sum of gramsUsed of all prints for that spool.
+* Use crypto.randomUUID() for ids. Dates are stored as "YYYY-MM-DD" strings. "This month" means the same year and month as today.
+
+4.3 State (useState in App)
+* active tab
+* spools array
+* prints array
+* low-stock limit
+* material filter
+* color filter
+* whether the add-spool form is open
+Everything else (filtered list, remaining grams, monthly stats) is calculated from this state with plain calculations in the component body. Do not store calculated values in state. Do not use useMemo, useReducer or context.
+
+4.4 Saving to localStorage (useEffect)
+* Keys: "storage3d.spools", "storage3d.prints", "storage3d.settings".
+* Load the data when the app starts using a lazy initializer: useState(() => ...). Wrap JSON.parse in try/catch and fall back to empty defaults (and a 200 g limit) if the data is missing or broken.
+* Use useEffect to save to localStorage whenever the spools, the prints or the limit change. Use the correct dependency array (spools, prints, limit). Do not leave the dependency array out.
+* Do not use useEffect for anything else.
+
+4.5 Rules
+* Every list item rendered with .map() must have a key prop that uses its id.
+* All form inputs are controlled inputs (value + onChange).
+* TypeScript: define types/interfaces for Material, Spool, PrintLog, Tab, MonthlyStats and for the props of every component. No `any`.
+* Components receive data and functions through props only. No global variables, no context.
+
+
+5. STYLING WITH MEASURABLE RULES
+
+Do not make it "nice" by your own taste. Follow these exact rules. Define the colors once as theme tokens in the existing src/index.css with Tailwind v4 @theme (do not change config files, do not install anything), and then use the token names in the components.
+
+5.1 Colors
+  Page background:             #0F1115  (dark graphite)
+  Card / panel:                #1A1D23
+  Raised element / input:      #23272F
+  Border (1px):                #2E333D
+  Primary text:                #F2F4F7
+  Muted text:                  #8B93A1
+  ACCENT (engineering orange): #FF7A1A
+  Accent hover:                #FF8F3D
+  Accent soft background:      #FF7A1A at 15% opacity
+  Warning (low stock):         #FFB020
+  Danger / errors:             #EF4444
+
+* Orange is the ONE accent color and is used consistently: active tab, primary buttons, progress bars, focus borders and small highlights. Amber is used only for low stock, red only for errors. Do not add any other accent color. (The filament colors on the spool icons are data, not part of the theme.)
+
+5.2 Shape, depth and spacing
+* Cards: rounded-2xl, 1px border, background #1A1D23, padding p-4, gap-3 between cards.
+* Inputs and dropdowns: rounded-xl, background #23272F, 1px border, orange border on focus, height at least 44px.
+* The two filter dropdowns and the badges ("LOW") are pill-shaped (rounded-full). Dropdowns use appearance-none with a small inline SVG chevron on the right.
+* Buttons: primary = orange background with dark text, secondary = #23272F background with a border. Subtle hover states with a short transition. All tap targets at least 44px high.
+* No shadow heavier than shadow-md.
+* Generous whitespace: at least 16px (p-4 / gap-4) between sections.
+
+5.3 Layout
+* Target screen: phone, 360-430px wide. Layout is centered horizontally with a max width of 480px. On desktop it stays in the centered column.
+* The app must feel like a fixed, native phone app, NOT like a long scrolling web page. The whole app is exactly as tall as the screen (use h-dvh, with overflow-hidden on the outer container) and the browser page itself never scrolls.
+* The screen has three fixed zones:
+  - Top zone (fixed): the top row (app name, "+" button), the page title with subtitle, and on the Spools tab the filter bar.
+  - Middle zone (the only part that scrolls): the content of the current tab (spool cards, the print form and print list, or the stats). Use flex-1 with overflow-y-auto so only this area scrolls, and only when its content is taller than the space available. The inline add-spool form also appears at the top of this middle zone.
+  - Bottom zone (fixed): the floating tab bar.
+* The Stats tab must fit on one screen without scrolling on a normal phone.
+* Top row: small orange spool icon (inline SVG) next to the app name "Storage.3D" (the ".3D" part in orange) on the left; on the right a round orange "+" button, shown only on the Spools tab.
+* Page title: text-3xl, bold, with a muted subtitle under it.
+* Bottom tab bar: floating, rounded-3xl, background #1A1D23, 1px border, always visible at the bottom and centered, same max width as the page. Each tab has an inline SVG icon above a small label. The active tab is orange text on a soft orange background pill; inactive tabs are muted gray. Add enough bottom padding inside the scrolling middle zone so the tab bar never covers the last item.
+* Spool card layout: round spool icon on the left (about 48px), color name (bold) and "Brand . Material" (muted) in the middle, remaining grams (large, monospace) with a small muted "left" on the right, the progress bar along the bottom of the card, "Mark empty" as a small secondary button.
+* Visual reference: a modern dark filament-inventory phone app with a big title and a spool count at the top, pill-shaped filter dropdowns, rounded spool cards with a colored spool icon on the left and the remaining grams on the right, and a floating rounded bottom tab bar.
+
+5.3.1 Typography
+* Clean sans-serif font for text.
+* font-mono with tabular-nums for ALL numbers and grams, so the digits line up and do not jump.
+* Small UPPERCASE labels with letter spacing (for example "REMAINING", "MATERIAL", "LOW STOCK (g)", "TOTAL USED") to give a datasheet / technical-drawing feel.
+
+5.4 One small touch and an upper limit
+* The one small touch: the orange spool icon next to the app name "Storage.3D".
+* Technical, clean, not overloaded. Do not add gradients, animations (except short hover/focus transitions), emojis or decorative elements.
+
+
+6. PURPOSE AND QUALITY OF THE CODE
+
+Who the code is for: I am an industrial engineering student with no coding experience. This is my first app, made for a college class. I will read the code, run it, test it and later extend it myself with the help of AI tools. The app itself is for a 3D printing hobbyist (me).
+
+What counts as good:
+* It works without errors on the first run (npm run dev) and every feature in part 3 can be tested.
+* Simple and readable: clear variable and function names, simple logic, no unnecessary abstractions, short functions.
+* Easy to extend later (for example adding edit, delete or search) without rewriting the app.
+* Short comments that explain what each part does, so I can learn from the code.
+
+Keep the code clean and readable - this will be used to teach React fundamentals, so prefer clarity over cleverness.
+
+
+HOW TO WORK
+1. Read the whole prompt first. If something is unclear or missing, ask me before writing code.
+2. Then list all the files you will create (with their folders), and give me each file with its name above the code block.
+3. Do not install anything and do not change package.json.
+4. After the code, tell me how to run the app (npm run dev) and give me a short checklist to test each of the 6 features in part 3.
+5. Remind me when to commit and push to GitHub and suggest short commit messages.
 
