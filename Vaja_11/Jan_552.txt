@@ -1,1 +1,73 @@
 Jan_552
+
+STORAGE.3D - PROMPT, PART 1
+
+1. GOAL AND TONE
+
+Build a mobile-first filament inventory app for 3D printers, called "Storage.3D".
+
+Who it is for: a 3D printing hobbyist who wants to know how much filament is left on each spool, how much material they use each month, and when to restock.
+
+What it should convey: a clean, technical, engineer-made tool. It should feel like a small measuring instrument or a datasheet, not a toy and not a generic to-do app.
+* Dark graphite theme with one engineering-orange accent color.
+* Simple and calm: only the essential information on each screen, lots of whitespace.
+* Numbers (grams, counts) in a monospace font, small uppercase labels with letter spacing.
+* Designed for a phone screen (like a native app), but it must also look fine on a desktop browser.
+
+
+
+2. TECHNOLOGY STACK
+
+Already set up in the project:
+* React + TypeScript
+* Vite
+* Tailwind CSS (v4, already configured)
+
+Do NOT install any additional packages. Use only what's already there.
+
+3. FUNCTIONALITIES
+
+The app has three tabs: Spools, Print Log and Stats. Build exactly the features below and nothing else.
+
+3.1 Add a spool
+* A form shown inline at the top of the Spools tab (not a modal), opened and closed with a round "+" button.
+* Fields (all controlled inputs), using DROPDOWNS where the choices are fixed:
+  - Material (dropdown): PLA, PETG, ABS, ASA, TPU, Nylon, PC, Other
+  - Color (dropdown with a fixed list, each color has a name and a default hex code, shown as a small round swatch): Black, White, Gray, Silver, Red, Orange, Yellow, Green, Blue, Purple, Pink, Brown, Beige, Transparent, Other
+  - Brand (text input)
+  - Starting weight in grams (number, default 1000)
+  - Purchase date (date input, default today)
+  - Price (number, optional)
+* Required: material, color, starting weight. Show a short red error message under an invalid field (starting weight must be above 0, price cannot be negative).
+* After a successful save, the form closes and resets.
+
+3.2 Inventory list (Spools tab)
+* A big title "Spools" with a muted subtitle "N spools in inventory" (active spools only).
+* One card per active spool showing: a round spool icon in the spool's color, color name, "Brand . Material", the remaining grams (large, monospace) and a thin progress bar (remaining / starting weight).
+* Remaining weight is never typed in; it is calculated as starting weight minus the sum of all logged prints for that spool.
+* Low-stock warning: if the remaining grams are below the low-stock limit, the card shows a "LOW" badge and an amber accent. The limit is a number input (default 200 g) and applies immediately.
+* Each card has a "Mark empty" button. It archives the spool (it disappears from the list). Data is never deleted.
+* If there are no spools, show a friendly message and a button "Add your first spool".
+
+3.3 Filtering (Spools tab)
+* Two dropdowns: Material and Color, both with "All" as the default.
+* Both filters work together.
+* If nothing matches, show "No spools match your filters".
+
+3.4 Log a print (Print Log tab)
+* Fields: spool (dropdown of active spools, shown as "Material - Color - remaining g"), grams used (editable-number), date (default today), print name (optional text).
+* Validation with clear error messages: a spool must be selected, grams used must be above 0, and grams used must not be higher than the spool's remaining grams.
+* After saving, the remaining weight of that spool updates automatically.
+* Below the form, a list of the 20 newest prints (newest first) with date, print name (or "Untitled"), spool and grams used.
+* If there are no active spools, show "Add a spool first" instead of the form.
+
+3.5 Monthly statistics (Stats tab), for the current calendar month
+* Total grams used this month
+* Number of prints this month
+* Average grams per print (show "-" if there are no prints)
+* Use by material: a simple horizontal bar list (material name, grams, bar width proportional to the largest value). Show "No prints this month" when empty.
+
+3.6 Saving data
+* Spools, prints and the low-stock limit are saved to localStorage and loaded again when the app starts.
+* If the saved data is missing or broken, the app must not crash; it starts with empty data and a 200 g limit.
+

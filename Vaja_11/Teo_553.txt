@@ -1,2 +1,47 @@
 Teo_553
-Ma mi siz hribov, mi smo kmete, kaj nan čejo nan tablete.
+
+STRUKTURIRAN PROMPT ZA APLIKACIJO »MOJ PROJEKT«
+
+KORAK 1: CILJ IN TON
+Izdelaj prijazno, praktično in pregledno aplikacijo »Moj Projekt«, prilagojeno zaslonu mobilnega telefona. Namenjena je ljudem, ki doma ali v delavnici sami izdelujejo, popravljajo ali izboljšujejo različne izdelke. Uporabnik lahko za vsak projekt pripravi seznam materiala, spremlja stroške, označuje zaključene faze dela in zapisuje meritve oziroma opombe. Občutek pri uporabi naj bo preprost, urejen in zanesljiv, kot osebni pomočnik pri delu v delavnici. Aplikacija naj bo majhen, delujoč prvi prototip (MVP), brez nepotrebnih funkcij.
+Aplikacija NE omogoča skupinskega sodelovanja, NE naroča materiala prek spleta in NE uporablja umetne inteligence. V prvi različici tudi NE podpira fotografij, skic ali pripenjanja datotek.
+
+KORAK 2: TEHNOLOGIJA IN OMEJITVE
+Sprednji del (frontend): React + TypeScript, Vite in Tailwind CSS v4, v mapi »frontend«.
+Zaledni del (backend): navadni Node.js z vgrajenima moduloma »http« in »fs«, napisan v JavaScriptu, v mapi »backend«. Strežnik deluje na vratih 3001. Sprednji del deluje na vratih 5173, zato mora zaledni del omogočati CORS in pravilno odgovoriti tudi na zahteve OPTIONS.
+Ne nameščaj dodatnih paketov, razen tistih, ki jih zahtevata standardna predloga Vite React-TS in Tailwind CSS v4. Ne uporabljaj Expressa, axiosa, knjižnic za usmerjanje, knjižnic uporabniškega vmesnika ali knjižnic ikon (uporabi lahko emoji).
+Ne dodajaj podatkovne baze, uporabniških računov, prijave, registracije, storitev v oblaku, storitev umetne inteligence ali ključev API.
+Ne spreminjaj konfiguracijskih datotek, razen če je to nujno za delovanje Tailwind CSS v4.
+Shranjevanje: zaledni del hrani vse projekte in njihove podatke v datoteki »backend/data/db.json«. Začetna vsebina datoteke je {"projects": []}. Sprednji del za shranjevanje projektov NE uporablja localStorage. S sprednjim delom zaledni del komunicira prek REST API.
+Vsi napisi, gumbi, opozorila in sporočila v aplikaciji naj bodo v slovenščini.
+
+KORAK 3: FUNKCIONALNOSTI
+1. Seznam projektov (začetni zaslon): na vrhu prikaži naslov »Moj Projekt« in gumb »Nov projekt«. Pod njima prikaži vse projekte v karticah. Vsaka kartica prikazuje ime, stanje (»Načrtovan«, »V teku« ali »Zaključen«), datum začetka, napredek v odstotkih in skupni predvideni strošek. Dotik kartice odpre podrobnosti. Če ni nobenega projekta, prikaži »Ni še ustvarjenih projektov«.
+
+2. Ustvarjanje in urejanje projekta: obrazec vsebuje »Ime projekta« (obvezno), »Opis« (neobvezno), »Datum začetka« (privzeto današnji datum) in »Stanje« (privzeto »Načrtovan«). Uporabnik lahko projekt ustvari, pozneje uredi ali izbriše. Prazno ime povzroči opozorilo »Vnesi ime projekta« in prepreči shranjevanje. Pred izbrisom vprašaj »Ali res želiš izbrisati projekt?«. Stanje izbere uporabnik; ne spreminjaj ga samodejno glede na napredek.
+
+3. Seznam materiala: znotraj vsakega projekta prikaži razdelek »Material«. Uporabnik lahko doda material z imenom, količino, ceno na enoto v EUR in potrditvenim poljem »Kupljeno«. Material lahko uredi, označi kot kupljen ali izbriše. Za vsako postavko izračunaj strošek = količina × cena na enoto. Pod seznamom prikaži »Skupni predvideni strošek«, ki sešteje vse postavke, tudi še nekupljene. Zneske prikaži z dvema decimalkama, npr. »25,50 €«. Količina mora biti večja od 0, cena pa ne sme biti negativna. Če materiala ni, je skupni strošek »0,00 €«.
+
+4. Faze dela in napredek: znotraj projekta prikaži razdelek »Faze dela« s seznamom opravil in potrditvenimi polji. Uporabnik lahko doda fazo, jo preimenuje, označi kot opravljeno ali neopravljeno ter jo izbriše. Napredek izračunaj kot (število opravljenih faz / število vseh faz) × 100, zaokroženo na celo število. Prikaži vrstico napredka in napis, npr. »2 od 5 faz – 40 %«. Če projekt nima faz, pokaži »0 %« in ne deli z nič. Napredek se posodobi po vsaki spremembi faz.
+
+5. Zapiski in meritve: vsak projekt ima razdelek »Zapiski in meritve« z večvrstičnim besedilnim poljem. Vanj lahko uporabnik prosto vnese mere, opombe in ugotovitve, npr. »Dolžina 120 cm, širina 60 cm«. Na voljo je gumb »Shrani zapiske«. Zapiski se ob ponovnem odpiranju projekta ohranijo. Polje je lahko prazno.
+
+6. Podrobnosti projekta in navigacija: začetni zaslon prikazuje seznam projektov; z izbiro projekta se odpre zaslon s podatki projekta, razdelki »Material«, »Faze dela« in »Zapiski in meritve«. Na vrhu podrobnosti prikaži ime in stanje, pod njima odstotek napredka in skupne stroške. Gumb »Nazaj na projekte« vrne uporabnika na seznam. Gumba za urejanje in brisanje projekta sta jasno ločena od običajnih opravil.
+
+7. Shranjevanje podatkov: vsak projekt dobi enolični ID. Ob ustvarjanju, urejanju ali brisanju projekta ter spremembi materiala, faz ali zapiskov se podatki pošljejo zalednemu delu in zapišejo v »db.json«. Po osvežitvi strani ali ponovnem zagonu strežnika morajo ostati ohranjeni. Izračunane skupne stroške in odstotek napredka določi iz podatkov, ne shranjuj ju kot ločeni ročno urejani vrednosti.
+
+8. REST API: vsi odgovori so v obliki JSON, napake pa v obliki {"error": "sporočilo"} s pravilno kodo HTTP. Pripravi naslednje poti:
+   - GET /api/projects – vrne seznam projektov;
+   - GET /api/projects/:id – vrne izbrani projekt;
+   - POST /api/projects – ustvari projekt;
+   - PUT /api/projects/:id – posodobi projekt, vključno z materiali, fazami in zapiski;
+   - DELETE /api/projects/:id – izbriše projekt.
+   Med čakanjem na odgovor prikaži »Nalaganje ...«. Če zaledni del ni dosegljiv, prikaži »Povezava s strežnikom ni uspela« in gumb »Poskusi znova«. Ne prikazuj uspešnega shranjevanja, dokler strežnik ne potrdi spremembe.
+
+9. Robni primeri in podatkovni model: neznan ID projekta vrne HTTP 404 in zaslon »Projekt ni najden«. Neveljavno ime projekta, količina ali cena vrne HTTP 400 in razumljivo sporočilo. Pravila preverjanja naj veljajo tako na sprednjem kot na zalednem delu. Če datoteka »db.json« še ne obstaja, jo zaledni del ustvari z začetnimi podatki. Če ni materiala ali faz, mora aplikacija normalno delovati in prikazati prazne sezname.
+   Podatkovni model:
+   Project {id, name, description, startDate, status, materials[], phases[], notes}
+   Material {id, name, quantity, unitPrice, purchased}
+   Phase {id, name, completed}
+   status = »planned« | »in_progress« | »done« (v vmesniku prevedeno v slovenščino).
+
