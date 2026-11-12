@@ -1,1 +1,16 @@
 Bogdan_451
+
+Build a simple, clean, and cheerful birthday countdown web app.
+
+Tech stack & constraints:
+- Build with React + TypeScript, Vite, and Tailwind CSS v4.
+- Do NOT install any additional packages or icon/animation libraries (use native CSS animations and standard emojis).
+- Persist all data in `localStorage`.
+
+Requirements:
+1. Main Hero Countdown (at the top): Display a live, ticking countdown in days, hours, minutes, and seconds (`DDd HHh MMm SSs`) to the nearest upcoming birthday, along with that person's name and emoji. If there are no birthdays saved yet, show a clean empty state prompting the user to add one.
+2. Today's Birthday Banner (edge case): When someone's birthday is today, replace or highlight their card at the top with a celebratory "Happy birthday!" banner featuring a subtle, pure-CSS animation (such as floating/pulsing glow or confetti-style CSS keyframes), and do not count them down to next year until tomorrow.
+3. Add & Edit Form (inline or collapsible section below the hero, NOT in a modal): Allow adding and editing a person with the following data model: `id` (string), `name` (required string), `day` (number 1–31), `month` (number 1–12), `year` (optional number), and `emoji` (optional string, defaulting to 🎂 if left blank).
+4. Sorted Birthday List (at the bottom): Display all saved birthdays sorted chronologically by next upcoming occurrence, showing the person's emoji, name, formatted birth date, days remaining, and the age they will turn (only shown if `year` is provided). Include Edit and Delete buttons on each item.
+5. Date & Leap Year Calculation: If a birthday has already passed in the current calendar year, calculate the countdown to the following year. If a person's birth date is February 29, celebrate and count down to February 28 in non-leap years.
+6. Local Storage Persistence: Automatically load saved entries from `localStorage` on initial render and save any additions, edits, or deletions immediately.
