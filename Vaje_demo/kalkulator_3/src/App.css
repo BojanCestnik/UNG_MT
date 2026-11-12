@@ -1,0 +1,80 @@
+* { box-sizing: border-box; }
+
+html, body, #root { margin: 0; min-height: 100%; }
+
+body { font-family: Arial, Helvetica, sans-serif; }
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+  background: linear-gradient(110deg, #05bed1, #03d993);
+}
+
+.calculator {
+  width: min(436px, 100%);
+  border: 2px solid rgba(255, 255, 255, 0.55);
+}
+
+.display {
+  height: 124px;
+  padding: 16px 12px;
+  background: #00332f;
+  color: white;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.expression {
+  color: #a4b7b3;
+  font-size: 23px;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.result {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(32px, 8vw, 46px);
+  line-height: 1.18;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.keyboard {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: 108px;
+}
+
+.key {
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  background: #bcefed;
+  color: #111;
+  font: inherit;
+  font-size: 35px;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+
+.key:hover { background: #a4e5e1; }
+.key:active { background: #81d6ce; }
+.key:focus-visible { outline: 3px solid #075b83; outline-offset: -4px; }
+.key.wide { grid-column: span 2; }
+.key.equals { background: #e1f9f2; }
+.key.equals:hover { background: #c7efe5; }
+
+@media (max-width: 480px) {
+  .page { padding: 12px; }
+  .keyboard { grid-auto-rows: min(22vw, 108px); }
+  .key { font-size: 30px; }
+}

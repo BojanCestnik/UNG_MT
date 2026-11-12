@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interaktivni kalkulator</title>
+  <link rel="stylesheet" href="kalkulator_2.css">
+  <script src="kalkulator_2.js" defer></script>
+</head>
+<body>
+  <main class="kalkulator" aria-label="Kalkulator">
+    <div class="zaslon" aria-live="polite" aria-atomic="true">
+      <div class="izraz" id="izraz"></div>
+      <div class="rezultat" id="rezultat">0</div>
+    </div>
+
+    <div class="tipkovnica" aria-label="Tipke kalkulatorja">
+      <button type="button" class="tipka sirina-2" data-action="clear" aria-label="Počisti vse">AC</button>
+      <button type="button" class="tipka" data-action="delete" aria-label="Izbriši zadnji znak">DEL</button>
+      <button type="button" class="tipka" data-operator="/" aria-label="Deljeno">÷</button>
+
+      <button type="button" class="tipka" data-digit="1">1</button>
+      <button type="button" class="tipka" data-digit="2">2</button>
+      <button type="button" class="tipka" data-digit="3">3</button>
+      <button type="button" class="tipka" data-operator="*" aria-label="Krat">*</button>
+
+      <button type="button" class="tipka" data-digit="4">4</button>
+      <button type="button" class="tipka" data-digit="5">5</button>
+      <button type="button" class="tipka" data-digit="6">6</button>
+      <button type="button" class="tipka" data-operator="+" aria-label="Plus">+</button>
+
+      <button type="button" class="tipka" data-digit="7">7</button>
+      <button type="button" class="tipka" data-digit="8">8</button>
+      <button type="button" class="tipka" data-digit="9">9</button>
+      <button type="button" class="tipka" data-operator="-" aria-label="Minus">-</button>
+
+      <button type="button" class="tipka" data-action="decimal" aria-label="Decimalna pika">.</button>
+      <button type="button" class="tipka" data-digit="0">0</button>
+      <button type="button" class="tipka enako sirina-2" data-action="equals" aria-label="Je enako">=</button>
+    </div>
+  </main>
+</body>
+</html>
