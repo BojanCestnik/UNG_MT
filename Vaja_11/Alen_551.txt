@@ -1,2 +1,28 @@
 Alen_551
-Kdor ne eksa s hudičem seksa
+
+### KORAK 1: CILJ IN TON
+
+Izdelaj preprosto, sodobno in pregledno mobilno aplikacijo »Delovni nalogi« za vodenje dela v strojni delavnici. Omogoča ustvarjanje delovnih nalogov, izbiro postopkov obdelave, materialov in orodij ter spremljanje njihove razpoložljivosti in napredka izdelave. Aplikacija naj bo enostavna za uporabo, profesionalnega videza in brez nepotrebnih funkcij.
+
+### KORAK 2: TEHNOLOGIJA IN OMEJITVE
+
+Uporabi React + TypeScript, Vite in Tailwind CSS v4 za frontend ter Node.js za backend. Podatke shranjuj v datoteko `backend/data/db.json` in uporabi REST API za komunikacijo.
+
+**Do NOT install any additional packages.**
+
+Ne uporabljaj dodatnih knjižnic, zunanje podatkovne baze, uporabniških računov ali umetne inteligence. Vsi napisi naj bodo v slovenščini.
+
+### KORAK 3: FUNKCIONALNOSTI
+
+1. **Delovni nalogi:** ustvarjanje, urejanje in brisanje nalogov s številko, naročnikom, izdelkom, količino, rokom in stanjem.
+2. **Postopki obdelave:** izbira struženja, rezkanja, vrtanja, brušenja in drugih postopkov ter določanje njihovega vrstnega reda.
+3. **Materiali:** izbira materiala, vnos dimenzij, potrebne količine in preverjanje zaloge.
+4. **Orodja:** dodajanje, urejanje in razvrščanje orodij po kategorijah.
+5. **Razpoložljivost orodij:** prikaz stanj »Na voljo«, »Rezervirano«, »V uporabi« in »Ni na voljo«. Prepreči dvojno rezervacijo istega orodja.
+6. **Rezervacija orodij:** dodeljevanje orodij posameznim nalogom in njihova sprostitev.
+7. **Napredek izdelave:** označevanje zaključenih operacij in samodejni izračun napredka v odstotkih.
+8. **Čas izdelave:** vnos predvidenega časa ter merjenje dejanskega časa posameznih operacij.
+9. **Iskanje in filtriranje:** iskanje nalogov, materialov in orodij po imenu, kategoriji ali stanju.
+10. **Shranjevanje:** vsi podatki se shranjujejo na strežniku in ostanejo ohranjeni po osvežitvi strani.
+
+Aplikacija mora biti popolnoma delujoča, prilagojena mobilnim telefonom, z enostavno navigacijo in preglednim uporabniškim vmesnikom.
