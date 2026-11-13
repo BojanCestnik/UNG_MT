@@ -1,3 +1,150 @@
 Nejc_447
 
 m50b25
+
+1. CILJ IN TON
+
+Build a simple, practical mobile web app for tracking free parking spaces
+in one town (Nova Gorica), based on reports from the drivers themselves.
+Instead of cameras, every driver who arrives at a car park taps a button
+to mark that they parked, so other drivers can see roughly how many spaces
+are still free before they drive there.
+
+The app should feel clean, fast and trustworthy. It must be usable with
+one hand, in a few seconds, by someone who is about to drive or has just
+parked. No unnecessary features, no clutter.
+
+
+2. TECHNOLOGY STACK
+
+- HTML, CSS and plain JavaScript (ES6+), no framework.
+- A single-page web app that runs in the mobile browser.
+- Data storage: localStorage only. No backend, no database, no login.
+- Car park data is stored in a local JSON file (parkings.json).
+- Do NOT install or use any additional libraries or packages
+  (no React, no jQuery, no Bootstrap, no map libraries).
+- Do NOT use external APIs or services. The "open in maps" link is a
+  plain URL link only.
+- Do NOT add any camera, video or licence plate recognition features.
+
+
+3. FUNCTIONALITY
+
+1. Built-in list of 8 car parks in Nova Gorica, loaded from parkings.json.
+   Each car park has: id, name, address, total spaces, price per hour
+   in EUR, opening hours.
+
+2. Main screen shows the list of car parks. For each one display:
+   name, free spaces as "X / Y free" (e.g. "12 / 40 free"), a colour
+   status and the time of the last update (e.g. "updated 5 min ago").
+
+3. Colour status is calculated from free spaces:
+   - green: more than 30% free
+   - orange: 10% to 30% free
+   - red: less than 10% free (almost full or full)
+
+4. Each car park card has two large buttons:
+   - "I parked here" - reduces free spaces by 1
+   - "I left" - increases free spaces by 1
+   Free spaces can never go below 0 or above the total number of spaces.
+
+5. Each user can press "I parked here" only once per car park until they
+   press "I left" for the same car park (stored in localStorage), to
+   prevent repeated taps.
+
+6. Sorting and filtering at the top of the list: sort by most free spaces
+   or by name; filter "only cheap" (price under 1 EUR/hour) and
+   "only with free spaces".
+
+7. Tapping a car park opens a detail screen with: name, address, total
+   and free spaces, price, opening hours, last update time, and a link
+   "Open in maps" that opens the address in the phone's maps app.
+   A "Back" button returns to the list.
+
+8. Reports older than 2 hours are treated as outdated: the card shows
+   "no recent reports" in grey instead of a colour status.
+
+9. All data (free spaces, last update time, the user's own parked status)
+   stays saved in localStorage after closing the app. On first launch
+   the values are initialised from parkings.json.
+4. CODE STRUCTURE
+
+Split the code into separate files. Do NOT put everything in one file.
+
+Files:
+- index.html     - page skeleton: header, list view container, detail view
+                   container. No logic here.
+- style.css      - all styling.
+- parkings.json  - initial car park data (id, name, address, totalSpaces,
+                   pricePerHour, openingHours).
+- storage.js     - the only file that reads or writes localStorage
+                   (functions: loadState, saveState, resetState).
+- logic.js       - pure functions with no DOM access:
+                   getStatus(free, total, lastUpdate),
+                   parkHere(parkingId), leave(parkingId),
+                   sortParkings(list, mode), filterParkings(list, filters),
+                   formatTimeAgo(timestamp).
+- ui.js          - all DOM rendering: renderList(), renderDetail(id),
+                   event listeners for buttons, sort and filter controls.
+- app.js         - entry point: loads parkings.json, initialises state on
+                   first launch, calls ui.js.
+
+State (one object, saved to localStorage under the key "parkingState"):
+- parkings: array of { id, freeSpaces, lastUpdate }, where lastUpdate is
+  a timestamp in milliseconds
+- userParked: object { parkingId: true/false }
+- ui: { sortMode, onlyCheap, onlyFree }
+
+Data flow: a button click in ui.js calls a function in logic.js, which
+returns the new state; storage.js saves it; ui.js re-renders the list.
+Never change the state directly inside ui.js.
+
+Use ES modules (import / export) and "const" / "let" only (no "var").
+Add a short comment above every function explaining what it does.
+Keep each function under 25 lines.
+
+
+5. DESIGN
+
+Mobile-first, target screen 390 x 844 px (phone), layout max-width 480 px,
+centred horizontally on larger screens.
+
+- Background: very light grey (#f5f7fa). Cards: white, border-radius 16px,
+  box-shadow 0 2px 6px rgba(0,0,0,0.08), 12px gap between cards.
+- One accent colour: blue #2563eb, used for the header, main buttons and
+  links only.
+- Status colours (used ONLY for the status badge and left card border):
+  green #22c55e, orange #f59e0b, red #ef4444, grey #9ca3af (outdated).
+  Never rely on colour alone: the badge also shows a text label
+  ("Free", "Filling up", "Full", "No recent reports").
+- Font: system font stack (system-ui, sans-serif). Car park name 18px bold,
+  free spaces 24px bold, other text 14px.
+- Buttons "I parked here" and "I left": side by side, each at least 48 px
+  high (touch-friendly), full half-width, border-radius 12px.
+  "I parked here" is filled blue; "I left" is outlined blue.
+  A disabled button is grey and not clickable.
+- Sort and filter controls at the top: sticky, a select for sorting and
+  two toggle chips ("Only cheap", "Only free"). Not in a modal.
+- Header: app name "Parking NG" with a single 🅿️ emoji next to it.
+  No other icons, no images, no animations except a 150 ms colour
+  transition on button press.
+- Design is clean, not overloaded: maximum 3 colours on screen
+  besides the status colours.
+
+
+6. PURPOSE AND QUALITY
+
+This app is a university project for the course Mobile Technologies, built
+by a student who is learning web development. It must be easy to read,
+understand and extend later (for example, adding more car parks or a
+real backend).
+
+Priorities, in this order:
+1. Readable, simple code over clever code.
+2. Clear variable and function names in English.
+3. Every requirement from section 3 can be checked with "done" or
+   "not done" after the build.
+4. Works offline once loaded and on a normal phone browser.
+
+Do not add features that are not listed. If something is unclear, choose
+the simplest option and add a comment "// ASSUMPTION: ..." in the code.
