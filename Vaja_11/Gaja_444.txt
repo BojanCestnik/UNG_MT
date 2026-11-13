@@ -1,1 +1,115 @@
 Gaja_444
+# Gaja_444 – Moj recept
+
+## KORAK 1 – CILJ IN TON
+
+Izdelaj preprosto, sodobno in pregledno spletno aplikacijo **Moj recept**, ki uporabniku pomaga najti ideje za obrok iz sestavin, ki jih že ima doma.
+
+Uporabnik izbere sestavine s seznama, aplikacija pa recepte razvrsti po številu ujemajočih se sestavin. Ko uporabnik odpre recept, vidi sestavine s količinami, čas in korake priprave. Sestavine, ki jih je že izbral, so označene. Rezultate lahko omeji glede na najdaljši čas priprave in recepte shrani med priljubljene.
+
+Aplikacija naj bo prijazna za uporabo, v celoti v slovenščini in prilagojena mobilnim telefonom.
+
+## KORAK 2 – TEHNOLOGIJA IN OMEJITVE
+
+- Uporabi React, TypeScript, Vite in Tailwind CSS v4.
+- V datoteko `src/data/recepti.json` vnesi 25 vnaprej pripravljenih receptov.
+- Za shranjevanje priljubljenih receptov uporabi `localStorage`.
+- Aplikacija naj deluje brez zalednega strežnika, zunanjih API-jev, podatkovne baze in uporabniških računov.
+- Vsi napisi, imena sestavin, navodila in sporočila naj bodo v slovenščini.
+
+**Do NOT install any additional packages.**
+
+## KORAK 3 – FUNKCIONALNOSTI
+
+### 3.1. Izbira sestavin
+
+- Na začetnem zaslonu prikaži naslov **Moj recept**, iskalno polje in seznam sestavin v obliki klikljivih gumbov.
+- Seznam sestavin sestavi iz receptov v datoteki JSON. Vsako sestavino na seznamu prikaži samo enkrat.
+- Med tipkanjem filtriraj sestavine po imenu. Iskanje naj deluje tudi brez šumnikov, na primer `bucke` naj najde **Bučke**.
+- S klikom uporabnik sestavino izbere ali odstrani iz izbire. Izbrane sestavine naj bodo vidno označene in naj ostanejo izbrane, ko uporabnik spremeni iskalni izraz ali odpre recept.
+- Dodaj gumb **Počisti izbiro**, ki odstrani vse izbrane sestavine.
+
+### 3.2. Zbirka receptov
+
+- Vključi 25 različnih receptov z vsakdanjimi sestavinami, kot so riž, testenine, jajca, piščanec, krompir, paradižnik in bučke.
+- Vsak recept naj vsebuje enolični ID, ime, skupni čas priprave v minutah, seznam sestavin s količinami in urejen seznam korakov priprave.
+- Vsaka sestavina naj ima ID, ime in količino, na primer `riz`, `Riž` in `150 g`. Za isto sestavino v različnih receptih uporabi isti ID.
+
+### 3.3. Iskanje in razvrščanje receptov
+
+- Rezultate samodejno posodobi ob vsaki spremembi izbire sestavin.
+- Pri vsakem receptu preštej, koliko njegovih sestavin je uporabnik izbral.
+- Ko je izbrana vsaj ena sestavina, prikaži recepte z vsaj enim ujemanjem. Razvrsti jih od največjega do najmanjšega števila ujemanj. Ob enakem številu ujemanj daj prednost krajšemu času priprave, nato uporabi abecedni vrstni red.
+- Pri vsakem rezultatu prikaži ime recepta, čas priprave in število ujemanj, na primer **5 od 7 sestavin**. Prvo število pomeni število izbranih sestavin v receptu, drugo pa skupno število sestavin v receptu.
+- Dokler uporabnik ne izbere sestavin, prikaži vse recepte, ki ustrezajo časovnemu filtru, po abecednem vrstnem redu. Uporabnika povabi, naj izbere sestavine za razvrščanje po ujemanju.
+- Če ni ustreznih rezultatov, prikaži sporočilo **Ni receptov, ki ustrezajo tvoji izbiri.**
+
+### 3.4. Filter po času priprave
+
+- Dodaj filter **Najdaljši čas priprave** z možnostmi **Brez omejitve**, **Do 15 min**, **Do 30 min**, **Do 45 min** in **Do 60 min**.
+- Pri izbrani omejitvi prikaži recepte, katerih čas priprave je krajši ali enak omejitvi.
+- Časovni filter naj deluje skupaj z izbiro sestavin.
+
+### 3.5. Podrobnosti recepta
+
+- S klikom na rezultat odpri podrobnosti recepta.
+- Prikaži ime recepta, skupni čas priprave, vse sestavine s količinami in oštevilčene korake priprave.
+- Sestavine, ki jih je uporabnik izbral, označi z barvnim ozadjem in oznako **Izbrano**.
+- Dodaj gumb **Nazaj**, ki uporabnika vrne na prejšnji seznam in ohrani njegovo izbiro sestavin ter časovni filter.
+
+### 3.6. Priljubljeni recepti
+
+- Pri vsakem receptu omogoči dodajanje in odstranjevanje med priljubljenimi z gumbom v obliki srca.
+- Dodaj zavihek **Priljubljeni**, ki prikaže vse shranjene recepte in omogoča odpiranje njihovih podrobnosti.
+- V `localStorage` shrani ID-je priljubljenih receptov. Isti recept se lahko shrani samo enkrat.
+- Po osvežitvi strani ponovno naloži priljubljene recepte.
+- Če uporabnik še nima shranjenih receptov, prikaži sporočilo **Med priljubljenimi še nimaš receptov.**
+
+## KORAK 4 – ZGRADBA KODE
+
+Aplikacijo razdeli na šest preglednih React komponent.
+
+1. **App** – upravlja stanje aplikacije, navigacijo, izbrane sestavine, časovni filter in priljubljene recepte.
+2. **IngredientSelector** – prikazuje iskalno polje in gumbe za izbiro sestavin.
+3. **RecipeList** – prikazuje seznam receptov, čas priprave, število ujemanj in gumbe za priljubljene. Uporabi jo tudi za prikaz shranjenih receptov.
+4. **RecipeDetails** – prikazuje izbrani recept s količinami, časom, označenimi sestavinami in koraki priprave.
+5. **TimeFilter** – omogoča izbiro najdaljšega časa priprave.
+6. **Navigation** – omogoča preklapljanje med zavihkoma **Recepti** in **Priljubljeni**.
+
+- Uporabi `useState` za stanje aplikacije in `useEffect` za zapis priljubljenih v `localStorage` ob spremembi. Začetni seznam priljubljenih preberi iz `localStorage`.
+- Podatke in funkcije med komponentami prenašaj prek `props`.
+- Za recepte in sestavine uporabi TypeScript vmesnika `Recipe` in `Ingredient`. Ne uporabljaj tipa `any`.
+- Podatke o receptih hrani v ločeni datoteki `src/data/recepti.json`.
+
+## KORAK 5 – OBLIKOVANJE Z MERLJIVIMI NAVODILI
+
+Aplikacija naj ima topel, svetel in minimalističen videz.
+
+- **Ozadje** – kremno `#FFF8F2`.
+- **Kartice** – bele `#FFFFFF`, z zaobljenimi robovi (`rounded-2xl`) in nežno senco (`shadow-sm`).
+- **Glavno besedilo** – temno rjavo `#2E211C`.
+- **Poudarki in glavni gumbi** – terakota `#9A3F2C` z belim besedilom na glavnih gumbih.
+- **Izbrane sestavine** – svetlo terakota ozadje `#F9E0D6` s temnim besedilom.
+- **Postavitev** – največja širina vsebine 720 px. Na računalniku vsebino postavi na sredino. Na telefonu naj se elementi prilagodijo širini zaslona in naj ne povzročajo vodoravnega pomikanja.
+- **Razmiki** – 16 px med karticami in 16 px notranjega odmika na telefonu. Na večjih zaslonih uporabi 24 px notranjega odmika v karticah.
+- **Gumbi in vnosna polja** – najmanjša višina 44 px za uporabo na dotik. Gumbi sestavin naj se samodejno prelomijo v več vrstic.
+- **Navigacija** – na telefonu uporabi spodnjo vrstico z zavihkoma **Recepti** in **Priljubljeni**. Aktivni zavihek jasno poudari.
+- **Mobilni prikaz** – preveri postavitev pri širini 375 px in na računalniku. Uporabi enotno oblikovanje na vseh zaslonih in se izogibaj nepotrebnim animacijam.
+
+## KORAK 6 – NAMEN KODE IN MERILO KAKOVOSTI
+
+Aplikacija je študentski projekt za prikaz osnov uporabe Reacta, TypeScripta, dela s podatki JSON, filtriranja, razvrščanja in shranjevanja v `localStorage`.
+
+Koda naj bo čista, pregledna in razumljiva začetniku. Uporabljaj jasna imena komponent in spremenljivk ter preprosto logiko.
+
+**Merila uspešnosti**
+
+- Datoteka JSON vsebuje 25 receptov s sestavinami, količinami, časom in koraki priprave.
+- Sestavine je mogoče poiskati, izbrati in odstraniti iz izbire.
+- Rezultati so razvrščeni po številu ujemanj. Recept s 5 ujemanji od 7 je višje od recepta s 4 ujemanji od 4.
+- Časovni filter pravilno vključuje recepte na meji. Pri izbiri **Do 30 min** se recept s 30 minutami prikaže, recept z 31 minutami pa se skrije.
+- V podrobnostih recepta so označene točno tiste sestavine, ki jih je uporabnik izbral.
+- Priljubljene recepte je mogoče dodajati in odstranjevati. Spremembe ostanejo shranjene po osvežitvi strani.
+- Aplikacija je uporabna na telefonu in računalniku. Vsi gumbi, zavihki, iskanje in filtri delujejo.
+
+Pred zaključkom preveri vse navedene funkcionalnosti. Prednost naj imajo zanesljivost, preglednost in enostavna uporaba.
