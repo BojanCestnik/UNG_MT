@@ -5,63 +5,78 @@ import './App.css';
 type TimerMode = 'focus' | 'break';
 
 function App() {
-    const [petName, setPetName] = useState(
+  const [petName, setPetName] = useState(
     () => localStorage.getItem('petName') || 'Mochi'
   );
-    useEffect(() => {
+
+  useEffect(() => {
     localStorage.setItem('petName', petName);
   }, [petName]);
-  const [selectedTime, setSelectedTime] = useState(() => {
-  const saved = localStorage.getItem('selectedTime');
-  return saved !== null ? Number(saved) : 30;
-});
 
-useEffect(() => {
-  localStorage.setItem('selectedTime', String(selectedTime));
-}, [selectedTime]);
+  const [selectedTime, setSelectedTime] = useState(() => {
+    const saved = localStorage.getItem('selectedTime');
+    return saved !== null ? Number(saved) : 30;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('selectedTime', String(selectedTime));
+  }, [selectedTime]);
+
+  const [purchasedItems, setPurchasedItems] = useState<string[]>(() => {
+    const saved = localStorage.getItem('purchasedItems');
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem('purchasedItems', JSON.stringify(purchasedItems));
+  }, [purchasedItems]);
+
   const [timeLeft, setTimeLeft] = useState(() => {
-  const saved = localStorage.getItem('selectedTime');
-  const minutes = saved !== null ? Number(saved) : 30;
-  return minutes * 60;
-});
-  const [breakDuration, setBreakDuration] = useState(
-  () => {
+    const saved = localStorage.getItem('selectedTime');
+    const minutes = saved !== null ? Number(saved) : 30;
+    return minutes * 60;
+  });
+
+  const [breakDuration, setBreakDuration] = useState(() => {
     const saved = localStorage.getItem('breakDuration');
     return saved !== null ? Number(saved) : 5;
-  }
-);
-    useEffect(() => {
+  });
+
+  useEffect(() => {
     localStorage.setItem('breakDuration', String(breakDuration));
   }, [breakDuration]);
-    const [coins, setCoins] = useState(
+
+  const [coins, setCoins] = useState(
     () => Number(localStorage.getItem('coins')) || 0
   );
-    useEffect(() => {
+
+  useEffect(() => {
     localStorage.setItem('coins', String(coins));
   }, [coins]);
-      const [happiness, setHappiness] = useState(
-    () => {
-      const saved = localStorage.getItem('happiness');
-      return saved !== null ? Number(saved) : 80;
-    }
-  );
+
+  const [happiness, setHappiness] = useState(() => {
+    const saved = localStorage.getItem('happiness');
+    return saved !== null ? Number(saved) : 80;
+  });
+
   useEffect(() => {
     localStorage.setItem('happiness', String(happiness));
   }, [happiness]);
-    const [health, setHealth] = useState(
-    () => {
-      const saved = localStorage.getItem('health');
-      return saved !== null ? Number(saved) : 100;
-    }
-  );
+
+  const [health, setHealth] = useState(() => {
+    const saved = localStorage.getItem('health');
+    return saved !== null ? Number(saved) : 100;
+  });
 
   useEffect(() => {
     localStorage.setItem('health', String(health));
   }, [health]);
+
   const [isRunning, setIsRunning] = useState(false);
   const [mode, setMode] = useState<TimerMode>('focus');
   const [message, setMessage] = useState('');
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [storeOpen, setStoreOpen] = useState(false);
 
   const audioContextRef = useRef<AudioContext | null>(null);
 
@@ -123,7 +138,8 @@ useEffect(() => {
     playBell();
 
     if (mode === 'focus') {
-      const reward = rewards[selectedTime] ?? Math.max(1, Math.round(selectedTime / 6));
+      const reward =
+        rewards[selectedTime] ?? Math.max(1, Math.round(selectedTime / 6));
 
       setCoins((previous) => previous + reward);
       setHappiness((previous) => Math.min(previous + 10, 100));
@@ -131,16 +147,14 @@ useEffect(() => {
       setMessage(`Amazing! ${petName} earned ${reward} coins! 🐶`);
 
       setMode('break');
-      setTimeLeft(
-  breakDuration * 60
-);
+      setTimeLeft(breakDuration * 60);
     } else {
       setIsRunning(false);
       setMode('focus');
       setTimeLeft(selectedTime * 60);
       setMessage('Break completed! Ready for another focus session? 💗');
     }
-  }, [timeLeft, isRunning, mode, selectedTime, petName]);
+  }, [timeLeft, isRunning, mode, selectedTime, petName, breakDuration]);
 
   const startTimer = () => {
     if (!audioContextRef.current) {
@@ -151,10 +165,10 @@ useEffect(() => {
 
     if (timeLeft === 0) {
       setTimeLeft(
-  mode === 'focus'
-    ? selectedTime * 60
-    : breakDuration * 60
-);
+        mode === 'focus'
+          ? selectedTime * 60
+          : breakDuration * 60
+      );
     }
 
     setMessage('');
@@ -180,6 +194,19 @@ useEffect(() => {
     setMessage('');
   };
 
+  const buyItem = (item: string, price: number) => {
+    if (purchasedItems.includes(item)) return;
+
+    if (coins < price) {
+      setMessage('Not enough coins! Keep focusing! 💗');
+      return;
+    }
+
+    setCoins((previous) => previous - price);
+    setPurchasedItems((previous) => [...previous, item]);
+    setMessage(`${item} purchased! Mochi is so happy! 🐶`);
+  };
+
   const minutes = Math.floor(timeLeft / 60);
   const seconds = timeLeft % 60;
 
@@ -187,18 +214,66 @@ useEffect(() => {
     <main className="app">
       <header className="header">
         <div className="logo">♡ little paws</div>
+
         <button
-  className="settings-button"
-  onClick={() => setSettingsOpen(!settingsOpen)}
->
-  ☰
-</button>
+          className="settings-button"
+          onClick={() => setSettingsOpen(!settingsOpen)}
+        >
+          ☰
+        </button>
       </header>
+
+      <button
+        className="store-button"
+        onClick={() => setStoreOpen(!storeOpen)}
+      >
+        🛍️ Pet Store
+      </button>
+
+      {storeOpen && (
+        <section className="store">
+          <div className="store-header">
+            <h2>🐾 Mochi's Pet Store</h2>
+            <button onClick={() => setStoreOpen(false)}>✕</button>
+          </div>
+
+          <p>Little treats for your little friend! 💗</p>
+
+          <div className="store-grid">
+            {[
+              { name: 'Teddy Bear', emoji: '🧸', price: 20 },
+              { name: 'Food Bowl', emoji: '🥣', price: 30 },
+              { name: 'Pink Bow', emoji: '🎀', price: 15 },
+              { name: 'Cozy Bed', emoji: '🛏️', price: 50 },
+              { name: 'Rubber Duck', emoji: '🦆', price: 25 },
+              { name: 'Paw Necklace', emoji: '📿', price: 40 },
+            ].map((item) => (
+              <div className="store-item" key={item.name}>
+                <div className="store-emoji">{item.emoji}</div>
+                <h3>{item.name}</h3>
+                <p>🪙 {item.price} coins</p>
+
+                <button
+                  disabled={
+                    purchasedItems.includes(item.name) ||
+                    coins < item.price
+                  }
+                  onClick={() => buyItem(item.name, item.price)}
+                >
+                  {purchasedItems.includes(item.name) ? 'Owned ✓' : 'Buy'}
+                </button>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
       {settingsOpen && (
         <section className="settings-menu">
           <h3>Settings ⚙️</h3>
           <p>Make your little paws feel at home! 🐾</p>
-                    <label htmlFor="custom-time">Focus duration (minutes)</label>
+
+          <label htmlFor="custom-time">Focus duration (minutes)</label>
           <input
             id="custom-time"
             type="number"
@@ -214,7 +289,8 @@ useEffect(() => {
               }
             }}
           />
-                    <label htmlFor="custom-break">Break duration (minutes)</label>
+
+          <label htmlFor="custom-break">Break duration (minutes)</label>
           <input
             id="custom-break"
             type="number"
@@ -228,11 +304,13 @@ useEffect(() => {
               }
             }}
           />
+
           <button onClick={() => setSettingsOpen(false)}>
             Close
           </button>
         </section>
       )}
+
       <section className="welcome">
         <p className="subtitle">A little focus, a little love</p>
         <h1>Time to focus!</h1>
@@ -268,7 +346,10 @@ useEffect(() => {
           </p>
         )}
 
-        <button className="start-button" onClick={isRunning ? () => setIsRunning(false) : startTimer}>
+        <button
+          className="start-button"
+          onClick={isRunning ? () => setIsRunning(false) : startTimer}
+        >
           {isRunning
             ? 'Ⅱ Pause'
             : mode === 'break'
@@ -289,10 +370,21 @@ useEffect(() => {
 
       <section className="pet-card">
         <div className="pet-illustration">
-           {happiness >= 70 ? '🐶' : happiness >= 35 ? '🐕' : '🥺'}
+          <div>
+            {happiness >= 70 ? '🐶' : happiness >= 35 ? '🐕' : '🥺'}
+          </div>
+
+          {purchasedItems.includes('Pink Bow') && <span>🎀</span>}
+          {purchasedItems.includes('Paw Necklace') && <span>📿</span>}
+          {purchasedItems.includes('Teddy Bear') && <span>🧸</span>}
+          {purchasedItems.includes('Rubber Duck') && <span>🦆</span>}
+          {purchasedItems.includes('Food Bowl') && <span>🥣</span>}
+          {purchasedItems.includes('Cozy Bed') && <span>🛏️</span>}
         </div>
+
         <h2>Meet your study buddy!</h2>
-                <p>
+
+        <p>
           {happiness >= 70
             ? `${petName} is happy to be with you! 💗`
             : happiness >= 35
