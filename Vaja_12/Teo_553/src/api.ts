@@ -1,7 +1,8 @@
 import type { Project, ProjectInput } from './types'
 
-// Isti računalnik: localhost. Za dostop s telefona uporabimo IP računalnika.
-const API_URL = `${window.location.protocol}//${window.location.hostname}:3001/api`
+// Vite posreduje zahteve /api lokalnemu Node.js strežniku na vratih 3001.
+// Zaradi tega aplikacija deluje tudi na telefonu brez ločene nastavitve IP za API.
+const API_URL = '/api'
 
 export class ApiError extends Error {
   constructor(message: string, public readonly status: number) {

@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+/* Theme tokens (colors from the Storage.3D prompt, section 5.1).
+   Tailwind v4 turns each --color-* name into classes, for example:
+   bg-bg, bg-card, bg-raised, border-line, text-ink, text-muted,
+   bg-accent, hover:bg-accent-hover, text-warn, text-danger. */
+@theme {
+  --color-bg: #0f1115;
+  --color-card: #1a1d23;
+  --color-raised: #23272f;
+  --color-line: #2e333d;
+  --color-ink: #f2f4f7;
+  --color-muted: #8b93a1;
+  --color-accent: #ff7a1a;
+  --color-accent-hover: #ff8f3d;
+  --color-warn: #ffb020;
+  --color-danger: #ef4444;
+  --font-sans: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* The page itself never scrolls: App makes the layout exactly screen height. */
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  color-scheme: dark; /* dark date picker and scrollbars */
+}

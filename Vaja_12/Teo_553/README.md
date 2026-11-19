@@ -1,118 +1,113 @@
-# MOJ PROJEKT
+# MOJ PROJEKT – zagon z npm v eni mapi
 
-Mobilno prilagojena spletna aplikacija za vodenje domačih in delavniških projektov. Celoten uporabniški vmesnik je v slovenščini.
+Mobilno prilagojena spletna aplikacija za ustvarjanje in spremljanje domačih ali delavniških projektov. Vmesnik je v slovenščini.
 
-## Kaj aplikacija omogoča?
+## Zagon (Windows CMD, PowerShell ali terminal v VS Code)
 
-- ustvarjanje, urejanje, pregled in brisanje projektov;
-- seznam materialov, oznako *kupljeno* in samodejni izračun stroškov;
-- seznam faz dela, označevanje dokončanih faz in izračun napredka;
-- zapisovanje opomb in meritev;
-- trajno shranjevanje podatkov v `backend/data/db.json`.
+1. Razširi arhiv ZIP, nato odpri mapo **Moj_Projekt** (tisto, v kateri je datoteka `package.json`).
+2. V tej mapi odpri terminal. V Raziskovalcu Windows lahko klikneš na naslovno vrstico, vneseš `cmd` in pritisneš Enter.
+3. Izvedi naslednja ukaza:
 
-## Kaj potrebuješ?
+   ```cmd
+   npm install
+   npm run dev
+   ```
 
-Računalnik z nameščenim **Node.js 20.19+ ali 22.12+** in npm, ki je vključen v Node.js. Namestitev preveri v ukazni vrstici:
+4. Ko se izpiše naslov Vite, v brskalniku odpri **http://localhost:5173**.
+5. Za ustavitev v terminalu pritisni **Ctrl+C**.
 
-```bash
-node -v
-npm -v
+**To je vse.** Ni datotek `.bat` in ni potrebe po dveh terminalih. `npm run dev` sam zažene React/Vite **in** Node.js REST API.
+
+### Predpogoji
+
+- Nameščen **Node.js 20.19+ ali 22.12+** (priporočena aktualna različica LTS) z npm.
+- V terminalu lahko preveriš `node -v` in `npm -v`.
+- Internetno povezavo potrebuješ pri `npm install`, da prenese potrebne odvisnosti.
+- Če CMD izpiše »npm is not recognized«, namesti Node.js z [nodejs.org](https://nodejs.org/) in ponovno odpri terminal.
+- Če že teče druga aplikacija na vratih 5173 ali 3001, jo pred zagonom ustavi.
+
+### Kam je treba vpisati ukaze?
+
+V **glavni mapi** aplikacije (kjer je `package.json`), **ne** v `src`, `public` ali `backend`.
+
+Primer:
+
+```text
+C:\Users\Uporabnik\Documents\Moj_Projekt> npm install
+C:\Users\Uporabnik\Documents\Moj_Projekt> npm run dev
 ```
 
-Če Node.js še nimaš, ga namesti z [nodejs.org](https://nodejs.org/).
+Ob prvem `npm install` nastaneta `node_modules/` in `package-lock.json`; to je pričakovano.
 
-## Zagon v sistemu Windows (najlažje)
-
-1. Razširi ZIP v izbrano mapo, npr. `Dokumenti/Moj_Projekt`.
-2. Dvoklikni **`1_NAMESTI.bat`**. Ob prvi namestitvi mora imeti računalnik internetno povezavo, da npm prenese predpisane pakete za React in Tailwind.
-3. Dvoklikni **`2_ZAZENI.bat`**. Odprli se bosta dve okni terminala (strežnik in aplikacija). Obe pusti odprti.
-4. V brskalniku odpri **http://localhost:5173**.
-5. Za zaustavitev zapri obe okni ali pritisni `Ctrl+C` v vsakem.
-
-Če Windows skript prepreči zagon, izvedi spodnje ukaze ročno.
-
-## Ročni zagon (Windows, macOS ali Linux)
-
-**Prvič – namestitev odvisnosti** v terminalu:
-
-```bash
-cd frontend
-npm install
-```
-
-**Terminal 1 – zaledni strežnik** (iz korenske mape projekta):
-
-```bash
-cd backend
-npm start
-```
-
-Strežnik se zažene na **http://localhost:3001**.
-
-**Terminal 2 – uporabniški vmesnik**:
-
-```bash
-cd frontend
-npm run dev
-```
-
-V brskalniku odpri **http://localhost:5173**.
-
-**Testiranje gradnje v produkcijski obliki:** `cd frontend && npm run build`.
-
-## Uporaba na telefonu
-
-Telefon in računalnik morata biti v istem Wi-Fi omrežju. V računalniku poišči njegov lokalni IP naslov (na Windows z ukazom `ipconfig`); na telefonu odpri `http://IP-RACUNALNIKA:5173`, na primer `http://192.168.1.20:5173`. Potrebna je dovoljena povezava do vrat **5173** in **3001** v požarnem zidu. Računalnik in oba terminala morajo ostati prižgani. To je spletna aplikacija za zaslon telefona, ne aplikacija, nameščena iz trgovine.
-
-## Kako so organizirane datoteke?
+## Struktura datotek
 
 ```text
 Moj_Projekt/
-  1_NAMESTI.bat             # prva namestitev na Windows
-  2_ZAZENI.bat              # zagon strežnika in vmesnika na Windows
-  backend/
-    server.js               # REST API, samo vgrajena modula http in fs
-    data/db.json            # vsi shranjeni projekti
-    package.json
-  frontend/
-    src/
-      App.tsx               # izbira zaslona in glavno stanje
-      api.ts                # klici REST API (fetch)
-      types.ts              # podatkovni tipi in izračuni
-      components/           # seznam, obrazec, podrobnosti, material, faze, zapiski
-    package.json
-    vite.config.ts          # React + Tailwind CSS v4
+├── public/
+│   └── favicon.svg
+├── src/
+│   ├── components/
+│   │   ├── ProjectList.tsx
+│   │   ├── ProjectForm.tsx
+│   │   ├── ProjectDetail.tsx
+│   │   ├── MaterialList.tsx
+│   │   ├── PhaseList.tsx
+│   │   └── NotesEditor.tsx
+│   ├── App.tsx
+│   ├── main.tsx
+│   ├── index.css
+│   ├── api.ts
+│   └── types.ts
+├── backend/
+│   ├── data/db.json
+│   └── server.cjs
+├── scripts/
+│   └── dev.mjs
+├── index.html
+├── package.json
+├── vite.config.ts
+├── tsconfig.json
+├── tsconfig.app.json
+├── tsconfig.node.json
+└── README.md
 ```
 
-## REST API
+Sprednji del uporablja React + TypeScript + Vite + Tailwind CSS v4, zaledni pa Node.js z vgrajenima moduloma `http` in `fs`. Dodatnih paketov za zaledni del ni. Oba procesa zažene `scripts/dev.mjs`, kar uporablja samo Node.js.
 
-| Metoda | Pot | Namen |
-|---|---|---|
-| GET | `/api/projects` | Vrne seznam projektov |
-| GET | `/api/projects/:id` | Vrne izbrani projekt |
-| POST | `/api/projects` | Ustvari projekt |
-| PUT | `/api/projects/:id` | Shrani spremembe projekta |
-| DELETE | `/api/projects/:id` | Izbriše projekt |
+## Kaj deluje
 
-Vsi odgovori so JSON. Neveljavni vnosi imajo napako HTTP 400, neobstoječi projekti napako 404. Sprednji del uporablja `fetch`, zaledni del modul `http`, podatki pa se zapisujejo s `fs`.
+- ustvarjanje, urejanje in brisanje projektov;
+- seznam materialov (količina, cena na enoto, kupljeno/nekupljeno);
+- izračun predvidenih stroškov v evrih;
+- urejanje faz in odstotek napredka;
+- zapiski in meritve;
+- zapis vseh podatkov v `backend/data/db.json`.
 
-### Primer podatkov projekta
+### Tehnične podrobnosti
 
-```json
-{
-  "name": "Delavniška miza",
-  "description": "Izdelava lesene mize za delavnico",
-  "startDate": "2026-11-19",
-  "status": "in_progress",
-  "materials": [],
-  "phases": [],
-  "notes": "Mere: 120 × 60 cm"
-}
+- Spletna aplikacija: `http://localhost:5173`.
+- API: `http://127.0.0.1:3001/api/projects`.
+- Vite posreduje vse zahteve za `/api` na API na vratih 3001. Zaradi tega tudi telefon uporablja samo naslov frontend strežnika.
+- Strežnik deluje lokalno, brez računa in brez baze podatkov.
+- Za telefon poveži telefon in računalnik v isto Wi-Fi omrežje, poišči IP računalnika z `ipconfig` in v telefonu odpri `http://IP-RACUNALNIKA:5173`. Po potrebi dovoli vrata **5173** v požarnem zidu.
+
+**Pomembno:** Ne briši `backend/data/db.json`, če želiš ohraniti projekte. V njem so shranjeni vsi podatki; za varnostno kopijo shrani to datoteko.
+
+## Dodatni ukazi (neobvezno)
+
+```cmd
+npm run build
+npm test
 ```
 
-## Pomembno
+`npm run build` preveri TypeScript in ustvari produkcijsko gradnjo v `dist/`.
+`npm test` preveri zaledni REST API, brez dodatnih npm paketov.
 
-- **Podatki so lokalni** na računalniku, na katerem teče strežnik. Če izbrišeš ali prepišeš `backend/data/db.json`, izgubiš projekte; za varnostno kopijo shrani to datoteko.
-- Aplikacija nima uporabniških računov, oddaljenega oblaka, fotografij, skic ali spletne trgovine. Namenjena je študijskemu prototipu in uporabi na zaupanja vrednem domačem omrežju, ne javni objavi brez dodatne zaščite.
-- Če se pokaže »Povezava s strežnikom ni uspela«, preveri, ali je odprto okno z `npm start` v `backend` in nato klikni »Poskusi znova«.
-- Potrebuješ internet **samo pri prvi namestitvi npm paketov**; med lokalno uporabo ga ne potrebuješ.
+### Težave
+
+- **»Cannot reach the server« / »Povezava s strežnikom ni uspela«:** Preveri, ali je `npm run dev` še vedno zagnan in ali API ni izpisal napake.
+- **»Port 3001 already in use«:** Zapri drug program ali stari strežnik, ki uporablja vrata 3001.
+- **»Port 5173 is already in use«:** Zapri drug Vite razvojni strežnik na vratih 5173.
+- **»npm install« ne deluje:** Preveri internet, Node.js in nastavitve proxyja na šolskem omrežju.
+
+Aplikacija je namenjena lokalnemu študijskemu projektu in ni primerna za javno objavo brez dodatne zaščite.
