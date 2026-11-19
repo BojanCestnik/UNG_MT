@@ -2,6 +2,18 @@
 
 Prva različica (MVP) za vodenje dela v strojni delavnici. Uporabniški vmesnik je v slovenščini.
 
+## Najlažji zagon – en sam CMD terminal
+
+V Raziskovalcu odprite **glavno mapo `DelovniNalogi`** (kjer je `package.json`), v naslovno vrstico vpišite `cmd`, nato izvedite:
+
+```cmd
+npm install
+npm run dev
+```
+
+`npm install` je potreben le ob prvem zagonu. Naslednjič zadošča `npm run dev`.
+Ukaz sam zažene backend na vratih 3001 in frontend na vratih 5173. Aplikacija je na **http://localhost:5173**. Terminal pustite odprt; za ustavitev pritisnite **Ctrl+C**.
+
 ## Kaj vključuje?
 
 - Pregled delovnih nalogov, ustvarjanje, urejanje, brisanje in arhiv.
