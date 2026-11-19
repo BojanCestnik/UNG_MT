@@ -1,2 +1,99 @@
 Teo_553
-Ma mi siz hribov, mi smo kmete, kaj nan čejo nan tablete.
+
+STRUKTURIRAN PROMPT ZA APLIKACIJO »MOJ PROJEKT«
+
+KORAK 1: CILJ IN TON
+
+Izdelaj prijazno, praktično in pregledno aplikacijo »Moj Projekt«, prilagojeno zaslonu mobilnega telefona. Namenjena je ljudem, ki doma ali v delavnici sami izdelujejo, popravljajo ali izboljšujejo različne izdelke. Uporabnik lahko za vsak projekt pripravi seznam materiala, spremlja stroške, označuje zaključene faze dela in zapisuje meritve oziroma opombe.
+
+Občutek pri uporabi naj bo preprost, urejen in zanesljiv, kot osebni pomočnik pri delu v delavnici. Aplikacija naj bo majhen, delujoč prvi prototip (MVP), brez nepotrebnih funkcij.
+
+Aplikacija NE omogoča skupinskega sodelovanja, NE naroča materiala prek spleta in NE uporablja umetne inteligence. V prvi različici tudi NE podpira fotografij, skic ali pripenjanja datotek.
+
+KORAK 2: TEHNOLOGIJA IN OMEJITVE
+
+Sprednji del (frontend): React + TypeScript, Vite in Tailwind CSS v4, v mapi »frontend«.
+
+Zaledni del (backend): navadni Node.js z vgrajenima moduloma »http« in »fs«, napisan v JavaScriptu, v mapi »backend«. Strežnik deluje na vratih 3001. Sprednji del deluje na vratih 5173, zato mora zaledni del omogočati CORS in pravilno odgovoriti tudi na zahteve OPTIONS.
+
+Ne nameščaj dodatnih paketov, razen tistih, ki jih zahtevata standardna predloga Vite React-TS in Tailwind CSS v4. Ne uporabljaj Expressa, axiosa, knjižnic za usmerjanje, knjižnic uporabniškega vmesnika ali knjižnic ikon (uporabi lahko emoji).
+
+Ne dodajaj podatkovne baze, uporabniških računov, prijave, registracije, storitev v oblaku, storitev umetne inteligence ali ključev API.
+
+Ne spreminjaj konfiguracijskih datotek, razen če je to nujno za delovanje Tailwind CSS v4.
+
+Shranjevanje: zaledni del hrani vse projekte in njihove podatke v datoteki »backend/data/db.json«. Začetna vsebina datoteke je {"projects": []}. Sprednji del za shranjevanje projektov NE uporablja localStorage. S sprednjim delom zaledni del komunicira prek REST API.
+
+Vsi napisi, gumbi, opozorila in sporočila v aplikaciji naj bodo v slovenščini.
+
+KORAK 3: FUNKCIONALNOSTI
+
+3.1. Seznam projektov (začetni zaslon)
+Na vrhu prikaži naslov »Moj Projekt« in gumb »Nov projekt«. Pod njima prikaži vse projekte v karticah. Vsaka kartica prikazuje ime, stanje (»Načrtovan«, »V teku« ali »Zaključen«), datum začetka, napredek v odstotkih in skupni predvideni strošek. Dotik kartice odpre podrobnosti. Če ni nobenega projekta, prikaži »Ni še ustvarjenih projektov«.
+
+3.2. Ustvarjanje in urejanje projekta
+Obrazec vsebuje »Ime projekta« (obvezno), »Opis« (neobvezno), »Datum začetka« (privzeto današnji datum) in »Stanje« (privzeto »Načrtovan«). Uporabnik lahko projekt ustvari, pozneje uredi ali izbriše. Prazno ime povzroči opozorilo »Vnesi ime projekta« in prepreči shranjevanje. Pred izbrisom vprašaj »Ali res želiš izbrisati projekt?«. Stanje izbere uporabnik; ne spreminjaj ga samodejno glede na napredek.
+
+3.3. Seznam materiala
+Znotraj vsakega projekta prikaži razdelek »Material«. Uporabnik lahko doda material z imenom, količino, ceno na enoto v EUR in potrditvenim poljem »Kupljeno«. Material lahko uredi, označi kot kupljen ali izbriše. Za vsako postavko izračunaj: strošek = količina × cena na enoto. Pod seznamom prikaži »Skupni predvideni strošek«, ki sešteje vse postavke, tudi še nekupljene. Zneske prikaži z dvema decimalkama, npr. »25,50 €«. Količina mora biti večja od 0, cena pa ne sme biti negativna. Če materiala ni, je skupni strošek »0,00 €«.
+
+3.4. Faze dela in napredek
+Znotraj projekta prikaži razdelek »Faze dela« s seznamom opravil in potrditvenimi polji. Uporabnik lahko doda fazo, jo preimenuje, označi kot opravljeno ali neopravljeno ter jo izbriše. Napredek izračunaj kot: napredek (%) = (število opravljenih faz / število vseh faz) × 100. Rezultat zaokroži na celo število. Prikaži vrstico napredka in napis, npr. »2 od 5 faz – 40 %«. Če projekt nima faz, pokaži »0 %« in ne deli z nič. Napredek se posodobi po vsaki spremembi faz.
+
+3.5. Zapiski in meritve
+Vsak projekt ima razdelek »Zapiski in meritve« z večvrstičnim besedilnim poljem. Vanj lahko uporabnik prosto vnese mere, opombe in ugotovitve, npr. »Dolžina 120 cm, širina 60 cm«. Na voljo je gumb »Shrani zapiske«. Zapiski se ob ponovnem odpiranju projekta ohranijo. Polje je lahko prazno.
+
+3.6. Podrobnosti projekta in navigacija
+Začetni zaslon prikazuje seznam projektov. Z izbiro projekta se odpre zaslon s podatki projekta, razdelki »Material«, »Faze dela« in »Zapiski in meritve«. Na vrhu podrobnosti prikaži ime in stanje, pod njima odstotek napredka in skupne stroške. Gumb »Nazaj na projekte« vrne uporabnika na seznam. Gumba za urejanje in brisanje projekta sta jasno ločena od običajnih opravil.
+
+3.7. Shranjevanje podatkov
+Vsak projekt dobi enolični ID. Ob ustvarjanju, urejanju ali brisanju projekta ter spremembi materiala, faz ali zapiskov se podatki pošljejo zalednemu delu in zapišejo v datoteko »db.json«. Po osvežitvi strani ali ponovnem zagonu strežnika morajo ostati ohranjeni. Izračunane skupne stroške in odstotek napredka določi iz podatkov, ne shranjuj ju kot ločeni ročno urejani vrednosti.
+
+3.8. REST API
+Vsi odgovori so v obliki JSON, napake pa v obliki {"error": "sporočilo"} s pravilno kodo HTTP. Pripravi naslednje poti:
+- GET /api/projects – vrne seznam projektov.
+- GET /api/projects/:id – vrne izbrani projekt.
+- POST /api/projects – ustvari projekt.
+- PUT /api/projects/:id – posodobi projekt, vključno z materiali, fazami in zapiski.
+- DELETE /api/projects/:id – izbriše projekt.
+Med čakanjem na odgovor prikaži »Nalaganje ...«. Če zaledni del ni dosegljiv, prikaži »Povezava s strežnikom ni uspela« in gumb »Poskusi znova«. Ne prikazuj uspešnega shranjevanja, dokler strežnik ne potrdi spremembe.
+
+3.9. Robni primeri in podatkovni model
+Neznan ID projekta vrne HTTP 404 in zaslon »Projekt ni najden«. Neveljavno ime projekta, količina ali cena vrne HTTP 400 in razumljivo sporočilo. Pravila preverjanja naj veljajo tako na sprednjem kot na zalednem delu. Če datoteka »db.json« še ne obstaja, jo zaledni del ustvari z začetnimi podatki. Če ni materiala ali faz, mora aplikacija normalno delovati in prikazati prazne sezname.
+
+Podatkovni model:
+Project {id, name, description, startDate, status, materials[], phases[], notes}
+Material {id, name, quantity, unitPrice, purchased}
+Phase {id, name, completed}
+status = "planned" | "in_progress" | "done"
+V uporabniškem vmesniku so stanja prevedena v slovenščino: »Načrtovan«, »V teku«, »Zaključen«.
+
+KORAK 4: ZGRADBA KODE
+
+4.1. Projekt razdeli v dve glavni mapi: »frontend« za uporabniški vmesnik in »backend« za strežnik. Koda ne sme biti napisana v eni veliki datoteki.
+4.2. V »frontend/src« uporabi datoteki »App.tsx« (glavni prikaz in izbira trenutnega zaslona) in »types.ts« (tipi Project, Material in Phase) ter »api.ts« za vse klice REST API z vgrajenim fetch. Ne dodajaj usmerjevalnika; prehod med seznamom, obrazcem in podrobnostmi vodi stanje aplikacije.
+4.3. Pripravi preproste komponente »ProjectList«, »ProjectForm«, »ProjectDetail«, »MaterialList«, »PhaseList« in »NotesEditor«. Vsaka naj ima jasno nalogo. Podatke in funkcije za spremembe naj prejemajo prek props, brez podvajanja stanja.
+4.4. V Reactu uporabljaj useState za seznam projektov, izbrani projekt, prikazani zaslon, podatke obrazca ter sporočila o nalaganju in napakah. Uporabi useEffect za začetni prenos projektov s strežnika. Ne dodajaj globalnega upravljalnika stanja.
+4.5. Klice GET, POST, PUT in DELETE izvajaj v »api.ts«. Po uspešni spremembi osveži potrebne podatke iz odgovora API ali s ponovnim branjem s strežnika. Če zahteva ni uspešna, uporabniku pokaži napako in ne prikazuj spremembe kot potrjene.
+4.6. V »backend« pripravi »server.js« in »data/db.json«. Strežnik naj z moduloma http in fs obdela zahtevane poti, preveri vhodne podatke, prebere in posodobi datoteko JSON ter vedno vrne odgovor JSON. Ob neznani poti vrni HTTP 404; pri neveljavnih podatkih HTTP 400. Omogoči CORS in odgovor na OPTIONS.
+4.7. V TypeScriptu uporabi določene tipe in ne uporabljaj »any«. Imena komponent, spremenljivk in funkcij naj jasno povedo, kaj počnejo.
+
+KORAK 5: OBLIKOVANJE
+
+5.1. Najprej oblikuj za zaslon mobilnega telefona širine približno 375–430 px. Vsebino postavi v en stolpec. Na večjem zaslonu naj bo osrednji del širok največ 480 px in vodoravno poravnan na sredino.
+5.2. Uporabi svetlo ozadje #F7F7F2, bele kartice #FFFFFF, temno besedilo #1F2937 in eno glavno poudarjeno barvo #256D5B (umirjena zelena). Rdečo #B91C1C uporabi le za napake oziroma nevarna dejanja, kot je brisanje.
+5.3. Zunanja razdalja od roba zaslona naj bo 16 px. Med karticami naj bo 12–16 px prostora. Kartice naj imajo zaobljene robove (rounded-xl) in nežno senco (shadow-sm); ne uporabljaj močnih senc ali animacij.
+5.4. Naslov aplikacije naj bo izrazit (približno 24 px), naslovi razdelkov okoli 18 px, osnovno besedilo pa najmanj 16 px. Uporabi lahko berljivo sistemsko pisavo.
+5.5. Gumbi in potrditvena polja naj imajo dovolj veliko območje za dotik (najmanj 44 × 44 px). Glavni gumb »Nov projekt« naj bo jasno viden na vrhu začetnega zaslona.
+5.6. Na kartici projekta naj bodo podatki razporejeni po vrstnem redu: ime, stanje in datum, vrstica napredka, nato stroški. V podrobnostih naj bodo razdelki po vrsti »Material«, »Faze dela« ter »Zapiski in meritve«.
+5.7. Vrstica napredka naj bo zelena, visoka približno 8 px, zraven naj bo izpisan odstotek. Sporočila o napaki naj bodo besedilna in jasno vidna; ne zanašaj se le na barvo. Emoji lahko uporabiš varčno, največ enega pri glavnem naslovu ali praznem seznamu.
+5.8. Zaslon naj ostane preprost, brez dodatnih menijev, animacij, okraskov in odvečnih informacij. Vsi obrazci naj imajo vidne oznake polj.
+
+KORAK 6: NAMEN IN KAKOVOST
+
+6.1. Aplikacija je namenjena posameznikom, ki želijo domače in delavniške projekte voditi bolj pregledno, ter študijskemu prikazu osnov Reacta, TypeScripta in komunikacije z REST API. Prednost daj jasni in berljivi kodi pred zapletenimi rešitvami.
+6.2. Koda naj bo razdeljena na kratke, razumljive komponente in funkcije. Uporabi opisna imena, dosledne tipe in kratke komentarje le tam, kjer razlaga ni očitna. Ne dodajaj nepotrebnih abstrakcij ali knjižnic.
+6.3. Pomembna je pravilnost: ustvarjanje, prikaz, urejanje in brisanje projektov morajo delovati; stroški in napredek se morajo izračunati pravilno, tudi pri praznih seznamih.
+6.4. Pomembna je trajnost podatkov: po osvežitvi strani ali ponovnem zagonu strežnika morajo projekti ostati shranjeni v backend/data/db.json. Napake strežnika ne smejo povzročiti sesutja uporabniškega vmesnika.
+6.5. Pomembna je uporabnost: vse bistvene funkcije morajo biti dosegljive na telefonu, besedilo in gumbi jasno vidni, sporočila pa razumljiva in v slovenščini.
+6.6. Končni rezultat naj bo delujoč, majhen in preprost prototip, ki ga lahko študent razume, predstavi, preizkusi in pozneje nadgradi. Uspeh pomeni, da je mogoče brez dodatnih paketov ustvariti projekt, dodati material in faze, shraniti zapiske ter po ponovnem odprtju videti iste podatke.

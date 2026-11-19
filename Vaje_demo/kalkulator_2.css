@@ -1,0 +1,82 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: linear-gradient(115deg, #0ab9c5 0%, #00dd9b 100%);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.kalkulator {
+  width: min(436px, calc(100vw - 40px));
+  margin: 33px auto 25px;
+}
+
+.zaslon {
+  height: 126px;
+  background: #00392f;
+  border: 2px solid #172c29;
+  color: #fff;
+  text-align: right;
+  padding: 15px 12px;
+}
+
+.izraz {
+  font-size: 25px;
+  line-height: 30px;
+  color: #b9d2cb;
+}
+
+.rezultat {
+  margin-top: 11px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 44px;
+  line-height: 49px;
+}
+
+.tipkovnica {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 109px);
+}
+
+.tipka {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(204, 247, 244, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  color: #111;
+  font-size: 35px;
+  font-weight: 400;
+}
+
+.sirina-2 { grid-column: span 2; }
+.enako { background: #e8faf6; }
+
+/* Gumbi ohranijo videz statičnega kalkulatorja. */
+.tipka {
+  cursor: pointer;
+  font-family: inherit;
+  border-radius: 0;
+  transition: background-color 120ms ease;
+}
+
+.tipka:hover { background: #a5e9e1; }
+.tipka:active { background: #83d6ce; }
+.tipka:focus-visible { outline: 3px solid #005a50; outline-offset: -4px; }
+.enako:hover { background: #c9eee6; }
+
+.izraz, .rezultat {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 480px) {
+  .tipkovnica { grid-template-rows: repeat(5, min(20vw, 109px)); }
+  .tipka { font-size: clamp(23px, 7vw, 35px); }
+}

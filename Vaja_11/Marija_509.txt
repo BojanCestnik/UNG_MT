@@ -1,3 +1,69 @@
 Marija_509
-GitHub
-------
+
+STEP 1: GOAL
+Build a friendly, practical and good-looking guided home repair assistant for a phone screen. It has built-in guides for 8 simple repairs, a "My tools" checklist that is compared with each guide, a step-by-step repair mode and a repair log. A small React front end talks to a small Node back end through a REST API, and the back end stores the data in a JSON file. The feeling for the user: warm, calm, trustworthy, like a helpful neighbour who owns a toolbox. Simple, not overloaded.
+The app does NOT recognise faults from photos, does NOT use any AI service, and NEVER judges automatically whether a repair is safe.
+
+STEP 2: TECHNOLOGY AND CONSTRAINTS
+Front end: React + TypeScript, Vite and Tailwind CSS v4, in the folder "frontend".
+Back end: plain Node.js with only the built-in "http" and "fs" modules, written in TypeScript or JavaScript, in the folder "backend". It runs on port 3001. The front end runs on port 5173, so the back end must send CORS headers.
+Do NOT install any additional packages beyond the standard Vite React-TS template and Tailwind CSS v4. No Express, no axios, no router library, no UI library, no icon library (use emoji).
+Do NOT add a database server, authentication, an AI or image-recognition service, or API keys.
+Do NOT change the config files except what Tailwind v4 needs to work.
+Storage: the back end keeps all data in the file backend/data/db.json (guides, tools, log). The front end does not use localStorage for data.
+
+STEP 3: FUNCTIONALITIES
+3.1. Built-in guides: 8 repairs stored in db.json: dripping tap washer, loose chair leg, bicycle inner tube, blocked sink, small hole in a wall, loose button, squeaky door hinge, loose cabinet handle. Each guide has id, title, object, problem, difficulty ("easy" or "medium"), minutes, tools[], materials[], safetyNotes[] and steps[] (5 to 7 steps each).
+3.2. Find a guide (home screen): two dropdowns at the top ("Object" and "Problem"), a search field below them, and a results list below. Each result card shows title, difficulty badge and time like "25 min". If nothing matches, show "No guide found".
+3.3. My tools (second screen, opened with a bottom tab bar): a checklist of all tools used by the guides. I tick the tools I own. Every tick is sent to the back end immediately. The list is still ticked after I reload the page.
+3.4. Guide detail: tools and materials are listed. Each tool is marked "Have" (green) or "Missing" (red), compared with My tools. At the top it shows "3 missing". The "Start repair" button is at the bottom.
+3.5. Safety: every guide shows its safetyNotes in a yellow box at the top of the detail screen. On the home screen a red banner says "Call a professional for electrical, gas and water-mains problems". There are no guides for those problems.
+3.6. Step-by-step mode: one step per screen, with "Back" and "Next" buttons at the bottom, a progress bar and a label like "Step 2 of 6". "Back" is disabled on step 1. The last screen says "Repair finished" and has a "Save to log" button. It never advances automatically.
+3.7. Repair log (third tab): a list of finished repairs, newest first, with guide title, date as DD.MM.YYYY and an optional photo (file input, JPG/PNG, max 1 MB). A wrong type or a bigger file shows a red message and does not crash the app. The photo is only stored, never analysed. Each entry has a "Delete" button with a confirm question. An empty log shows "No repairs yet".
+3.8. API (all responses are JSON, errors look like {"error": "message"} with the right status code):
+   - GET /api/guides and GET /api/guides/:id
+   - GET /api/tools and PUT /api/tools (body: array of owned tool names)
+   - GET /api/log, POST /api/log (guideId, date, optional photo as base64 string) and DELETE /api/log/:id
+   The front end shows "Loading..." while waiting, and "Cannot reach the server" with a "Try again" button if the back end is off.
+3.9. Edge cases: unknown guide id gives 404 and the screen "Guide not found"; a photo over 1 MB is rejected by BOTH the front end and the back end; a guide with 0 missing tools shows "You have everything".
+Data model: Guide {id, title, object, problem, difficulty, minutes, tools[], materials[], safetyNotes[], steps[]}; LogEntry {id, guideId, date, photo?}.
+
+STEP 4: CODE STRUCTURE
+Vibe coding and real coding are combined, and I decide who writes what:
+- The AI generates: the React components, the Tailwind styling and the db.json with the 8 guides.
+- I write by hand (the AI only creates empty functions with TODO comments and explains them to me): the request handler and routing in backend/server.js, the photo size validation, and the function compareTools(guideTools, myTools) that returns {have, missing}. After I write them, the AI reviews my code and explains my mistakes, but does not rewrite it.
+The architecture is my decision, not the model's:
+Front end folders: src/components, src/screens, src/api, src/utils and src/types.ts.
+- Five screen components in src/screens: HomeScreen (search and results), ToolsScreen (tools checklist), GuideDetailScreen (tools, materials, safety), StepScreen (step-by-step mode) and LogScreen (repair log).
+- Small reusable components in src/components: GuideCard, ToolItem, StepView, ProgressBar, TabBar, SafetyBox and Banner. Each one only displays what it gets through props and holds no data of its own.
+- src/api/api.ts is the ONLY file that calls fetch. It has one function per endpoint (getGuides, getGuide, getTools, saveTools, getLog, addLogEntry, deleteLogEntry) and returns typed data.
+- src/utils/compareTools.ts holds the pure function compareTools, with no React inside.
+- src/types.ts holds the types Guide, LogEntry, Screen and ApiError.
+State (useState):
+- App holds the shared state: current screen, selected guide id, guides, ownedTools (string[]), log, loading and error.
+- HomeScreen holds only its own filter state: selected object, selected problem and the search text.
+- StepScreen holds only the current step index.
+- Derived values (filtered guides, missing tools count, progress percentage) are calculated during rendering and are NOT stored in state.
+Data flow: data goes down from App to screens and components through props; user actions go up through callback props (onToggleTool, onSelectGuide, onSaveLog, onDeleteLog). Screens never call the API directly, only App does, through api.ts.
+Loading data (useEffect): one useEffect in App with an empty dependency array loads guides, tools and log together with Promise.all when the app opens. It sets loading and error states, and has a cleanup flag so that no state is set after the component is removed. Ticking a tool updates the state immediately and sends PUT /api/tools; if the request fails, the tick is reverted and an error message is shown. There is no timer in this app: no setInterval and no automatic step changes.
+Back end structure: backend/server.js (HTTP server, routing and CORS only), backend/db.js (reading and writing data/db.json, with writes done safely through a temporary file) and backend/data/db.json. All handlers use try/catch and return JSON errors with the correct status code (400, 404, 413, 500).
+TypeScript rules in the front end: types for all props, state and API results, and the type "any" is forbidden. Every component is in its own file, and no file is longer than about 150 lines.
+
+STEP 5: DESIGN
+Instead of "make it pretty", these are measurable rules. The AI uses Tailwind CSS v4 classes only.
+Target screen: a phone, 390 x 844 px (works from 360 to 430 px wide). On a desktop browser the app is a centered column with max-w-md (448 px) and a light shadow-md around it. All buttons, tabs and tappable rows are at least 44 px high (min-h-11).
+Colors: page background pastel cream #fff7ed (bg-orange-50). Cards are white. Text is dark slate #1f2937. ONE accent color, orange #f97316 (bg-orange-500), used consistently for primary buttons, the active tab and the progress bar fill. Status colors are used only for status: green #16a34a for "Have" and the "You have everything" message, red #dc2626 for "Missing" and the "Call a professional" banner, and the safety box is yellow #fef3c7 with a #f59e0b border.
+Shapes: cards use rounded-2xl, buttons use rounded-xl, badges use rounded-full. The biggest shadow anywhere is shadow-md, and a screen shows at most 2 shadows.
+Typography: system sans-serif font. App title 24 px bold, card titles 18 px semibold, body 16 px, step text 18 px with leading-relaxed. The "Step 2 of 6" label and the "25 min" times use tabular numbers (tabular-nums), so digits do not jump.
+Layout: header at the top with the app name, content in the middle that scrolls, and the tab bar fixed at the bottom with 3 tabs (Guides, My tools, Log), each with an emoji above a label. The active tab is orange and bold. On the step screen, the step text is centered vertically in the available space, with the progress bar above it and the Back and Next buttons fixed at the bottom. Spacing uses only Tailwind steps 2, 4 and 6 (8, 16 and 24 px).
+Buttons: primary buttons are filled orange with white text, secondary buttons have a white background and an orange border, and disabled buttons are gray (opacity-50). The Delete button is red text with no fill.
+One cute detail: a wrench emoji 🔧 next to the name "Home Assist" in the header. No other decoration. Cute, not overloaded.
+Motion: the only animation is the smooth progress bar width change (transition-all, 300 ms). No other animations.
+Accessibility: text contrast of at least 4.5:1, and a visible focus outline on all buttons and inputs.
+
+STEP 6: PURPOSE AND QUALITY
+Keep the code clean and readable. This project will be used to teach mobile web development with React fundamentals and a simple REST API, so prefer clarity over cleverness.
+The app is for people who want to fix simple things at home, and the code is for students of the Mobile Technologies course who will read it and extend it. Use clear names for variables and functions, small components, simple logic and short comments for the parts that are not obvious (especially the API calls and compareTools). No unnecessary abstractions, no clever one-liners, no extra libraries.
+Success means: (1) every functionality in Step 3 can be checked with "yes" or "no", (2) the app works on a phone-sized screen, (3) frontend and backend start with one command each (npm run dev in "frontend" and npm start in "backend"), and (4) a new guide can be added by editing db.json only, with no code changes.
+Safety first: the safety notes in the guides are fixed text. The app never decides by itself that a repair is safe.
+Keep the scope small: no accounts, no maps, no shopping links, no notifications. A small app that works is better than a big one that does not. Extra ideas come in later iterations.
