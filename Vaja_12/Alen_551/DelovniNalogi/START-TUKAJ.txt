@@ -1,0 +1,21 @@
+DELovni NALOGI – ZAGON V CMD (Windows)
+
+1. Namesti Node.js, ce se ni namescen: https://nodejs.org/
+2. Odpri mapo DelovniNalogi.
+3. V naslovno vrstico Raziskovalca vpisi cmd in pritisni Enter.
+4. V CMD prvic izvedi:
+
+   npm install
+
+5. Nato izvedi:
+
+   npm run dev
+
+6. Odpri http://localhost:5173
+
+Ob naslednjem zagonu je dovolj `npm run dev`.
+Ukaz Ctrl+C ustavi program. CMD naj ostane odprt med uporabo.
+Podatki se shranjujejo v backend/data/db.json.
+
+POMEMBNO: ukaza izvajaj v GLAVNI mapi DelovniNalogi,
+tam kjer je datoteka package.json.
