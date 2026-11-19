@@ -1,3 +1,213 @@
-Lucia_512
-to je spremenjeni tekst
-uspela sam !!! bravo !!!
+# Virtual Pet Focus App – Complete Development Prompt
+
+## 1. Goal and Tone
+
+Build a simple but engaging and cute focus and productivity application featuring a virtual pet dog.
+
+The main goal of the app is to help students and young adults stay focused while studying or working and reduce unnecessary phone and laptop distractions.
+
+The longer the user stays in focus mode, the happier and healthier the dog becomes and the more it grows. If the user gives up or leaves the app during an active focus session, the dog does not grow and becomes sad.
+
+The application should also include a reward system with coins that users earn after completing focus sessions. Users can spend these coins to customize their pet, including its fur colour, clothes and accessories, as well as decorate its surroundings.
+
+The overall experience should be fun, interactive and motivating, with a cute aesthetic, mostly pastel colours and a modern design that appeals to students and young adults.
+
+## 2. Technology Stack
+
+Build the application using:
+- React
+- TypeScript
+- Vite
+- Tailwind CSS v4
+
+Do NOT install any additional packages or libraries. Do not change the specified technologies or use a different framework.
+
+Keep the project compatible with the existing development environment.
+
+## 3. Features
+
+### 3.1 Main Screen and Timer
+
+Create a main screen with a large focus timer positioned around the centre of the screen.
+
+Display the virtual dog and its doghouse directly underneath the timer.
+
+Place the Pause and Give Up buttons next to the timer so they are easy to access.
+
+Add a hamburger menu icon in the top-right corner. Clicking it should open a small settings panel or window.
+
+### 3.2 Focus and Break Modes
+
+Include three preset focus and break cycles:
+
+- **Short session:** 30 minutes of focus, followed by a 5-minute break. Reward: 5 coins.
+- **Medium session:** 45 minutes of focus, followed by a 10-minute break. Reward: 7 coins.
+- **Long session:** 60 minutes of focus, followed by a 15-minute break. Reward: 10 coins.
+
+Also include a manual mode where users can choose their own focus and break durations.
+
+For manual sessions, calculate the coin reward based on the nearest preset focus duration. For example, a 25-minute focus session receives 5 coins because the closest preset is 30 minutes.
+
+When a focus session finishes, play a bell notification sound and automatically start the break timer. When the break finishes, play the bell sound again.
+
+Allow users to pause and resume the timer.
+
+### 3.3 Give Up and Leaving a Session
+
+If the user presses Give Up during an active focus session:
+- Stop the timer immediately.
+- Do not award any coins.
+- Do not start the break automatically.
+- Make the dog sad and decrease some of its health or happiness.
+
+Detect when the user leaves or hides the application using browser visibility features such as the Page Visibility API, where technically possible. Treat leaving an active focus session as an unsuccessful session.
+
+Do not claim that the application can detect or prevent every distraction on a phone or laptop.
+
+### 3.4 Virtual Pet
+
+Create a cute virtual dog that reacts to the user's focus progress.
+
+The dog should:
+- Become happier and healthier after successful focus sessions.
+- Become sad when the user gives up or abandons a session.
+- Grow and show progress as the user completes more sessions.
+- Have a customizable name.
+
+Allow the user to choose and change the dog's name.
+
+### 3.5 Coins and Rewards
+
+Give users coins only after successfully completing a focus session.
+
+Display the total number of collected coins in the settings or menu area.
+
+Users should be able to spend their coins on pet customization and decorations. Deduct the appropriate amount of coins after each purchase.
+
+Make sure the coin balance is updated immediately and saved.
+
+### 3.6 Pet Customization and Shop
+
+Create a Pet Shop where users can purchase:
+- Different dog fur colours.
+- Clothes.
+- Accessories.
+
+Each item should have a visible price. Users should only be able to purchase items if they have enough coins.
+
+Allow users to select and apply items they have purchased.
+
+### 3.7 Doghouse and Environment Decorations
+
+Allow users to decorate the dog's surroundings, which should be visible on the main screen underneath the timer.
+
+Include examples such as:
+- A water bowl.
+- A sleeping house or bed.
+- A carpet.
+- Other cute decorative items.
+
+These environment decorations should generally cost more coins than basic customization items.
+
+Purchased decorations should appear in the dog's environment on the main screen.
+
+### 3.8 Statistics
+
+Include a Statistics section showing:
+- Total coins collected.
+- Total focus hours.
+- Number of successfully completed focus sessions.
+
+Update the statistics automatically after each completed session.
+
+### 3.9 Settings Menu
+
+The hamburger menu in the top-right corner should open a small, clean settings panel.
+
+Include access to:
+- Focus and break duration settings.
+- Total coins collected.
+- Total focus hours.
+- Pet customization.
+- Pet Shop and item prices.
+- Statistics.
+
+Keep navigation simple and easy to understand.
+
+## 4. Code Structure
+
+Organize the application into separate, reusable React components.
+
+Use the following component structure:
+
+1. **App** – Main component responsible for the overall application and shared state.
+2. **Timer** – Displays the timer and handles starting, pausing, resuming, giving up and sound notifications.
+3. **PetArea** – Displays the virtual dog, doghouse, pet mood and surrounding decorations.
+4. **Settings** – Provides access to timer settings and application options.
+5. **PetShop** – Handles purchases of fur colours, clothes, accessories and environment decorations.
+6. **Statistics** – Displays coins, total focus hours and completed sessions.
+7. **PetProfile** – Manages the pet's name, appearance and growth progress.
+
+The App component should manage shared application state and pass the necessary data and functions to other components through props.
+
+Use React useState for managing the timer, pet condition, coins, settings and other application data.
+
+Use useEffect and setInterval for the countdown timer. Make sure intervals are properly cleaned up to prevent multiple timers from running simultaneously or continuing after a session ends.
+
+Use localStorage to preserve:
+- Pet name and appearance.
+- Pet health, happiness and growth progress.
+- Coin balance and purchased items.
+- Focus time and completed sessions.
+- Timer settings.
+
+Use appropriate TypeScript interfaces and types. Avoid using any.
+
+Keep components organized, reusable and easy to understand.
+
+## 5. Design and Visual Style
+
+Create a cute, minimalist and modern design with a pastel pink colour palette.
+
+Use the following colours:
+
+- Main background: Soft pink – #FCE4EC
+- Cards and panels: Warm white – #FFF9F5
+- Buttons and highlights: Dusty pink – #EFA8BF
+- Text: Soft dark – #6D5360
+
+Use rounded cards and buttons (rounded-2xl), gentle shadows (shadow-sm), simple icons and a rounded, modern font.
+
+The timer should be displayed in a separate card in the centre of the screen, with large and clearly readable digits.
+
+The virtual dog should be a cute 2D illustrated character, not a photograph.
+
+Keep the design minimalist while including small cute details that make the application feel warm and enjoyable.
+
+Display settings and the shop in separate, clean panels or windows.
+
+Avoid excessive animations, unnecessary decorations and visual clutter.
+
+Make the application fully responsive:
+- On laptops, use a centred layout with comfortable spacing and avoid stretching the content across the entire screen.
+- On phones, use a vertical layout that fits smaller screens naturally.
+
+Make all buttons large enough to be comfortable to use on touchscreens.
+
+## 6. Purpose and Quality
+
+The application is designed for students and young adults who want to improve their focus, productivity and study habits.
+
+Its main purpose is to help users stay concentrated while studying or working, reduce distractions and develop consistent and healthy work routines.
+
+The virtual pet, reward system and customization options should make the experience more enjoyable and motivating.
+
+The application should provide a balance between productivity and entertainment. It should be moderately complex, including all the specified features without unnecessary additions or complicated functionality.
+
+The interface should be intuitive, easy to navigate and enjoyable to use on both mobile devices and laptops.
+
+Keep the code clean, readable and well-organized. Use clear component separation, appropriate TypeScript types and simple, reliable solutions.
+
+Prioritize functionality, usability and maintainability over unnecessary complexity. Make sure the timer, rewards, pet progress and statistics work consistently and that user data is preserved when the application is reopened.
+
+**Important:** Implement the specified features without adding unnecessary functionality or changing the overall design and purpose of the application.
