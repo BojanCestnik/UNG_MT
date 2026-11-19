@@ -1,1 +1,105 @@
 Enia_417 eniaaaaa
+1. Goals
+
+Develop a web application called Notebook (Study Planner) designed for high school and university students to organize their academic responsibilities
+
+2. Technology Stack
+
+Use:
+HTML5
+JavaScript (ES6)
+
+Restrictions:
+No React
+No external libraries
+No Bootstrap
+No database
+
+3. Features
+Adding Tasks:
+Task title
+Subject
+Exam
+Assignment
+Project
+Due date
+List Display
+
+Each task should display:
+
+Title
+Subject
+Type
+Due date
+Status
+Marking as Completed
+
+Completed tasks should have:
+Strikethrough text
+Green indicator
+Reduced emphasis
+Deleting Tasks
+
+Filtering:
+All
+Active
+Completed
+Data Persistence:
+Data should not be lost when the page is refreshed
+
+4. Code Structure
+
+HTML
+Application title
+Form for adding tasks
+Filters
+Task list
+
+CSS:
+Layout styling
+Color scheme
+Responsiveness
+Animations
+
+JavaScript:
+addTask()
+renderTasks()
+deleteTask()
+toggleTaskStatus()
+filterTasks()
+saveTasks()
+loadTasks()
+
+5. Design
+Color Scheme:
+Primary: #2563EB (Blue)
+Success: #16A34A (Green)
+Warning: #F59E0B (Orange)
+Background: #F8FAFC
+
+Layout:
+-Cards with rounded corners
+-Shadows under elements
+Sufficient whitespace
+Responsive Design
+Mobile phone
+Tablet
+Desktop computer
+Interactions
+Hover effects
+Smooth transitions
+Pleasant animations
+
+6. Purpose and Quality
+
+Purpose:
+Beginners
+Computer science students
+Learning web development
+
+Quality Requirements:
+Clear and meaningful variable names
+No duplicated code
+Well-written comments
+Good user experience
+-Easy maintenance and future upgrades

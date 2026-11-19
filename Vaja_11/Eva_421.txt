@@ -1,1 +1,48 @@
-Eva_421 hfkweghw
+# 1. Cilj in ton
+Gradimo spletno/mobilno aplikacijo **Eva_421** – sodoben, pregleden in zanesljiv koledar ter odštevalnik dni med datumi in za dogodke (event countdown app)[cite: 3].
+Vtis naj bo čist, premišljen, funkcionalen in brez generične, »povprečne« šablonske estetike[cite: 1]. Vmesnik naj deluje kot namenski produktivni pripomoček za vsakdanjo uporabo, ne kot generičen demo ali prenatrpan koledarski sistem[cite: 1, 2].
+
+# 2. Tehnološki sklad
+Uporabi čisti **HTML5, CSS3 in Vanilla JavaScript (ES6+)**[cite: 3].
+- **Ne dodajaj** nobenih zunanjih JS knjižnic ali ogrodij (brez Reacta, Vueja, Moment.js, Day.js ipd.)[cite: 1].
+- **Ne dodajaj** CSS ogrodij (brez Bootstrapa ali Tailwinda)[cite: 1].
+- Podatki se shranjujejo izključno lokalno v brskalniku prek `localStorage`[cite: 3] (brez zunanjih API-jev ali zalednega strežnika).
+
+# 3. Funkcionalnosti
+Aplikacija mora natančno podpirati naslednje funkcionalnosti:
+1. **Kalkulator razlike med datumoma**:
+   - Uporabnik izbere *Datum 1* in *Datum 2*[cite: 3].
+   - Aplikacija izračuna in prikaže razliko v **dnevih**, **tednih** in **delovnih dneh (ponedeljek–petek)** (upoštevaj oba smera izbire datumov ter jasno definiraj vključevanje/izključevanje končnega dneva)[cite: 3].
+2. **Shranjeni dogodki (Saved countdowns)**:
+   - Uporabnik lahko doda nov dogodek z imenom (npr. *"Exam"*, *"Holidays"*) in datumom[cite: 3].
+   - Vmesnik jasno prikaže preostalo število dni do dogodka[cite: 3].
+3. **Pretekli dogodki**:
+   - Dogodki, katerih datum je že minil, se samodejno premaknejo na ločen seznam in prikazujejo oznako *"X days ago"*[cite: 3].
+4. **Razvrščanje in pripenjanje (Pin)**:
+   - Seznam prihajajočih dogodkov je privzeto urejen po najbližjem datumu[cite: 3].
+   - Uporabnik lahko en dogodek pripne (*pin*) kot glavni odštevalnik na začetnem zaslonu / vrhu aplikacije[cite: 3].
+5. **Prilagoditev dogodka**:
+   - Vsak dogodek ima lahko opcijski **emoji** ali **barvno oznako**[cite: 3].
+6. **Trajno shranjevanje**:
+   - Vsi dogodki, pripeti dogodek in nastavitve se shranijo v `localStorage` in ostanejo ohranjeni ob ponovnem nalaganju strani[cite: 3].
+
+Ne izmišljuj si dodatnih kompleksnih modulov (kot so uporabniški računi, sinhronizacija v oblak ali kompleksno upravljanje opravil), ki niso zahtevani[cite: 1, 3].
+
+# 4. Zgradba kode
+Koda naj bo modularna in pregledno razdeljena v logične datoteke (ne vse v eni veliki datoteki)[cite: 2]:
+- `index.html` – semantična struktura vmesnika.
+- `styles.css` – organizirani slogi z uporabo CSS spremenljivk (`:root`), odzivno postavitev in barvnih oznak.
+- `js/storage.js` – branje, pisanje in validacija podatkov v `localStorage`.
+- `js/dateUtils.js` – čiste funkcije za izračun dni, tednov, delovnih dni (Pon–Pet), primerjavo datumov in oblikovanje zapisov (*"X days ago"*, preostali dnevi).
+- `js/app.js` – upravljanje stanja aplikacije, dogodkov v vmesniku (event listeners), razvrščanje, pripenjanje ter izris pogledov.
+
+# 5. Oblikovanje
+Oblikovanje naj bo čisto, zračno, kontrastno in intuitivno tako na mobilnih zaslonih kot na namizju[cite: 2, 3].
+- Izogni se naključnemu, prenatrpanemu videzu z odvečnimi obrobami, senčnimi učinki in preveč različnimi pisavami[cite: 2].
+- Glavni pripeti odštevalnik naj bo vizualno izpostavljen, kalkulator in seznami dogodkov pa naj bodo jasno ločeni in enostavni za pregled[cite: 2, 3].
+- Barve dogodkov naj bodo usklajene z ozadjem tako, da ostane besedilo vedno dobro berljivo.
+
+# 6. Namen in kakovost
+Koda je namenjena nadaljnjemu razvoju, pregledu in vzdrževanju (študijski/projektni kontekst)[cite: 2, 3].
+- Prednost ima **berljivost, jasnost in vzdržljivost** pred »pametnimi« (skritimi ali pretirano zgostitvenimi) triki[cite: 2].
+- Uporabljaj smiselna imena spremenljivk in funkcij, kratke komentarje pri robnih primerih (npr. robni primeri pri datumih, prestopnih letih ali časovnih pasovih/lokalnem datumu brez zamikov zaradi UTC) ter čisto obravnavo praznih stanj (ko še ni shranjenih dogodkov).
