@@ -26,3 +26,52 @@ Ne uporabljaj dodatnih knjižnic, zunanje podatkovne baze, uporabniških računo
 10. **Shranjevanje:** vsi podatki se shranjujejo na strežniku in ostanejo ohranjeni po osvežitvi strani.
 
 Aplikacija mora biti popolnoma delujoča, prilagojena mobilnim telefonom, z enostavno navigacijo in preglednim uporabniškim vmesnikom.
+
+### KORAK 4: ZGRADBA KODE
+
+Aplikacijo razdeli na pregledne React komponente:
+
+1. **App:** upravlja glavno stanje aplikacije in navigacijo.
+2. **Dashboard:** prikazuje pregled delovnih nalogov in statistiko.
+3. **WorkOrderForm:** omogoča ustvarjanje in urejanje delovnih nalogov.
+4. **MaterialManager:** upravlja materiale in njihovo zalogo.
+5. **ToolManager:** upravlja orodja, rezervacije in razpoložljivost.
+6. **OperationManager:** upravlja postopke obdelave in napredek izdelave.
+
+Podatke med komponentami prenašaj prek `props`, za stanje uporabljaj `useState`, za pridobivanje podatkov pa `useEffect`.
+
+V zalednem delu loči obdelavo REST API zahtev, preverjanje podatkov in shranjevanje v `db.json`.
+
+Uporabljaj TypeScript tipe in vmesnike. Ne uporabljaj tipa `any`. Koda naj bo modularna, pregledna in enostavna za nadgradnjo.
+
+### KORAK 5: OBLIKOVANJE Z MERLJIVIMI NAVODILI
+
+Aplikacija naj ima sodoben industrijski videz, prilagojen mobilnim telefonom.
+
+- **Ozadje:** svetlo siva `#F8FAFC`.
+- **Glavna barva:** temno modra `#1E293B`.
+- **Poudarjena barva:** modra `#2563EB`.
+- **Kartice:** bele, zaobljene (`rounded-2xl`) z nežno senco (`shadow-md`).
+- **Postavitev:** največja širina vsebine 500 px, na mobilnih napravah uporabi širino zaslona.
+- **Razmiki:** med elementi 16 px, notranji odmiki kartic 20 px.
+- **Gumbi:** najmanjša višina 44 px za enostavno uporabo na dotik.
+- **Navigacija:** na mobilnem telefonu spodnja vrstica z glavnimi zavihki.
+- **Stanja:** zelena za razpoložljivo, oranžna za zasedeno in rdeča za nedostopno.
+
+Uporabljaj enoten slog na vseh zaslonih. Izogibaj se nepotrebnim animacijam in zapletenim menijem.
+
+### KORAK 6: NAMEN KODE IN MERILO KAKOVOSTI
+
+Keep the code clean and readable — prioritize simplicity, reliability and maintainability over unnecessary complexity.
+
+Koda naj bo razumljiva tudi začetniku, ki se uči React in TypeScript. Uporabljaj jasna imena spremenljivk, preprosto logiko in ponovno uporabne komponente.
+
+**Merila uspešnosti:**
+- Vsi gumbi, obrazci in filtri delujejo pravilno.
+- Delovni nalogi, materiali in orodja se pravilno shranjujejo.
+- Razpoložljivost orodij se posodablja brez podvojenih rezervacij.
+- Napredek izdelave in porabljeni čas se pravilno izračunavata.
+- Podatki ostanejo ohranjeni po osvežitvi strani.
+- Aplikacija deluje na mobilnih telefonih in računalnikih.
+
+Pred zaključkom preveri delovanje vseh funkcionalnosti. Prednost naj imajo **zanesljivost, hitrost, preglednost in enostavna uporaba**.
