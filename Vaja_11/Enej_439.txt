@@ -1,1 +1,51 @@
-Tom telefon
+Korak 1: Cilj in ton
+
+Build a simple but friendly water tracker app called “Vodni dnevnik” (Water Diary). It is made for phones and must
+feel stable when tapped.
+
+Korak 2: Tehnološki sklad in prepovedi
+
+Use plain HTML, CSS and vanilla JavaScript in a single self-contained .html file. Do NOT use any frameworks, 
+libraries, external scripts or images. Save data only in the browser with localStorage, wrapped in try/catch. 
+Support light and dark mode.
+
+Mobile setup: the viewport tag must include maximum-scale=1, user-scalable=no and viewport-fit=cover. 
+Set touch-action: manipulation on the page and on buttons so double-tap does not zoom. Turn off the tap 
+highlight (-webkit-tap-highlight-color: transparent), disable text selection on buttons, and set text-size-adjust: 100% so 
+the phone does not enlarge the text when rotated.
+
+Korak 3: Funkcionalnosti
+
+At the top, show a glass that fills up as the person drinks, next to the count (for example “3 / 8”) and the amount 
+(for example “750 / 2000 ml”). The daily goal is 8 glasses of 250 ml.
+Below the display, put a large “+ Kozarec” button that adds one glass and saves the time of drinking.
+Next to it, put a “−” button that removes the last glass. It is disabled when the count is 0.
+Under the display, show “Še X kozarcev do cilja”, and when the goal is reached “Cilj dosežen!”. Do not reset or block 
+anything at the goal; the person can keep adding.
+At the bottom, list today’s entries, newest first, showing time and ml. When there are none, show a short empty message. 
+The list is at most 200 px high and scrolls inside itself, so the card does not grow when entries are added.
+A “Ponastavi dan” button clears the day. No modal: the first tap changes the text to a confirmation, a second tap within 
+3 seconds resets.
+
+Each entry has an id, a time and the ml. Data is stored per date, so a new day starts empty.
+
+Korak 4: Zgradba kode
+
+Keep the code in three clear parts: styles, markup, script. In the script, keep the settings (GOAL, GLASS_ML) 
+as constants at the top, the state as one array of entries, and use small functions: load, save, addGlass, undoGlass, 
+resetDay and one render function that redraws everything from the state.
+
+Korak 5: Oblikovanje
+
+Pastel peach background (#ffeede) with one accent color, blue (#3f9be0), used consistently. 
+One centered card, max width 440 px, centered vertically, border radius 28 px, and the 
+strongest shadow no more than 0 4px 8px at 10% black. Use a font with equal-width digits so numbers do not jump. 
+One cute detail only: the water drop emoji next to the title. Cute, not overloaded.
+
+Target screen: a phone, from 320 px wide. Buttons at least 52 px high for easy tapping. Keep content clear of the 
+notch and the bottom bar with safe-area padding. Respect reduced motion.
+
+Korak 6: Namen in merilo kakovosti
+
+Keep the code clean and readable, as it will be used to teach JavaScript fundamentals, so prefer clarity over cleverness. 
+Stay within scope: a small app that works is better than a big one that does not.
