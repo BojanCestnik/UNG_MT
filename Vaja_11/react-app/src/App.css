@@ -1,0 +1,356 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Nunito', sans-serif;
+  background: #FCE4EC;
+  color: #6D5360;
+}
+
+button, input {
+  font-family: inherit;
+}
+
+.app {
+  min-height: 100vh;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  width: 100%;
+  max-width: 950px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: 900;
+  color: #D77F9D;
+}
+
+.settings-button {
+  border: none;
+  background: #FFF9F5;
+  color: #A66D83;
+  border-radius: 15px;
+  padding: 12px 17px;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.welcome {
+  text-align: center;
+  margin: 35px 0 25px;
+}
+
+.subtitle {
+  color: #D77F9D;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.welcome h1 {
+  font-size: 38px;
+  margin: 8px 0;
+  color: #765767;
+}
+
+.welcome p:last-child {
+  color: #987E8C;
+}
+
+.timer-card, .pet-card {
+  background: #FFF9F5;
+  width: 100%;
+  max-width: 440px;
+  border-radius: 28px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(170, 110, 135, 0.08);
+  margin-bottom: 22px;
+}
+
+.mode-label {
+  color: #D77F9D;
+  font-weight: 900;
+  letter-spacing: 3px;
+  font-size: 13px;
+}
+
+.timer {
+  font-size: 76px;
+  font-weight: 900;
+  color: #765767;
+  margin: 12px 0;
+}
+
+.presets {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.preset {
+  border: 1px solid #F1D2DE;
+  background: white;
+  color: #987E8C;
+  border-radius: 14px;
+  padding: 10px 17px;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.preset.active {
+  background: #EFA8BF;
+  color: white;
+  border-color: #EFA8BF;
+}
+
+.start-button {
+  background: #EFA8BF;
+  border: none;
+  color: white;
+  border-radius: 18px;
+  padding: 15px 30px;
+  font-size: 17px;
+  font-weight: 900;
+  cursor: pointer;
+  width: 100%;
+  transition: 0.2s;
+}
+
+.start-button:hover {
+  background: #DD91AC;
+  transform: translateY(-2px);
+}
+
+.pet-illustration {
+  font-size: 85px;
+  margin: 5px 0;
+}
+
+.pet-card h2 {
+  color: #765767;
+  margin-bottom: 5px;
+}
+
+.pet-card p {
+  color: #987E8C;
+}
+
+.pet-card label {
+  display: block;
+  margin-top: 20px;
+  font-weight: 800;
+}
+
+.pet-card input {
+  margin-top: 8px;
+  padding: 12px;
+  border: 1px solid #F1D2DE;
+  border-radius: 12px;
+  width: 100%;
+  outline: none;
+  color: #765767;
+  text-align: center;
+  font-size: 16px;
+}
+
+.coins {
+  margin-top: 20px;
+  color: #C58B47;
+  font-weight: 900;
+  font-size: 18px;
+}
+
+footer {
+  color: #B18C9D;
+  font-size: 13px;
+  margin-top: 10px;
+}
+
+@media (max-width: 500px) {
+  .welcome h1 {
+    font-size: 30px;
+  }
+
+  .timer {
+    font-size: 62px;
+  }
+
+  .timer-card, .pet-card {
+    padding: 22px;
+  }
+}
+.break-card {
+  background: #FFF0F4;
+}
+
+.break-label {
+  color: #B88A9D;
+}
+
+.break-info {
+  color: #987E8C;
+  font-weight: 800;
+  margin: 15px 0 22px;
+}
+
+.preset:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.pet-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+  max-width: 280px;
+  margin: 22px auto 5px;
+  text-align: left;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  color: #987E8C;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.stat-bar {
+  width: 100%;
+  height: 12px;
+  background: #F8E8EE;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.stat-fill {
+  height: 100%;
+  border-radius: 20px;
+  transition: width 0.4s ease;
+}
+
+.happiness-fill {
+  background: #EFA8BF;
+}
+
+.health-fill {
+  background: #A9CDAF;
+}
+
+.stat small {
+  color: #B08D9D;
+  font-size: 12px;
+}
+
+/* Better spacing and layout */
+
+.app {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 35px 24px;
+  box-sizing: border-box;
+}
+
+.header {
+  margin-bottom: 45px;
+}
+
+.welcome {
+  margin-bottom: 35px;
+  line-height: 1.7;
+}
+
+.timer-card,
+.pet-card {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto 30px;
+  padding: 32px 28px;
+  box-sizing: border-box;
+  border-radius: 28px;
+}
+
+.timer {
+  margin: 22px 0;
+}
+
+.presets {
+  margin: 25px 0;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.start-button {
+  margin-top: 15px;
+  padding: 15px 28px;
+}
+
+.pet-illustration {
+  margin: 15px 0 20px;
+  font-size: 65px;
+}
+
+.pet-card h2 {
+  margin-bottom: 12px;
+}
+
+.pet-card p {
+  margin-bottom: 22px;
+  line-height: 1.6;
+}
+
+.pet-card label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.pet-card input {
+  margin-bottom: 20px;
+}
+
+.coins {
+  margin: 20px 0;
+  font-size: 17px;
+}
+
+.pet-stats {
+  margin-top: 28px;
+  gap: 22px;
+}
+
+footer {
+  margin-top: 35px;
+  padding: 20px 0;
+}
+
+@media (max-width: 600px) {
+  .app {
+    padding: 22px 15px;
+  }
+
+  .header {
+    margin-bottom: 30px;
+  }
+
+  .timer-card,
+  .pet-card {
+    padding: 25px 18px;
+  }
+}
