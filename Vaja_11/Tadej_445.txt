@@ -1,1 +1,55 @@
-Tadej_445
+1. korak: cilj in ton
+Build a simple but cute alarm clock app. It shows the current time, lets me add a few alarms, and rings when one goes off. Cute, not overloaded.
+
+2. korak: tehnološki skladi in prepovedi
+- React + TypeScript, Vite, Tailwind CSS v4.
+- Do NOT install any additional packages.
+- Do NOT use audio files or external assets. Do NOT use class components or the Notifications API.
+
+3. korak: funkcionalnosti
+1. **Clock display:** show the current time in 24-hour HH:MM:SS format, updating every second. Below it, show the date, e.g. "Thursday, 19 November".
+2. **Add alarm form:** directly below the clock display, not in a modal. It has a native `<input type="time">` (default 07:00), an optional text label (max 20 characters, default "Alarm") and an "Add" button.
+3. **Alarm list:** at the bottom, sorted by time ascending. Each row shows the time, the label, an on/off toggle and a delete button. Maximum 5 alarms; when the limit is reached, disable the Add button and show "Max 5 alarms".
+4. **Alarms repeat every day.** Turning one off keeps it in the list but it never rings.
+5. **When an alarm rings:** an enabled alarm rings when the current HH:MM equals its time. It rings only once per matching minute, even though the clock ticks every second. A card appears directly below the clock showing the label and time, with two buttons: "Snooze 5 min" and "Dismiss".
+   - Dismiss stops the sound and closes the card.
+   - Snooze stops the sound and makes the same alarm ring again exactly 5 minutes later. Snoozing can be repeated.
+   - Only one alarm can ring at a time. If two alarms share the same minute, ring the first one in the list.
+6. **Sound:** generate a short repeating beep with the Web Audio API (no audio files). Create the AudioContext on the first click of the Add button, because browsers block audio before user interaction. The sound loops until Dismiss or Snooze and must stop completely when the component unmounts.
+7. **Persistence:** save the alarms to localStorage and load them on start. If the stored data is missing or invalid, start with an empty list.
+8. **Hint text:** under the list, show small muted text: "Keep this tab open for alarms to ring."
+
+Data model, one per alarm:
+- `id: string`
+- `time: string` (format "HH:MM")
+- `label: string`
+- `enabled: boolean`
+- `snoozedUntil: number | null` (timestamp in ms)
+
+4. korak: zgradba kode
+Five components, each in its own file:
+- `App`: holds ALL state and passes data down via props.
+- `Clock`: displays time and date (props only, no own state).
+- `AlarmForm`: controlled inputs, calls `onAdd(time, label)`.
+- `AlarmList`: renders the sorted alarms with toggle and delete.
+- `RingingAlert`: the card with Snooze and Dismiss buttons.
+
+State in `App` (useState): `alarms`, `now` (Date), `ringingId` (string | null).
+- The clock uses one `useEffect` with `setInterval` every 1000 ms. The effect must clear the interval in its cleanup.
+- A second `useEffect` that depends on `now` checks the alarms. Use a `useRef` to remember the last minute that triggered each alarm, so it never triggers twice in the same minute.
+- A third `useEffect` saves the alarms to localStorage whenever they change.
+- Use strict TypeScript types, define the `Alarm` type in its own file, and never use `any`.
+- Use correct dependency arrays and no unnecessary re-renders.
+
+5. korak: oblikovanje
+- Background: soft pastel lavender (e.g. `bg-violet-100`). One accent color only: `#ff8fa3`, used consistently for the buttons, active toggles and the ringing card. Everything else is white or neutral gray.
+- Layout: single centered column, width 400–500 px (`max-w-md`, full width on small screens), vertically centered on the page.
+- Cards and buttons: `rounded-2xl` or `rounded-3xl`. The strongest shadow allowed is `shadow-md`.
+- Use a font with tabular (equal-width) numbers (`tabular-nums`) for the clock so the digits don't jump.
+- The clock digits are large (about `text-6xl`).
+- One cute detail: a small 🌙 emoji next to the app name "Sleepy Clock" in the header. No other emoji or decoration.
+- One animation allowed: a gentle pulse on the ringing card while it rings. No other animations.
+- Buttons and toggles must be at least 44 px tall for easy tapping, since it should also work on a phone.
+
+6. korak: namen in merilo kakovosti
+This code will be used to teach React fundamentals (useState, useEffect, props, controlled inputs, rendering lists). Keep the code clean and readable, and prefer clarity over cleverness: clear variable names, simple logic, short components, no unnecessary abstractions. Add a brief comment above each useEffect explaining what it does. Do not add features beyond this list; keep it small and working.

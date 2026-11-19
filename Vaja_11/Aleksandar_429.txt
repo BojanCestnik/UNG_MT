@@ -33,3 +33,48 @@ The application should have a modern, energetic and user-friendly atmosphere, su
 6. **Interactive map:** Display nightlife locations on a simple map where users can select a venue to see its details. For the first version, use a simplified map without external map services.
 
 7. **Favourite locations:** Allow users to save their favourite clubs and bars. Save this information in localStorage so it remains available after closing the application.
+
+## 4. Code Structure
+
+Organize the application into small, reusable React components:
+
+- App: Manages the main application state.
+- VenueList: Displays the list of bars and clubs.
+- VenueCard: Shows venue details, music genre and crowd level.
+- CrowdReport: Allows users to report crowd levels (Empty, Lively or Packed).
+- EventList: Displays events, starting times and DJs.
+- FilterBar: Allows users to search and filter venues.
+- VenueMap: Displays venues on an interactive map.
+
+Use React useState to manage application state and useEffect where needed to save and load favourites and user preferences from localStorage.
+
+Keep TypeScript types in a separate file. Each component should have one clear responsibility. Write simple, readable and maintainable code.
+
+## 5. Design
+
+Create a modern, nightclub-inspired design that reflects nightlife, music and entertainment.
+
+- **Color palette:** Use dark purple (#100C1C), purple (#7C3AED), neon green (#B6FF32) and light text (#F5F3FF).
+- **Background:** Use a dark background to create a nightclub atmosphere.
+- **Typography:** Use a modern, clean and readable font.
+- **Layout:** Create a responsive, mobile-first interface with simple navigation and clearly organized venue cards.
+- **Visual elements:** Use subtle neon glow effects, rounded cards and recognizable icons.
+- **User experience:** Make it easy for users to find venues, check crowd levels and discover events.
+- **Flexibility:** Keep the design adaptable so that colors, layouts and visual elements can be improved during development.
+
+The overall design should feel energetic and exciting while remaining simple, intuitive and easy to use.
+
+## 6. Purpose and Quality
+
+The purpose of "Where's the Party" is to help users discover nightlife venues, explore events and check reported crowd levels before going out.
+
+The application must be fully functional, responsive and easy to use.
+
+- **Functionality:** All core features must work correctly, including venue listings, filters, crowd reports, events, maps and favourites.
+- **Performance:** The application should load quickly and work smoothly on mobile devices and computers.
+- **Reliability:** Handle user input correctly and display clear messages when information is unavailable.
+- **Code quality:** Use clean, readable and maintainable React and TypeScript code.
+- **User experience:** Keep navigation intuitive and maintain a consistent nightclub-inspired design.
+- **Testing:** Test all important features before submitting the application.
+
+The final result should be a working web application suitable for demonstration and evaluation as a university project.

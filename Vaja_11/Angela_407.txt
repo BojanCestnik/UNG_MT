@@ -44,22 +44,21 @@ possible. - Keep the code clean, readable and beginner-friendly. - Use
 TypeScript interfaces and types instead of any. - Do not use external
 APIs or AI services.
 
-Data storage: Store coupons, favourite stores and savings information in
-localStorage. Uploaded images are only temporary previews and must NOT
-be permanently stored. After a coupon is saved, clear the image preview.
+Data storage: If image uploads are implemented in a future version, uploaded images
+should only be temporary previews and must NOT be permanently stored.
+After a coupon is saved, the image preview should be cleared.
 Saved coupon information, favourite stores and savings records must
 remain available after refreshing the browser.
 
-Code structure: Organize the application into reusable React
-components: - App: holds the main application state and coordinates the
-application. - Header: displays the application name and navigation. -
-Dashboard: displays an overview, expiring-soon coupons and savings
-summary. - CouponForm: adds coupons and handles temporary image
-previews. - CouponList: displays, searches and filters coupons. -
-CouponCard: displays an individual coupon preview. - CouponDetails:
-displays the details of a selected coupon. - FavouriteStores: displays
-favourite stores and their active coupons. - Archive: displays used and
-expired coupons.
+Code structure: Organize the application into reusable React components with clear responsibilities.
+The component names below are suggestions and may be adapted to match the actual implementation.
+
+- App: holds the main application state and coordinates the application.
+- Header: displays the application name and navigation.
+- Dashboard: displays an overview, expiring-soon coupons and savings summary.
+- CouponForm: handles adding and editing coupons.
+- CouponCard: displays an individual coupon preview.
+- Additional components may be used for coupon details, favourite stores, the archive and other features where appropriate.
 
 Use props to pass data and callbacks from parent components to child
 components. Use useState for interactive application state and useEffect
@@ -69,7 +68,7 @@ props. Do not use any.
 
 3.  FUNCTIONALITIES
 
-1.  ADD A COUPON
+3.1.  ADD A COUPON
 
 Users must be able to add a coupon through a simple form.
 
@@ -82,13 +81,15 @@ Requirements: - Validate all required fields. - The expiration date
 cannot be earlier than the start date. - After saving, the coupon
 appears in the coupon list. - Show clear feedback when a coupon is
 successfully added. - Save the coupon in localStorage.
+- Allow users to edit existing coupons and save the updated information.
+- Allow users to delete coupons after confirmation.
 
-2.  COUPON LIST AND EXPIRATION DATES
+3.2.  COUPON LIST AND EXPIRATION DATES
 
 Display coupons in an organized list.
 
-Requirements: - Sort coupons by expiration date, with the earliest
-expiration first. - Display store name, discount, category and
+Requirements: - Provide sorting options by expiration date 
+(earliest first and latest first) and store name (A–Z and Z–A). - Display store name, discount, category and
 expiration date. - Highlight coupons expiring within the next three days
 using an orange indicator. - Clearly distinguish upcoming, active and
 expired coupons. - Upcoming coupons remain visible but cannot be marked
@@ -96,7 +97,7 @@ as used before their start date. - Expired coupons automatically appear
 in the archive. - Provide a separate “Expiring Soon” section showing
 coupons that expire within the next three days.
 
-3.  FILTER AND SEARCH COUPONS
+3.3.  FILTER AND SEARCH COUPONS
 
 Allow users to find coupons easily.
 
@@ -106,7 +107,7 @@ Search functionality: - Search by store name. - Search by coupon
 description. - Update results as the user types. - Allow users to clear
 the search and reset filters. - Search and filters must work together.
 
-4.  MARK A COUPON AS USED
+3.4.  MARK A COUPON AS USED
 
 Users must be able to mark an active coupon as used.
 
@@ -119,7 +120,7 @@ list and move it to the used coupons archive. - Preserve all original
 coupon information. - Update the savings total only when an actual
 savings amount is entered.
 
-5.  ARCHIVE
+3.5.  ARCHIVE
 
 Create a separate archive section containing: - Used coupons. - Expired
 coupons.
@@ -129,7 +130,7 @@ Display store name, discount and relevant dates. - Allow users to review
 archived coupon details. - Keep archived coupons saved in
 localStorage. - Do not automatically delete archived coupons.
 
-6.  COUPON DETAILS
+3.6.  COUPON DETAILS
 
 Every coupon must have an individual detail view.
 
@@ -142,7 +143,7 @@ a “Copy Code” button using the browser clipboard API when available. -
 If no coupon code exists, indicate that the coupon does not require a
 code. - Provide an easy way to return to the coupon list.
 
-7.  FAVOURITE STORES
+3.7.  FAVOURITE STORES
 
 Users must be able to mark stores as favourites.
 
@@ -151,12 +152,12 @@ Favouriting a store applies to that store across all its coupons. -
 Clicking the control adds or removes the store from favourites. - Save
 favourite stores in localStorage. - Each favourite store appears only
 once. - Create a separate Favourite Stores section. - Display the number
-of active coupons belonging to each favourite store. - Clicking a
-favourite store displays its active coupons. - Show active coupons only,
-excluding upcoming, used and expired coupons. - Keep favourite stores
+of active coupons belonging to each favourite store. 
+- Clicking a favourite store displays all its coupons.
+- Clearly indicate the current status of each coupon. - Keep favourite stores
 saved even if they temporarily have no active coupons.
 
-8.  UPLOAD SOCIAL MEDIA COUPON SCREENSHOTS
+3.8.  UPLOAD SOCIAL MEDIA COUPON SCREENSHOTS
 
 Allow users to select screenshots of promotional posts from platforms
 such as Instagram, Facebook, WhatsApp and LinkedIn.
@@ -170,7 +171,7 @@ the image.
 Do not implement automatic text recognition or social media
 integrations.
 
-9.  UPLOAD PHOTOS OF PHYSICAL COUPONS
+3.9.  UPLOAD PHOTOS OF PHYSICAL COUPONS
 
 Allow users to select photos of physical coupons, printed vouchers,
 promotional letters and receipts.
@@ -181,8 +182,13 @@ with camera capture where supported. - Display a temporary image
 preview. - Allow users to enter coupon details manually. - Clear the
 image preview after saving the coupon. - Do not permanently store the
 image. - Do not implement automatic barcode scanning or recognition.
+Implementation note:
+Functionalities 8 and 9 (image uploads for social media coupons and
+physical coupons) were postponed and are not included in the current
+version of ShopWallet.
+They may be considered for future improvements.
 
-10. SAVINGS TRACKER
+3.10. SAVINGS TRACKER
 
 Create a simple savings overview on the dashboard.
 
@@ -209,11 +215,11 @@ Do not include image data in saved coupon objects.
 
 FINAL REQUIREMENTS
 
--   Implement all ten defined functionalities.
+-   Implement all functionalities included in the current development scope.
+-   Functionalities 8 and 9 (image uploads) are postponed and excluded from the current version.
+-   Ensure all implemented features work correctly and saved data persists after refreshing the browser.
 -   Keep the application simple and intuitive.
 -   Make sure every button and control works.
--   Ensure saved data persists after refreshing the browser.
--   Do not permanently store uploaded images.
 -   Avoid features outside the defined scope.
 -   Do not install additional dependencies.
 -   Follow the specified technology stack and constraints.
@@ -225,3 +231,162 @@ FINAL REQUIREMENTS
 The priority is a fully functional, reliable and user-friendly
 application rather than unnecessary visual complexity.
 
+---
+
+# 4. CODE STRUCTURE AND REACT FUNDAMENTALS
+
+Organize and implement ShopWallet using a clear, reusable React component structure.
+
+The application should demonstrate fundamental React and TypeScript concepts in a simple and understandable way.
+
+### Component architecture
+
+Define at least five main components and explain the responsibility of each component.
+
+Suggested components for ShopWallet:
+
+- App: manages the main application state and coordinates the application.
+- Header: displays the application name and navigation.
+- Dashboard: displays coupon statistics, expiring coupons and total savings.
+- CouponCard: displays an individual coupon and its available actions.
+- CouponForm: handles adding and editing coupons.
+- CouponDetails: displays complete coupon information.
+- FavouriteStores: displays favourite stores.
+- Archive: displays used and expired coupons.
+
+### State management
+
+- Use useState for interactive application data.
+- Keep the main application state in App where appropriate.
+- Pass data and callbacks to child components through props.
+- Avoid unnecessary duplicated state.
+- Keep state updates predictable and easy to understand.
+
+### Effects and persistence
+
+- Use useEffect when necessary for loading and synchronizing data with localStorage.
+- Specify correct effect dependencies.
+- Avoid unnecessary repeated effects.
+- Clean up subscriptions, event listeners or intervals if they are introduced.
+- Do not introduce artificial timers or intervals when they are not needed by the application.
+
+### TypeScript
+
+- Define appropriate interfaces and types for coupons, stores, savings and component props.
+- Use descriptive variable and function names.
+- Avoid using any.
+- Keep types consistent throughout the application.
+
+### Code organization
+
+- Use reusable components with clear responsibilities.
+- Keep the code readable and beginner-friendly.
+- Avoid unnecessary abstractions and duplicated logic.
+- Explain the main components, their responsibilities, stored data and how information flows between components.
+
+The priority is to demonstrate a clear understanding of React fundamentals rather than unnecessarily complicated architecture.
+
+---
+
+# 5. DESIGN AND USER INTERFACE
+
+Develop a consistent, modern and responsive design for ShopWallet.
+
+Use concrete and measurable design instructions instead of vague descriptions such as "make it look beautiful".
+
+### Design identity
+
+Preserve the established ShopWallet visual identity:
+
+- Primary navy: #1E293B.
+- White background: #FFFFFF.
+- Light grey background: #F8FAFC.
+- Primary blue: #2563EB.
+- Green for success indicators.
+- Orange for expiration warnings.
+- Clear, readable sans-serif typography.
+
+### Layout and spacing
+
+- Use consistent spacing throughout the application.
+- Follow a consistent spacing system based on 4px increments where appropriate.
+- Use consistent card padding, margins and gaps.
+- Apply rounded corners and subtle shadows to coupon cards.
+- Maintain a clear visual hierarchy between headings, descriptions and actions.
+- Use tabular numbers for monetary values and statistics where appropriate.
+- Keep the interface uncluttered and easy to navigate.
+
+### Responsive design
+
+- Ensure the application works on desktop, tablet and mobile screens.
+- Adapt the layout to smaller screens without hiding important functionality.
+- Keep buttons and interactive elements comfortable to use on touch screens.
+- Maintain readable text and appropriate spacing on mobile devices.
+
+### Visual consistency
+
+- Keep navigation, buttons, cards, forms and modals visually consistent.
+- Use clear visual indicators for active, upcoming, expired and used coupons.
+- Make success, warning and error states easy to distinguish.
+- Include a distinctive ShopWallet application name or branding element in the header.
+
+### Design quality
+
+Prioritize accessibility, readability, simplicity and usability.
+
+Do not introduce unnecessary animations, decorative elements or complicated visual effects.
+
+Keep the existing ShopWallet design identity and make design decisions that support the application's purpose.
+
+---
+
+# 6. APPLICATION PURPOSE AND CODE QUALITY
+
+Ensure that ShopWallet has a clearly defined purpose and that the implementation demonstrates good programming practices.
+
+### Application purpose
+
+ShopWallet is a personal shopping coupon wallet designed to help everyday shoppers organize coupons, discount codes and promotional offers in one place.
+
+It is intended for people of different ages, genders and levels of technical experience, including users with limited experience using technology.
+
+The application should make managing coupons simple, accessible and convenient.
+
+### Code quality requirements
+
+Keep the code clean and readable — this will be used to teach React fundamentals, so prefer clarity over cleverness.
+
+- Use descriptive variable, function and component names.
+- Prefer simple and understandable logic.
+- Keep components focused on their responsibilities.
+- Avoid unnecessary abstractions.
+- Avoid duplicated code.
+- Use appropriate TypeScript interfaces and types.
+- Keep state management simple and predictable.
+- Handle invalid inputs and empty states appropriately.
+- Preserve existing functionality when introducing changes.
+- Avoid unnecessary packages and dependencies.
+
+### Reliability and maintainability
+
+- Ensure coupon information persists after refreshing the browser.
+- Ensure localStorage data is handled consistently.
+- Validate user input.
+- Ensure all buttons and controls perform their intended actions.
+- Avoid losing coupon or savings information when editing, archiving or deleting records.
+- Keep the application easy to understand and improve in the future.
+
+### Success criteria
+
+The application should be considered successful when:
+
+1. Users can add, edit and delete coupons.
+2. Users can search, filter and sort coupons.
+3. Coupon information persists after refreshing the browser.
+4. Users can manage favourite stores and archived coupons.
+5. Recorded savings are calculated correctly without estimating savings from unused coupons.
+6. The interface is understandable and usable on desktop and mobile devices.
+7. The application passes its build and lint checks.
+8. The implementation remains readable and understandable for someone learning React and TypeScript.
+
+The priority is a reliable, accessible and understandable application rather than unnecessary complexity.

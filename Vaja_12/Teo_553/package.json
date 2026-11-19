@@ -1,0 +1,32 @@
+{
+  "name": "moj-projekt",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "dev:frontend": "vite --host 0.0.0.0 --port 5173 --strictPort",
+    "dev:backend": "node backend/server.cjs",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --host 0.0.0.0 --port 4173",
+    "test": "node --test tests/*.test.cjs"
+  },
+  "dependencies": {
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.13",
+    "@types/node": "^22.18.0",
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
+    "@vitejs/plugin-react": "^5.0.3",
+    "tailwindcss": "^4.1.13",
+    "typescript": "~5.9.2",
+    "vite": "^7.1.7"
+  },
+  "description": "Moj Projekt: mobilno prilagojena aplikacija za vodenje delavniski projektov",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  }
+}

@@ -1,1 +1,67 @@
 Monika_416
+Step 1: Goal in One Sentence
+Build a simple and cute My Pantry application that helps users manage food at home, track expiration dates and find recipes using available ingredients.
+Step 2: Technology and Restrictions
+2.1 Technologies
+    -	React
+    -	TypeScript
+    -	Vite
+    -	Tailwind CSS v4
+2.2 Restrictions
+    -	Do NOT install additional packages.
+    -	Use the existing project configuration.
+    -	Store data in localStorage.
+Step 3: Functionality Checklist
+3.1 Food Management
+    -	Add, edit and delete food items.
+    -	Each item must have a name, quantity and expiration date.
+3.2 Expiration Dates
+    -	Highlight expired products in red.
+    -	Highlight products expiring within 3 days in orange.
+    -	Show fresh products in green.
+3.3 Recipe Database
+    -	Include 20-25 predefined recipes.
+    -	Each recipe must contain ingredients, quantities, preparation time and instructions.
+3.4 Recipe Suggestions
+    -	Suggest recipes based on available ingredients.
+    -	Show recipes that require maximum 2 additional ingredients.
+    -	Prioritize products close to expiration.
+3.5 Recipe Details
+    -	Display recipe name, ingredients, quantities, preparation time and preparation instructions.
+    -	Clearly identify missing ingredients.
+3.6 Data Storage
+    -	Save pantry items in localStorage.
+    -	Automatically save changes.
+    -	Restore data after refreshing or reopening the application.
+Step 4: Code Structure
+4.1 App: Main application component and state management.
+4.2 Pantry: Displays and manages food items.
+4.3 AddFoodForm: Allows users to add and edit food items.
+4.4 RecipeList: Displays recipe suggestions.
+4.5 RecipeDetails: Displays recipe ingredients and instructions.
+4.6 State Management: Use useState, useEffect, TypeScript interfaces and props.
+Step 5: Design with Measurable Instructions
+5.1 Colors
+    -	Cream background:#fffaf0.
+    -	Pastel yellow:#f6c90f.
+    -	Soft green, orange and red for product status.
+5.2 Layout
+    -	Width: 400-500 px.
+    -	Center the content.
+    -	Use rounded-2xl cards and shadow-md.
+    -	Use food emojis and simple icons.
+5.3 Responsiveness
+    -	Support desktop and mobile screens.
+    -	Use clear buttons and forms.
+    -	Prevent horizontal scrolling.
+Step 6: Code Quality and Purpose
+6.1 Code Quality
+    -	Keep the code clean and simple.
+    -	Use descriptive variable names.
+    -	Avoid unnecessary packages and complicated logic.
+    -	Prefer clarity over cleverness.
+6.2 Application Purpose
+Help users organize food, monitor expiration dates, reduce food waste and discover recipes.
+6.3 Success Criteria
+Ensure all functions work correctly, data is saved in localStorage and the application is easy for a student to understand and explain.
+Implement all six steps and verify that the application works correctly.

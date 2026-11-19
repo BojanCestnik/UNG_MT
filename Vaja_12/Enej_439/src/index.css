@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+/* Barve in pisava: ena poudarjena barva (accent), uporabljena povsod enako */
+@theme {
+  --color-page: #ffeede;
+  --color-card: #fffaf4;
+  --color-ink: #27384a;
+  --color-muted: #7b8794;
+  --color-accent: #3f9be0;
+  --color-soft: #dcedfb;
+  --color-line: #f3e1cc;
+  --color-on-accent: #ffffff;
+  --font-sans: "Nunito", "Trebuchet MS", system-ui, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-page: #1a2230;
+    --color-card: #243246;
+    --color-ink: #eef3f8;
+    --color-muted: #9fb0c0;
+    --color-accent: #5cb3f2;
+    --color-soft: #2f4a63;
+    --color-line: #33465c;
+    --color-on-accent: #0e1a26;
+  }
+}
+
+/* Prilagoditve za telefon: brez povečave ob tapu, brez modrega utripa */
+@layer base {
+  :root { color-scheme: light dark; }
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    overscroll-behavior: none;
+    font-variant-numeric: tabular-nums;
+  }
+  * {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+  button {
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  button:disabled { cursor: default; }
+  button:focus-visible {
+    outline: 3px solid var(--color-ink);
+    outline-offset: 2px;
+  }
+}
