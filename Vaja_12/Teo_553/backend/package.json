@@ -1,0 +1,9 @@
+{
+  "name": "moj-projekt-backend",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Preprost Node.js REST API brez dodatnih paketov",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
