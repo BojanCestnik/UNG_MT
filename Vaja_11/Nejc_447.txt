@@ -30,43 +30,44 @@ parked. No unnecessary features, no clutter.
 
 3. FUNCTIONALITY
 
-1. Built-in list of 8 car parks in Nova Gorica, loaded from parkings.json.
+3.1 Built-in list of 8 car parks in Nova Gorica, loaded from parkings.json.
    Each car park has: id, name, address, total spaces, price per hour
    in EUR, opening hours.
 
-2. Main screen shows the list of car parks. For each one display:
+3.2 Main screen shows the list of car parks. For each one display:
    name, free spaces as "X / Y free" (e.g. "12 / 40 free"), a colour
    status and the time of the last update (e.g. "updated 5 min ago").
 
-3. Colour status is calculated from free spaces:
+3.3 Colour status is calculated from free spaces:
    - green: more than 30% free
    - orange: 10% to 30% free
    - red: less than 10% free (almost full or full)
 
-4. Each car park card has two large buttons:
+3.4 Each car park card has two large buttons:
    - "I parked here" - reduces free spaces by 1
    - "I left" - increases free spaces by 1
    Free spaces can never go below 0 or above the total number of spaces.
 
-5. Each user can press "I parked here" only once per car park until they
+3.5 Each user can press "I parked here" only once per car park until they
    press "I left" for the same car park (stored in localStorage), to
    prevent repeated taps.
 
-6. Sorting and filtering at the top of the list: sort by most free spaces
+3.6 Sorting and filtering at the top of the list: sort by most free spaces
    or by name; filter "only cheap" (price under 1 EUR/hour) and
    "only with free spaces".
 
-7. Tapping a car park opens a detail screen with: name, address, total
+3.7 Tapping a car park opens a detail screen with: name, address, total
    and free spaces, price, opening hours, last update time, and a link
    "Open in maps" that opens the address in the phone's maps app.
    A "Back" button returns to the list.
 
-8. Reports older than 2 hours are treated as outdated: the card shows
+3.8. Reports older than 2 hours are treated as outdated: the card shows
    "no recent reports" in grey instead of a colour status.
 
-9. All data (free spaces, last update time, the user's own parked status)
+3.9 All data (free spaces, last update time, the user's own parked status)
    stays saved in localStorage after closing the app. On first launch
    the values are initialised from parkings.json.
+
 4. CODE STRUCTURE
 
 Split the code into separate files. Do NOT put everything in one file.

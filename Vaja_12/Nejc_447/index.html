@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Parking NG</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="header"><h1>Parking NG 🅿️</h1></header>
+
+    <main>
+      <section id="list-view">
+        <div class="controls">
+          <select id="sort-select" aria-label="Sort car parks">
+            <option value="name">Sort: name</option>
+            <option value="free">Sort: most free</option>
+          </select>
+          <button class="chip" id="chip-cheap" aria-pressed="false">Only cheap</button>
+          <button class="chip" id="chip-free" aria-pressed="false">Only free</button>
+        </div>
+        <div id="cards"></div>
+      </section>
+
+      <section id="detail-view" hidden>
+        <button class="btn outline back" id="back-button">Back</button>
+        <div id="detail-content"></div>
+      </section>
+    </main>
+  </div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

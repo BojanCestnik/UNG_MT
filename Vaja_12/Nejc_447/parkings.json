@@ -1,0 +1,10 @@
+[
+  { "id": "ng-1", "name": "Trg Evrope", "address": "Trg Evrope 1, Nova Gorica", "totalSpaces": 60, "pricePerHour": 0.8, "openingHours": "00:00 - 24:00" },
+  { "id": "ng-2", "name": "Kidričeva", "address": "Kidričeva ulica 9, Nova Gorica", "totalSpaces": 40, "pricePerHour": 1.0, "openingHours": "06:00 - 22:00" },
+  { "id": "ng-3", "name": "Bevkov trg", "address": "Bevkov trg 1, Nova Gorica", "totalSpaces": 35, "pricePerHour": 1.2, "openingHours": "00:00 - 24:00" },
+  { "id": "ng-4", "name": "Delpinova", "address": "Delpinova ulica 18, Nova Gorica", "totalSpaces": 80, "pricePerHour": 0.5, "openingHours": "00:00 - 24:00" },
+  { "id": "ng-5", "name": "Erjavčeva", "address": "Erjavčeva ulica 4, Nova Gorica", "totalSpaces": 25, "pricePerHour": 1.5, "openingHours": "07:00 - 20:00" },
+  { "id": "ng-6", "name": "Gradnikove brigade", "address": "Ulica Gradnikove brigade 11, Nova Gorica", "totalSpaces": 50, "pricePerHour": 0.6, "openingHours": "00:00 - 24:00" },
+  { "id": "ng-7", "name": "Kolodvorska", "address": "Kolodvorska pot 2, Nova Gorica", "totalSpaces": 30, "pricePerHour": 1.0, "openingHours": "05:00 - 23:00" },
+  { "id": "ng-8", "name": "Cesta IX. korpusa", "address": "Cesta IX. korpusa 6, Nova Gorica", "totalSpaces": 20, "pricePerHour": 1.3, "openingHours": "08:00 - 18:00" }
+]
