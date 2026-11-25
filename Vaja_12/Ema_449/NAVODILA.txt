@@ -1,0 +1,7 @@
+1. Razpakiraj ZIP v mapo Vaja_12.
+2. V VS Code odpri mapo SmartSave (v njej mora biti package.json).
+3. Terminal > New Terminal.
+4. Vpisi npm.cmd install in pritisni Enter.
+5. Ko se namestitev konca, vpisi npm.cmd run dev.
+6. Odpri naslov Local, ki se izpise v terminalu.
+Potreben je Node.js in internet za prvo namestitev paketov.
