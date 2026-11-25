@@ -11,6 +11,8 @@ export interface Guide {
   materials: string[]
   safetyNotes: string[]
   steps: string[]
+  category?: string
+  emoji?: string
 }
 
 export interface LogEntry {

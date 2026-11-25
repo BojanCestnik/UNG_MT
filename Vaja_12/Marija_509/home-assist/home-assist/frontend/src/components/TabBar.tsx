@@ -13,7 +13,7 @@ export default function TabBar({ screen, onChange }: Props) {
     <nav className="flex border-t border-gray-200 bg-white">
       {tabs.map((tab) => (
         <button key={tab.id} onClick={() => onChange(tab.id)}
-          className={'flex min-h-11 flex-1 flex-col items-center py-2 text-sm ' + (screen === tab.id ? 'font-bold text-orange-500' : 'text-gray-600')}>
+          className={'flex min-h-11 flex-1 flex-col items-center py-2 text-sm ' + (screen === tab.id ? 'font-bold text-teal-700' : 'text-gray-600')}>
           <span>{tab.emoji}</span>{tab.label}
         </button>
       ))}

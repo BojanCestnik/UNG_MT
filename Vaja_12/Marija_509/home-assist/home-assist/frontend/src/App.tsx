@@ -96,7 +96,7 @@ export default function App() {
     if (error) return (
       <div className="flex flex-col items-center gap-4">
         <p className="text-red-600">{error}</p>
-        <button className="min-h-11 rounded-xl bg-orange-500 px-6 font-semibold text-white" onClick={() => loadData(() => false)}>Try again</button>
+        <button className="min-h-11 rounded-xl bg-teal-700 px-6 font-semibold text-white" onClick={() => loadData(() => false)}>Try again</button>
       </div>)
     if (screen === 'home') return <HomeScreen guides={guides} onSelectGuide={selectGuide} />
     if (screen === 'tools') return <ToolsScreen guides={guides} ownedTools={ownedTools} onToggleTool={toggleTool} />
@@ -106,8 +106,8 @@ export default function App() {
   }
 
   return (
-    <div className="mx-auto flex h-dvh max-w-md flex-col bg-orange-50 text-gray-800 shadow-md">
-      <header className="flex items-center gap-2 p-4 text-2xl font-bold">
+    <div className="mx-auto flex h-dvh max-w-md flex-col bg-teal-50 text-gray-800 shadow-md">
+      <header className="flex items-center gap-2 bg-teal-700 p-4 text-2xl font-bold text-white">
         {inFlow && <button className="min-h-11 min-w-11 text-xl" aria-label="Back to guides" onClick={() => setScreen('home')}>←</button>}
         <span>🔧</span>Home Assist
       </header>

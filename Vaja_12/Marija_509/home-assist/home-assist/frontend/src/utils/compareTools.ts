@@ -1,6 +1,7 @@
-// Pure function, no React inside.
-// TODO (you write this): split guideTools into the ones the user owns (have) and the ones they do not (missing).
-// Hint: use guideTools.filter(...) and myTools.includes(...).
+// Splits the guide's tools into the ones I own (have) and the ones I do not (missing).
 export function compareTools(guideTools: string[], myTools: string[]): { have: string[]; missing: string[] } {
-  return { have: [], missing: [] }
+  return {
+    have: guideTools.filter((tool) => myTools.includes(tool)),
+    missing: guideTools.filter((tool) => !myTools.includes(tool)),
+  }
 }
