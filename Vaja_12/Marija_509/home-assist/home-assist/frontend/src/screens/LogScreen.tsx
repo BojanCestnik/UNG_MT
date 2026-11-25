@@ -15,7 +15,7 @@ export default function LogScreen({ log, guides, onDeleteLog }: Props) {
   return (
     <div className="flex flex-col gap-4">
       {newestFirst.map((entry) => (
-        <div key={entry.id} className="rounded-2xl bg-white p-4 shadow-md">
+        <div key={entry.id} className="rounded-2xl glass p-4">
           <p className="text-lg font-semibold">{guides.find((g) => g.id === entry.guideId)?.title ?? 'Unknown repair'}</p>
           <p className="tabular-nums text-gray-600">{formatDate(entry.date)}</p>
           {entry.photo && <img src={entry.photo} alt="Finished repair" className="mt-2 max-h-48 rounded-xl" />}

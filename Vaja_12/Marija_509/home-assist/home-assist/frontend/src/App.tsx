@@ -95,7 +95,7 @@ export default function App() {
     if (loading) return <p className="text-center">Loading...</p>
     if (error) return (
       <div className="flex flex-col items-center gap-4">
-        <p className="text-red-600">{error}</p>
+        <p className="text-red-600">{error}. Is the backend running on port 3001?</p>
         <button className="min-h-11 rounded-xl bg-teal-700 px-6 font-semibold text-white" onClick={() => loadData(() => false)}>Try again</button>
       </div>)
     if (screen === 'home') return <HomeScreen guides={guides} onSelectGuide={selectGuide} />
@@ -106,14 +106,20 @@ export default function App() {
   }
 
   return (
-    <div className="mx-auto flex h-dvh max-w-md flex-col bg-teal-50 text-gray-800 shadow-md">
-      <header className="flex items-center gap-2 bg-teal-700 p-4 text-2xl font-bold text-white">
-        {inFlow && <button className="min-h-11 min-w-11 text-xl" aria-label="Back to guides" onClick={() => setScreen('home')}>←</button>}
-        <span>🔧</span>Home Assist
-      </header>
-      {notice && <p className="mx-4 rounded-xl bg-red-600 p-2 text-white">{notice}</p>}
-      <main className="flex-1 overflow-y-auto p-4">{renderScreen()}</main>
-      {!inFlow && <TabBar screen={screen} onChange={setScreen} />}
+    <div className="mx-auto flex h-dvh w-full max-w-[1500px] flex-col lg:p-5">
+      <div className="flex min-h-0 flex-1 flex-col overflow-hidden bg-white/35 backdrop-blur-sm lg:rounded-3xl lg:shadow-[0_20px_60px_rgba(80,110,170,.22)] lg:ring-1 lg:ring-white/70">
+        <header className="flex items-center gap-3 bg-gradient-to-r from-teal-500 via-sky-500 to-violet-500 p-4 text-2xl font-bold text-white shadow-md lg:px-8 lg:py-5 lg:text-3xl">
+          {inFlow && <button className="min-h-11 min-w-11 rounded-full text-xl hover:bg-white/20" aria-label="Back to guides" onClick={() => setScreen('home')}>←</button>}
+          <span className="text-3xl">🔧</span>Home Assist
+          <span className="ml-auto hidden text-base font-medium text-white/85 md:block">Fix it yourself, step by step</span>
+        </header>
+        {notice && <p className="mx-4 mt-3 rounded-xl bg-red-500 p-2 text-white shadow">{notice}</p>}
+        {/* Phone: tab bar at the bottom. Laptop (lg): tab bar becomes a sidebar on the left. */}
+        <div className="flex min-h-0 flex-1 flex-col lg:flex-row-reverse">
+          <main className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8">{renderScreen()}</main>
+          {!inFlow && <TabBar screen={screen} onChange={setScreen} />}
+        </div>
+      </div>
     </div>
   )
 }

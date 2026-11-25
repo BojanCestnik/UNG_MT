@@ -23,4 +23,4 @@ export const saveTools = (tools: string[]) =>
 export const getLog = () => request<LogEntry[]>('/log')
 export const addLogEntry = (entry: { guideId: string; date: string; photo?: string }) =>
   request<LogEntry>('/log', { method: 'POST', headers: jsonHeaders, body: JSON.stringify(entry) })
-export const deleteLogEntry = (id: string) => request<{ ok: boolean }>('/log/' + id, { method: 'DELETE' })
+export const deleteLogEntry = (id: string) => request<{ deleted: string }>('/log/' + id, { method: 'DELETE' })

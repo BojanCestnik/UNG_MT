@@ -22,7 +22,7 @@ export default function GuideCard({ guide, onSelect }: Props) {
   const badge = badges[guide.difficulty]
   return (
     <button onClick={() => onSelect(guide.id)}
-      className={'flex min-h-11 w-full items-center gap-4 rounded-2xl border-l-8 bg-white p-4 text-left shadow-md ' + style.border}>
+      className={'flex min-h-11 w-full items-center gap-4 glass hover-lift cursor-pointer rounded-2xl border-l-8 p-4 text-left ' + style.border}>
       <span className={'flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-2xl ' + style.bubble}>{guide.emoji ?? '🔧'}</span>
       <div className="flex-1">
         <h3 className="text-lg font-semibold">{guide.title}</h3>

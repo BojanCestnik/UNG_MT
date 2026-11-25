@@ -1,12 +1,16 @@
-// A step may start with an emoji that illustrates it, e.g. "🚰 Turn off the water."
+import { parseStep } from '../utils/parseStep'
+
 export default function StepView({ text }: { text: string }) {
-  const match = text.match(/^(\p{Extended_Pictographic}\S*)\s+(.*)$/u)
-  const icon = match ? match[1] : null
-  const sentence = match ? match[2] : text
+  const { icon, sentence, tip, image } = parseStep(text)
   return (
-    <div className="flex flex-col items-center gap-6">
-      {icon && <div className="flex h-32 w-32 items-center justify-center rounded-full bg-teal-100 text-6xl">{icon}</div>}
-      <p className="text-center text-lg leading-relaxed">{sentence}</p>
+    <div className="flex w-full max-w-xl flex-col items-center gap-4">
+      {image && (
+        <img src={'/steps/' + image} alt="" className="max-h-64 w-full rounded-2xl object-cover shadow-md"
+          onError={(e) => { e.currentTarget.style.display = 'none' }} />
+      )}
+      {icon && <div className="flex h-32 w-32 items-center justify-center rounded-full bg-gradient-to-br from-teal-100 to-sky-100 text-7xl lg:h-44 lg:w-44 lg:text-8xl">{icon}</div>}
+      <p className="text-center text-xl leading-relaxed lg:text-2xl">{sentence}</p>
+      {tip && <p className="w-full rounded-xl border-2 border-sky-300 bg-sky-50 p-4">💡 <span className="font-semibold">Tip:</span> {tip}</p>}
     </div>
   )
 }

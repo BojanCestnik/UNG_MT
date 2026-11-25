@@ -15,11 +15,14 @@ export default function HomeScreen({ guides, onSelectGuide }: Props) {
   const categories = [...new Set(guides.map((g) => g.category ?? 'Other'))]
   const inCategory = guides.filter((g) => !category || (g.category ?? 'Other') === category)
   const problems = [...new Set(inCategory.map((g) => g.problem))]
+  // easy first, hard last; same difficulty is sorted by title
+  const order: Record<Guide['difficulty'], number> = { easy: 0, medium: 1, hard: 2 }
   const shown = inCategory.filter((g) =>
     (!problem || g.problem === problem) &&
     (g.title + ' ' + g.problem + ' ' + g.object).toLowerCase().includes(search.toLowerCase()))
+    .sort((a, b) => order[a.difficulty] - order[b.difficulty] || a.title.localeCompare(b.title))
 
-  const field = 'min-h-11 w-full rounded-xl border border-gray-300 bg-white px-4'
+  const field = 'min-h-11 w-full rounded-xl border border-sky-200 bg-white/80 px-4'
   return (
     <div className="flex flex-col gap-4">
       <Banner text="Call a professional for electrical, gas and water-mains problems" />
@@ -34,7 +37,7 @@ export default function HomeScreen({ guides, onSelectGuide }: Props) {
       <input className={field} placeholder="Search guides..." value={search} onChange={(e) => setSearch(e.target.value)} />
       <p className="tabular-nums text-sm text-gray-600">{shown.length} guides</p>
       {shown.length === 0 && <p className="text-center text-gray-600">No guide found</p>}
-      {shown.map((g) => <GuideCard key={g.id} guide={g} onSelect={onSelectGuide} />)}
+      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">{shown.map((g) => <GuideCard key={g.id} guide={g} onSelect={onSelectGuide} />)}</div>
     </div>
   )
 }
