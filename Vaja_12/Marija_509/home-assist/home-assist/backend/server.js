@@ -1,12 +1,16 @@
 // HTTP server, routing and CORS only. Data access lives in db.js.
 const http = require('http');
 const { readDb, writeDb } = require('./db'); // used by your handlers
+const { diagnose } = require('./diagnose');
 const PORT = 3001;
 const MAX_PHOTO_BYTES = 1024 * 1024; // 1 MB
 
 // Helper: CORS headers so the front end on port 5173 may call us.
-function setCorsHeaders(res) {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
+function setCorsHeaders(req, res) {
+  // Allow the front end from localhost or from this computer's network address (phone)
+  const origin = req.headers.origin || '';
+  const ok = /^http:\/\/[\w.-]+:5173$/.test(origin);
+  res.setHeader('Access-Control-Allow-Origin', ok ? origin : 'http://localhost:5173');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 }
@@ -55,7 +59,7 @@ function validatePhoto(photoBase64) {
 }
 
 async function handleRequest(req, res) {
-  setCorsHeaders(res);
+  setCorsHeaders(req, res);
 
   if (req.method === 'OPTIONS') {
     res.writeHead(204);
@@ -104,6 +108,24 @@ async function handleRequest(req, res) {
       db.tools = body;
       await writeDb(db);
       sendJson(res, 200, db.tools);
+      return;
+    }
+
+    if (parts[1] === 'diagnose' && parts.length === 2 && req.method === 'POST') {
+      const body = await readJsonBody(req);
+      const photoError = validatePhoto(body.photo);
+      if (photoError) { sendJson(res, 413, { error: photoError }); return; }
+      try {
+        const toolNames = [...new Set((db.guides || []).flatMap((g) => g.tools))];
+        const result = await diagnose(body, toolNames);
+        if (result.status === 'ok') {
+          db.aiGuides = [...(db.aiGuides || []), result.guide]; // saved so the log can show it later
+          await writeDb(db);
+        }
+        sendJson(res, 200, result);
+      } catch (err) {
+        sendJson(res, err.status || 500, { error: err.message });
+      }
       return;
     }
 

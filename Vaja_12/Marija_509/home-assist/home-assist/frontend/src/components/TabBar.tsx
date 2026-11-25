@@ -4,6 +4,7 @@ interface Props { screen: Screen; onChange: (screen: Screen) => void }
 
 const tabs: { id: Screen; emoji: string; label: string }[] = [
   { id: 'home', emoji: '📖', label: 'Guides' },
+  { id: 'scan', emoji: '📸', label: 'Scan a problem' },
   { id: 'tools', emoji: '🧰', label: 'My tools' },
   { id: 'log', emoji: '📋', label: 'Log' },
 ]

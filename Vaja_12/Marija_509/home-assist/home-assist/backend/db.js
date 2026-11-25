@@ -14,12 +14,12 @@ function readGuides() {
 
 function readDb() {
   const db = JSON.parse(fs.readFileSync(DB_FILE, 'utf8'));
-  return { ...db, guides: readGuides() };
+  return { ...db, guides: [...readGuides(), ...(db.aiGuides || [])] };
 }
 
 // Writes tools and log only. Guides stay in their own files.
 function writeDb(data) {
-  const { guides, ...toSave } = data;
+  const { guides, ...toSave } = data; // aiGuides stay in toSave
   const tempFile = DB_FILE + '.tmp';
   fs.writeFileSync(tempFile, JSON.stringify(toSave, null, 2));
   fs.renameSync(tempFile, DB_FILE);

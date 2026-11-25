@@ -12,6 +12,7 @@ export interface Guide {
   safetyNotes: string[]
   steps: string[]
   category?: string
+  summary?: string
   emoji?: string
 }
 
@@ -22,8 +23,13 @@ export interface LogEntry {
   photo?: string // base64 data URL
 }
 
-export type Screen = 'home' | 'tools' | 'detail' | 'step' | 'log'
+export type Screen = 'home' | 'scan' | 'tools' | 'detail' | 'step' | 'log'
 
 export interface ApiError {
   error: string
 }
+
+export type DiagnoseResult =
+  | { status: 'ok'; guide: Guide }
+  | { status: 'professional'; kind: string; reason: string }
+  | { status: 'unclear'; message: string }

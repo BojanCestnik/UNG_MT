@@ -9,6 +9,7 @@ import ToolsScreen from './screens/ToolsScreen'
 import GuideDetailScreen from './screens/GuideDetailScreen'
 import StepScreen from './screens/StepScreen'
 import LogScreen from './screens/LogScreen'
+import ScanScreen from './screens/ScanScreen'
 
 export default function App() {
   // Shared state lives here; screens get data through props.
@@ -86,6 +87,8 @@ export default function App() {
     }
   }
 
+  function openScannedGuide(guide: Guide) { setGuides((g) => [...g, guide]); selectGuide(guide.id) }
+
   function selectGuide(id: string) { setSelectedGuideId(id); setScreen('detail') }
 
   const selectedGuide = guides.find((g) => g.id === selectedGuideId)
@@ -98,7 +101,8 @@ export default function App() {
         <p className="text-red-600">{error}. Is the backend running on port 3001?</p>
         <button className="min-h-11 rounded-xl bg-teal-700 px-6 font-semibold text-white" onClick={() => loadData(() => false)}>Try again</button>
       </div>)
-    if (screen === 'home') return <HomeScreen guides={guides} onSelectGuide={selectGuide} />
+    if (screen === 'home') return <HomeScreen guides={guides} onSelectGuide={selectGuide} onScan={() => setScreen('scan')} />
+    if (screen === 'scan') return <ScanScreen ownedTools={ownedTools} onOpenGuide={openScannedGuide} />
     if (screen === 'tools') return <ToolsScreen guides={guides} ownedTools={ownedTools} onToggleTool={toggleTool} />
     if (screen === 'log') return <LogScreen log={log} guides={guides} onDeleteLog={deleteFromLog} />
     if (screen === 'detail') return <GuideDetailScreen guide={selectedGuide} ownedTools={ownedTools} onStart={() => setScreen('step')} onBack={() => setScreen('home')} />

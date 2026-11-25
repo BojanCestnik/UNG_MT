@@ -10,6 +10,7 @@ const categoryStyle: Record<string, { border: string; bubble: string }> = {
   'Clothes': { border: 'border-purple-500', bubble: 'bg-purple-100' },
   'Security': { border: 'border-indigo-500', bubble: 'bg-indigo-100' },
   'Appliances': { border: 'border-cyan-500', bubble: 'bg-cyan-100' },
+  'AI scan': { border: 'border-violet-400', bubble: 'bg-violet-100' },
   'Garden': { border: 'border-green-500', bubble: 'bg-green-100' },
   'Bikes': { border: 'border-lime-500', bubble: 'bg-lime-100' },
   'Kitchen & cleaning': { border: 'border-orange-500', bubble: 'bg-orange-100' },

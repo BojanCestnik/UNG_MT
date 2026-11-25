@@ -3,9 +3,9 @@ import type { Guide } from '../types'
 import Banner from '../components/Banner'
 import GuideCard from '../components/GuideCard'
 
-interface Props { guides: Guide[]; onSelectGuide: (id: string) => void }
+interface Props { guides: Guide[]; onSelectGuide: (id: string) => void; onScan: () => void }
 
-export default function HomeScreen({ guides, onSelectGuide }: Props) {
+export default function HomeScreen({ guides, onSelectGuide, onScan }: Props) {
   // Only this screen's own filter state
   const [category, setCategory] = useState('')
   const [problem, setProblem] = useState('')
@@ -26,6 +26,11 @@ export default function HomeScreen({ guides, onSelectGuide }: Props) {
   return (
     <div className="flex flex-col gap-4">
       <Banner text="Call a professional for electrical, gas and water-mains problems" />
+      <button onClick={onScan} className="hover-lift flex items-center gap-4 rounded-2xl bg-gradient-to-r from-violet-100 via-sky-100 to-teal-100 p-4 text-left ring-1 ring-white/70">
+        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white/80 text-2xl">📸</span>
+        <span className="flex-1"><span className="block text-lg font-semibold">Not sure what is wrong?</span><span className="text-slate-600">Take a photo and I will write you a step-by-step fix.</span></span>
+        <span className="hidden font-semibold text-violet-700 sm:block">Try it →</span>
+      </button>
       <div className="flex gap-2">
         <select className={field} value={category} onChange={(e) => { setCategory(e.target.value); setProblem('') }} aria-label="Category">
           <option value="">All categories</option>{categories.map((c) => <option key={c}>{c}</option>)}
