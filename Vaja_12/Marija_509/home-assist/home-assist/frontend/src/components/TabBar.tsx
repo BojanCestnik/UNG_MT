@@ -11,7 +11,7 @@ const tabs: { id: Screen; emoji: string; label: string }[] = [
 
 export default function TabBar({ screen, onChange }: Props) {
   return (
-    <nav className="glass flex lg:w-60 lg:flex-none lg:flex-col lg:gap-2 lg:p-4">
+    <nav className="glass flex pb-[env(safe-area-inset-bottom)] lg:w-60 lg:flex-none lg:flex-col lg:gap-2 lg:p-4">
       {tabs.map((tab) => {
         const active = screen === tab.id
         return (

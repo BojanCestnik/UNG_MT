@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+html, body { height: 100%; overflow: hidden; overscroll-behavior: none; }
+#root { height: 100%; }
 :root {
   --ink: #26384a;
   --brand-a: #2fa89a; --brand-b: #4f8fe8; --brand-c: #8b7be0;
@@ -7,7 +9,6 @@
 body {
   font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
   color: var(--ink);
-  min-height: 100dvh;
   background:
     radial-gradient(900px 500px at 8% 0%, #d4f5ea 0%, transparent 60%),
     radial-gradient(800px 500px at 95% 10%, #dfe9ff 0%, transparent 60%),

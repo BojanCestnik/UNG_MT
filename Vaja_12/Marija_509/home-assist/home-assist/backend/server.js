@@ -2,14 +2,15 @@
 const http = require('http');
 const { readDb, writeDb } = require('./db'); // used by your handlers
 const { diagnose } = require('./diagnose');
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 const MAX_PHOTO_BYTES = 1024 * 1024; // 1 MB
 
 // Helper: CORS headers so the front end on port 5173 may call us.
 function setCorsHeaders(req, res) {
   // Allow the front end from localhost or from this computer's network address (phone)
   const origin = req.headers.origin || '';
-  const ok = /^http:\/\/[\w.-]+:5173$/.test(origin);
+  const hosted = (process.env.FRONTEND_URL || '').split(',').map((u) => u.trim().replace(/\/$/, '')).filter(Boolean);
+  const ok = /^http:\/\/[\w.-]+:5173$/.test(origin) || hosted.includes(origin);
   res.setHeader('Access-Control-Allow-Origin', ok ? origin : 'http://localhost:5173');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -182,5 +183,5 @@ async function handleRequest(req, res) {
 }
 
 http.createServer(handleRequest).listen(PORT, () => {
-  console.log('Home Assist back end on http://localhost:' + PORT);
+  console.log('Home Assist back end running on port ' + PORT);
 });
