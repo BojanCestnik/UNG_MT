@@ -1,14 +1,19 @@
-# Notebook — Study Planner
+# Beležka – Enia_417
 
-Responsive study planner built with plain HTML5, CSS3 and JavaScript (ES6).
+Študijski planer za izpite, naloge in druge obveznosti. Izdelan v Reactu, TypeScriptu, Vite in Tailwind CSS v4 brez dodatnih paketov.
 
-## Project structure
-- `index.html` — application page
-- `src/style.css` — styles and responsive layout
-- `src/script.js` — task logic and localStorage persistence
-- `package.json` and `package-lock.json` — project metadata
+## Zagon
 
-## Run
-Open `index.html` directly in a modern browser. No React, Bootstrap, external libraries, database, installation or build step is required.
+V mapi projekta odpri terminal in izvedi `npm install`, nato `npm run dev`. Odpri naslov, izpisan v terminalu.
 
-Tasks are saved in localStorage in this browser on this device.
+## Funkcionalnosti
+
+- Dodajanje, urejanje in brisanje obveznosti.
+- Vrsta, predmet, naslov, rok in neobvezna opomba.
+- Razvrščanje po datumu ter prikaz preostalih dni.
+- Opozorila za zapadle roke in roke v naslednjih treh dneh.
+- Filtra po vrsti in predmetu.
+- Ločen prikaz opravljenih obveznosti.
+- Shranjevanje v localStorage.
+
+`npm run build` preveri TypeScript in izdela produkcijsko različico. `npm run lint` preveri TypeScript.
