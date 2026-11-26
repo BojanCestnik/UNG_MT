@@ -1,17 +1,40 @@
-// HTTP server, routing and CORS only. Data access lives in db.js.
+// HTTP server, static frontend hosting, routing, and CORS. Data access lives in db.js.
 const http = require('http');
+const fs = require('fs');
+const path = require('path');
 const { readDb, writeDb } = require('./db'); // used by your handlers
 const { diagnose } = require('./diagnose');
+
 const PORT = process.env.PORT || 3001;
 const MAX_PHOTO_BYTES = 1024 * 1024; // 1 MB
+const FRONTEND_DIST = path.join(__dirname, '..', 'frontend', 'dist');
 
-// Helper: CORS headers so the front end on port 5173 may call us.
+const MIME_TYPES = {
+  '.html': 'text/html; charset=utf-8',
+  '.js': 'application/javascript; charset=utf-8',
+  '.css': 'text/css; charset=utf-8',
+  '.svg': 'image/svg+xml',
+  '.png': 'image/png',
+  '.jpg': 'image/jpeg',
+  '.jpeg': 'image/jpeg',
+  '.webp': 'image/webp',
+  '.ico': 'image/x-icon',
+  '.json': 'application/json; charset=utf-8',
+  '.woff2': 'font/woff2',
+  '.woff': 'font/woff',
+};
+
+// Helper: CORS headers so local or external front ends may call us.
 function setCorsHeaders(req, res) {
-  // Allow the front end from localhost or from this computer's network address (phone)
   const origin = req.headers.origin || '';
-  const hosted = (process.env.FRONTEND_URL || '').split(',').map((u) => u.trim().replace(/\/$/, '')).filter(Boolean);
+  const hosted = (process.env.FRONTEND_URL || '')
+    .split(',')
+    .map((u) => u.trim().replace(/\/$/, ''))
+    .filter(Boolean);
   const ok = /^http:\/\/[\w.-]+:5173$/.test(origin) || hosted.includes(origin);
-  res.setHeader('Access-Control-Allow-Origin', ok ? origin : 'http://localhost:5173');
+  if (ok) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 }
@@ -59,6 +82,44 @@ function validatePhoto(photoBase64) {
   return null;
 }
 
+function serveStaticFile(res, filePath) {
+  const ext = path.extname(filePath).toLowerCase();
+  const contentType = MIME_TYPES[ext] || 'application/octet-stream';
+  fs.readFile(filePath, (err, content) => {
+    if (err) {
+      sendJson(res, 404, { error: 'Not found' });
+      return;
+    }
+    res.writeHead(200, { 'Content-Type': contentType });
+    res.end(content);
+  });
+}
+
+function tryServeFrontend(res, cleanUrl) {
+  const indexPath = path.join(FRONTEND_DIST, 'index.html');
+  if (!fs.existsSync(indexPath)) {
+    sendJson(res, 404, { error: 'Frontend build not found (frontend/dist missing)' });
+    return;
+  }
+
+  const relativePath = cleanUrl.replace(/^\/+/, '');
+  const candidatePath = path.resolve(FRONTEND_DIST, relativePath || 'index.html');
+  const distRoot = path.resolve(FRONTEND_DIST);
+
+  // Prevent path traversal outside dist folder
+  if (!candidatePath.startsWith(distRoot + path.sep) && candidatePath !== distRoot) {
+    sendJson(res, 403, { error: 'Forbidden' });
+    return;
+  }
+
+  if (relativePath && fs.existsSync(candidatePath) && fs.statSync(candidatePath).isFile()) {
+    serveStaticFile(res, candidatePath);
+    return;
+  }
+
+  serveStaticFile(res, indexPath);
+}
+
 async function handleRequest(req, res) {
   setCorsHeaders(req, res);
 
@@ -73,7 +134,11 @@ async function handleRequest(req, res) {
     const parts = cleanUrl.split('/').filter(Boolean);
 
     if (parts[0] !== 'api') {
-      sendJson(res, 404, { error: 'Not found' });
+      if (req.method === 'GET' || req.method === 'HEAD') {
+        tryServeFrontend(res, cleanUrl);
+      } else {
+        sendJson(res, 404, { error: 'Not found' });
+      }
       return;
     }
 
@@ -183,5 +248,5 @@ async function handleRequest(req, res) {
 }
 
 http.createServer(handleRequest).listen(PORT, () => {
-  console.log('Home Assist back end running on port ' + PORT);
+  console.log('Home Assist server running on port ' + PORT);
 });
