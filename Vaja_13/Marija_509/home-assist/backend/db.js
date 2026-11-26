@@ -1,9 +1,18 @@
-// Reads and writes data/db.json (tools + log). Guides are read from every file in data/guides/.
+// Reads and writes db.json (tools + log). Guides are read from every file in data/guides/.
 // To add more guides, just drop another .json file with an array of guides into data/guides/.
 const fs = require('fs');
 const path = require('path');
-const DB_FILE = path.join(__dirname, 'data', 'db.json');
-const GUIDES_DIR = path.join(__dirname, 'data', 'guides');
+
+const DATA_DIR = path.join(__dirname, 'data');
+const DB_DIR = process.env.DB_DIR || DATA_DIR;      // where db.json lives (on Render: /var/data)
+const DB_FILE = path.join(DB_DIR, 'db.json');
+const GUIDES_DIR = path.join(DATA_DIR, 'guides');   // guides always stay in the code
+
+// First run on a fresh disk: copy the starting db.json into it
+if (!fs.existsSync(DB_FILE)) {
+  fs.mkdirSync(DB_DIR, { recursive: true });
+  fs.copyFileSync(path.join(DATA_DIR, 'db.json'), DB_FILE);
+}
 
 function readGuides() {
   return fs.readdirSync(GUIDES_DIR)
