@@ -1,9 +1,12 @@
 // The ONLY file that calls fetch. One function per endpoint.
 import type { ApiError, DiagnoseResult, Guide, LogEntry } from '../types'
 
-// Uses the same address the page was opened from, so it also works on a phone (http://192.168.x.x:5173)
-const BASE_URL: string =
-  import.meta.env.VITE_API_URL ?? 'http://' + window.location.hostname + ':3001/api'
+const rawApiUrl: string =
+  import.meta.env.VITE_API_URL || 'https://home-assist-api.onrender.com'
+
+const BASE_URL: string = rawApiUrl.replace(/\/+$/, '').endsWith('/api')
+  ? rawApiUrl.replace(/\/+$/, '')
+  : rawApiUrl.replace(/\/+$/, '') + '/api'
 
 // Sends a request and returns typed JSON. Throws an Error with the server's message on failure.
 async function request<T>(path: string, options?: RequestInit): Promise<T> {
