@@ -65,3 +65,301 @@ Help users organize food, monitor expiration dates, reduce food waste and discov
 6.3 Success Criteria
 Ensure all functions work correctly, data is saved in localStorage and the application is easy for a student to understand and explain.
 Implement all six steps and verify that the application works correctly.
+
+
+
+____________________________________________________________________________________________________________________________________________________________
+
+
+
+Step 1: Goal in One Sentence
+
+Transform the existing My Pantry application into a real mobile application that helps users manage food at home, track expiration dates, reduce food waste and discover recipes based on available ingredients.
+
+The application must be designed for mobile devices while preserving all existing functionality and data.
+
+Step 2: Technology and Restrictions
+
+2.1 Technologies
+
+Use the existing project technologies:
+
+React
+
+TypeScript
+
+Vite
+
+Tailwind CSS v4
+
+Capacitor for mobile application development
+
+The application should support:
+
+Android smartphones
+
+iOS smartphones
+
+2.2 Restrictions
+
+Use the existing My Pantry project as the starting point.
+
+Preserve the existing application structure and functionality.
+
+Do not rewrite the entire application unnecessarily.
+
+Do not install unnecessary additional packages.
+
+Install only the packages required for Capacitor and mobile functionality.
+
+Use the existing project configuration wherever possible.
+
+Store pantry data locally using localStorage.
+
+Do not use an external database or backend.
+
+Keep the code simple, clean and understandable for a student.
+
+Step 3: Existing Application Functionality
+
+Preserve and verify all existing My Pantry functionality.
+
+3.1 Food Management
+
+Add food items.
+
+Edit existing food items.
+
+Delete food items.
+
+Each item must contain a name, quantity and expiration date.
+
+3.2 Expiration Dates
+
+Highlight expired products in red.
+
+Highlight products expiring within 3 days in orange.
+
+Show fresh products in green.
+
+3.3 Recipe Database
+
+Include 20–25 predefined recipes.
+
+Each recipe must contain ingredients, quantities, preparation time and instructions.
+
+3.4 Recipe Suggestions
+
+Suggest recipes based on available ingredients.
+
+Show recipes that require a maximum of 2 additional ingredients.
+
+Prioritize products close to expiration.
+
+3.5 Recipe Details
+
+Display recipe name, ingredients, quantities, preparation time and preparation instructions.
+
+Clearly identify missing ingredients.
+
+3.6 Data Storage
+
+Save pantry items in localStorage.
+
+Automatically save changes.
+
+Restore data after refreshing or reopening the application.
+
+Step 4: Code Structure
+
+Preserve the existing component structure:
+
+App: Main application component and state management.
+
+Pantry: Displays and manages food items.
+
+AddFoodForm: Allows users to add and edit food items.
+
+RecipeList: Displays recipe suggestions.
+
+RecipeDetails: Displays recipe ingredients and instructions.
+
+State Management: Use useState, useEffect, TypeScript interfaces and props.
+
+Keep the code modular and reusable.
+
+Step 5: Mobile Application Transformation
+
+5.1 Capacitor Integration
+
+Integrate Capacitor into the existing React + Vite project.
+
+Configure the application correctly for mobile devices.
+
+Add the Android platform.
+
+Prepare the iOS platform configuration.
+
+Configure the application name as My Pantry.
+
+Use a suitable application identifier, for example: com.mypantry.app.
+
+Ensure the application starts correctly on mobile devices.
+
+5.2 Mobile User Interface
+
+Adapt the existing design for smartphones.
+
+Use a mobile-first responsive layout.
+
+Support different screen sizes.
+
+Prevent horizontal scrolling.
+
+Make buttons large enough for touch interaction.
+
+Use readable text and suitable spacing.
+
+Keep forms easy to complete on a touchscreen.
+
+Use rounded cards, simple icons and food emojis.
+
+Maintain the existing cream and pastel color palette.
+
+5.3 Mobile Navigation
+
+Create simple and intuitive mobile navigation.
+
+The user should be able to easily access:
+
+My Pantry
+
+Add Food
+
+Recipes
+
+Recipe Details
+
+Navigation must be easy to use on a smartphone.
+
+5.4 Local Data
+
+Preserve localStorage functionality.
+
+Ensure pantry items remain saved after closing and reopening the application.
+
+Ensure all changes are automatically saved.
+
+5.5 Android and iOS
+
+Configure the application for Android and iOS using Capacitor.
+
+Make the Android project buildable and runnable.
+
+Prepare the iOS project for building with Xcode.
+
+Do not claim that an iOS application can be compiled on Windows. iOS compilation and signing require macOS and Xcode.
+
+Step 6: Build, Testing and Verification
+
+6.1 Android
+
+Configure the Android project.
+
+Ensure the application can be opened in Android Studio.
+
+Verify that it can run in an Android emulator or on a physical Android device.
+
+Prepare the project for generating an APK installation file.
+
+6.2 iOS
+
+Prepare the iOS platform project.
+
+Ensure it can be opened and built using Xcode on macOS.
+
+6.3 Functionality Testing
+
+Verify that:
+
+Food items can be added, edited and deleted.
+
+Expiration dates are displayed correctly.
+
+Recipe suggestions work correctly.
+
+Missing ingredients are identified.
+
+All 20–25 recipes are available.
+
+Data is saved in localStorage.
+
+The application works correctly on mobile screens.
+
+No existing functionality has been lost during the transformation.
+
+6.4 Code Quality
+
+Keep the code clean and simple.
+
+Use descriptive variable names.
+
+Avoid unnecessary packages and complicated logic.
+
+Add comments where they improve understanding.
+
+Ensure that the project builds without errors.
+
+Step 7: Final Project Structure and Deliverables
+
+Keep the complete mobile application inside the existing folder:
+
+Vaja_13/Monika_416
+
+Include all necessary project files, such as:
+
+src/
+
+public/ (if needed)
+
+package.json
+
+package-lock.json
+
+vite.config.ts
+
+capacitor.config.ts
+
+android/
+
+ios/ (if generated)
+
+README.md
+
+Do not include node_modules in the submitted project.
+
+Create a README.md file explaining:
+
+The purpose of the My Pantry application.
+
+The technologies used.
+
+How to install the required dependencies.
+
+How to run the application.
+
+How to open and run the Android project.
+
+How to prepare and build the iOS project.
+
+How to generate an Android APK.
+
+Final Success Criteria
+
+The final result must be a functional mobile application, not just a responsive website.
+
+The application must preserve all original My Pantry functionality, support mobile devices, save data locally and be ready for testing on Android.
+
+The project must remain understandable, well-organized and suitable for a university assignment.
+
+Implement the transformation step by step. First inspect the existing project, then explain the necessary changes before modifying files. Do not delete or overwrite existing functionality.
