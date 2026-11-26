@@ -1,0 +1,2 @@
+import type {Venue,PartyEvent} from './types';
+export default function EventList({events,venues}:{events:PartyEvent[];venues:Venue[]}){return <div className="grid sm:grid-cols-3 gap-4">{events.map(e=><article className="panel" key={e.title}><span className="accent font-bold">{e.time}</span><h3 className="text-xl font-bold">{e.title}</h3><p>{venues.find(v=>v.id===e.venueId)?.name}</p><p className="muted">{e.dj}</p></article>)}</div>}

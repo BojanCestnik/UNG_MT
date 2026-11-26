@@ -1,0 +1,2 @@
+import type {Venue,Crowd} from './types';import VenueCard from './VenueCard';
+export default function VenueList({venues,favourites,onFavourite,onReport}:{venues:Venue[];favourites:number[];onFavourite:(id:number)=>void;onReport:(id:number,c:Crowd)=>void}){return venues.length?<div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">{venues.map(v=><VenueCard key={v.id} venue={v} favourite={favourites.includes(v.id)} onFavourite={()=>onFavourite(v.id)} onReport={c=>onReport(v.id,c)}/>)}</div>:<p className="panel">No venues match your filters.</p>}
