@@ -1,1 +1,8 @@
-TODO
+Moj recept – Gaja_444
+
+[x] Izbira sestavin in iskanje
+[x] Zbirka 25 receptov
+[x] Razvrščanje in časovni filter
+[x] Podrobnosti recepta
+[x] Priljubljeni recepti in localStorage
+[x] Prilagodljivo oblikovanje
