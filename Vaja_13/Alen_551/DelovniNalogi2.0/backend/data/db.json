@@ -1,0 +1,76 @@
+{
+  "workOrders": [
+    {
+      "id": "94585b56-f09a-448d-81de-9b97bf609737",
+      "number": "DN-0001",
+      "product": "nosilec",
+      "customer": "dsad",
+      "description": "dasasd",
+      "quantity": 1,
+      "startDate": "2026-11-26",
+      "deadline": "2026-11-26",
+      "priority": "medium",
+      "status": "done",
+      "notes": "",
+      "operations": [],
+      "materialAssignments": [],
+      "createdAt": "2026-11-26T12:49:02.253Z",
+      "completedAt": "2026-11-26T12:49:26.478Z"
+    }
+  ],
+  "materials": [],
+  "tools": [],
+  "toolReservations": [],
+  "machines": [
+    {
+      "id": "83c63a57-7142-45e6-a4dd-d759342e5551",
+      "name": "CNC stružnica 1",
+      "category": "cnc_lathe",
+      "code": "CNC-S01",
+      "manufacturer": "",
+      "hourlyRate": 65,
+      "condition": "available",
+      "notes": "Primer stroja in okvirna postavka – prilagodi svoji delavnici."
+    },
+    {
+      "id": "adc04e93-2b23-4b96-8ca1-d403abd5a685",
+      "name": "CNC rezkalni center 1",
+      "category": "cnc_mill",
+      "code": "CNC-R01",
+      "manufacturer": "",
+      "hourlyRate": 85,
+      "condition": "available",
+      "notes": "Primer stroja in okvirna postavka – prilagodi svoji delavnici."
+    },
+    {
+      "id": "1915a346-0939-4483-82f4-d89a878b0442",
+      "name": "Ploščinski brusilnik",
+      "category": "grinder",
+      "code": "BR-01",
+      "manufacturer": "",
+      "hourlyRate": 45,
+      "condition": "available",
+      "notes": "Primer stroja in okvirna postavka – prilagodi svoji delavnici."
+    },
+    {
+      "id": "c63dbecc-fab2-4f6b-b682-cea4eb641ca7",
+      "name": "Tračna žaga",
+      "category": "saw",
+      "code": "ZG-01",
+      "manufacturer": "",
+      "hourlyRate": 30,
+      "condition": "available",
+      "notes": "Primer stroja in okvirna postavka – prilagodi svoji delavnici."
+    },
+    {
+      "id": "55360e7b-14ee-4d7b-84ce-f81d72e47513",
+      "name": "Klasična stružnica",
+      "category": "manual_lathe",
+      "code": "STR-01",
+      "manufacturer": "",
+      "hourlyRate": 40,
+      "condition": "available",
+      "notes": "Primer stroja in okvirna postavka – prilagodi svoji delavnici."
+    }
+  ]
+}

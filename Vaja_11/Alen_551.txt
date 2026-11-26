@@ -75,3 +75,179 @@ Koda naj bo razumljiva tudi začetniku, ki se uči React in TypeScript. Uporablj
 - Aplikacija deluje na mobilnih telefonih in računalnikih.
 
 Pred zaključkom preveri delovanje vseh funkcionalnosti. Prednost naj imajo **zanesljivost, hitrost, preglednost in enostavna uporaba**.
+
+
+_____________________________________________________________________________
+
+# KORAK 1: CILJ IN TON
+
+Izdelaj sodobno, profesionalno in pregledno aplikacijo »Delovni nalogi PRO 3.1 – Dark Edition«, namenjeno načrtovanju in vodenju proizvodnje v strojni delavnici.
+
+Aplikacija omogoča ustvarjanje delovnih nalogov, upravljanje materialov, orodij in strojev, načrtovanje obdelovalnih postopkov, spremljanje časa izdelave, izračun stroškov in preverjanje razpoložljivosti.
+
+Vključuje tudi terminski plan proizvodnje, izdelavo ponudb, knjižnico izdelkov, kontrolo kakovosti, tehnične risbe in evidenco delavcev.
+
+Aplikacija mora imeti **črno ozadje (Dark Mode)** in sodoben industrijski videz z modrimi poudarki.
+
+Oblikovanje mora biti popolnoma **responsive**, da se velikost in položaj elementov samodejno prilagajata telefonu, tablici in računalniku.
+
+Aplikacija naj bo funkcionalen prototip (MVP), ki je po preglednosti in uporabnosti primerljiv s profesionalnimi sistemi za vodenje proizvodnje.
+
+# KORAK 2: TEHNOLOGIJA IN OMEJITVE
+
+**Frontend:** React + TypeScript, Vite in Tailwind CSS v4, v mapi `frontend`.
+
+**Backend:** Node.js z vgrajenimi moduli `http` in `fs`, v mapi `backend`.
+
+Frontend deluje na vratih 5173, backend na vratih 3001. Omogoči CORS in komunikacijo prek REST API.
+
+Ne nameščaj dodatnih paketov, razen standardnih paketov React/Vite in Tailwind CSS v4.
+
+Ne uporabljaj Expressa, axiosa, zunanje podatkovne baze, knjižnic uporabniškega vmesnika ali umetne inteligence.
+
+Podatke shranjuj v `backend/data/db.json`, tehnične risbe pa v ločeno mapo na strežniku.
+
+Celotno aplikacijo mora biti mogoče zagnati iz glavne mape z ukazoma:
+
+```cmd
+npm install
+npm run dev
+```
+
+Za uporabo na telefonu mora biti razvojni strežnik dostopen prek lokalnega IP-naslova računalnika. Frontend naj posluša na `0.0.0.0`, API pa mora uporabljati naslov strežnika, ki je dosegljiv s telefona, ne telefonskega `localhost`.
+
+Vsi napisi, gumbi in opozorila morajo biti v slovenščini.
+
+# KORAK 3: FUNKCIONALNOSTI
+
+1. **Delovni nalogi:** ustvarjanje, urejanje, brisanje in pregled nalogov s številko, naročnikom, izdelkom, količino, prioriteto, rokom in stanjem.
+
+2. **Postopki obdelave:** izbira struženja, rezkanja, vrtanja, brušenja, žaganja in drugih postopkov ter določanje njihovega zaporedja.
+
+3. **Materiali:** evidenca materialov, dimenzij, zaloge in porabe ter dodeljevanje materialov delovnim nalogom.
+
+4. **Orodja:** evidenca stružnih nožev, rezkarjev, svedrov in drugih orodij z možnostjo rezervacije, sprostitve in preverjanja razpoložljivosti.
+
+5. **Strojni park:** upravljanje CNC stružnic, CNC rezkalnih strojev, klasičnih stružnic, brusilnikov, žag in vrtalnih strojev. Vsak stroj vsebuje podatke o urni postavki in razpoložljivosti.
+
+6. **Čas in cena obdelave:** vnos pripravljalnega časa, časa obdelave na kos in urne postavke. Samodejni izračun predvidenega časa ter stroška operacije.
+
+7. **Dejanski stroški:** primerjava predvidenih in dejanskih časov ter stroškov proizvodnje.
+
+8. **Napredek izdelave:** označevanje zaključenih operacij in prikaz napredka v odstotkih.
+
+9. **Terminski plan:** tedenski pregled zasedenosti strojev po datumih in urah. Prepreči prekrivanje terminov na istem stroju.
+
+10. **Kalkulacije in ponudbe:** izračun prodajne cene glede na material, čas obdelave, delo, dodatne stroške in maržo. Omogoči tiskanje ponudbe v PDF.
+
+11. **Knjižnica izdelkov:** shranjevanje izdelkov s postopki obdelave in ustvarjanje novih delovnih nalogov iz predlog.
+
+12. **Kontrola kakovosti:** vnos meritev, nazivnih dimenzij in toleranc ter samodejno preverjanje ustreznosti izdelkov.
+
+13. **Tehnične risbe:** dodajanje in prenos datotek PDF, DXF ter STEP, povezanih z izdelki ali delovnimi nalogi.
+
+14. **Evidenca delavcev:** dodajanje zaposlenih, določanje urnih postavk in dodeljevanje delavcev operacijam.
+
+15. **Iskanje in filtriranje:** iskanje nalogov, materialov, orodij, strojev in izdelkov po imenu, kategoriji ali stanju.
+
+16. **Arhiv:** pregled zaključenih in preklicanih delovnih nalogov z vsemi povezanimi podatki.
+
+17. **Shranjevanje:** vse spremembe shranjuj na strežnik prek REST API, da podatki ostanejo ohranjeni po osvežitvi strani.
+
+18. **Mobilna navigacija:** na telefonu prikaži spodnjo navigacijsko vrstico s petimi glavnimi gumbi in menijem »Več« za dostop do preostalih modulov.
+
+# KORAK 4: ZGRADBA KODE
+
+Aplikacijo razdeli na ponovno uporabne React komponente:
+
+1. **App:** glavno stanje in navigacija.
+2. **Dashboard:** pregled nalogov in proizvodnje.
+3. **WorkOrderManager:** upravljanje delovnih nalogov.
+4. **OperationManager:** postopki obdelave in napredek.
+5. **MaterialManager:** materiali in zaloga.
+6. **ToolManager:** evidenca in rezervacije orodij.
+7. **MachineManager:** strojni park in urne postavke.
+8. **CostCalculator:** izračun časa in stroškov.
+9. **ProductionSchedule:** terminski plan strojev.
+10. **QuotationManager:** kalkulacije in ponudbe.
+11. **ProductLibrary:** knjižnica izdelkov.
+12. **QualityControl:** meritve in tolerance.
+13. **DrawingManager:** tehnične risbe.
+14. **EmployeeManager:** evidenca delavcev.
+15. **ResponsiveNavigation:** prilagodljiva navigacija za različne naprave.
+
+Za upravljanje stanja uporabljaj `useState`, za pridobivanje podatkov `useEffect`, za komunikacijo med komponentami pa `props`.
+
+Uporabljaj TypeScript tipe in vmesnike. Ne uporabljaj tipa `any`.
+
+Zaledni del naj ločuje REST API, preverjanje podatkov in shranjevanje.
+
+# KORAK 5: OBLIKOVANJE IN RESPONSIVE PRILAGODITEV
+
+Aplikacija mora imeti **temni način kot privzeti in glavni videz**.
+
+**Barvna shema:**
+- Glavno ozadje: `#09090B`
+- Ozadje kartic: `#18181B`
+- Ozadje vnosnih polj: `#27272A`
+- Glavno besedilo: `#F4F4F5`
+- Sekundarno besedilo: `#A1A1AA`
+- Poudarjena barva: `#3B82F6`
+- Robovi elementov: `#3F3F46`
+- Zelena: razpoložljivo oziroma zaključeno
+- Oranžna: rezervirano oziroma v uporabi
+- Rdeča: napaka oziroma nedostopno
+
+Uporabljaj zaobljene kartice (`rounded-2xl`), nežne sence in razmike 16 px.
+
+**Mobilni telefon (do 639 px):**
+- Spodnja navigacija s petimi glavnimi gumbi in menijem »Več«.
+- Kartice in obrazci v enem stolpcu.
+- Gumbi najmanj 44 px visoki.
+- Samodejna prilagoditev širine vsebine zaslonu.
+- Tabele naj se na manjših zaslonih pretvorijo v kartice ali omogočajo vodoravno drsenje.
+- Navigacija naj ostane dostopna tudi med pomikanjem po strani.
+
+**Tablica (640–1023 px):**
+- Postavitev v enem ali dveh stolpcih.
+- Prilagodljiv stranski meni.
+- Več prostora za terminski plan in pregled podatkov.
+
+**Računalnik (od 1024 px):**
+- Stalni stranski navigacijski meni.
+- Večstolpčna postavitev.
+- Pregledne tabele, obrazci in terminski plan.
+- Uporaba širšega zaslona za sočasen prikaz več informacij.
+
+Uporabljaj Tailwind CSS responsive razrede `sm:`, `md:` in `lg:`.
+
+Celotna stran ne sme imeti nepotrebnega vodoravnega drsenja.
+
+Vsa besedila, gumbi in polja morajo biti dobro vidni na temnem ozadju.
+
+# KORAK 6: NAMEN KODE IN MERILO KAKOVOSTI
+
+Keep the code clean, readable, reusable and maintainable. Prioritize professional usability, reliability and responsive design.
+
+Koda naj bo modularna, razumljiva in primerna za nadaljnje nadgradnje.
+
+**Merila uspešnosti:**
+
+- Delovni nalogi se pravilno ustvarjajo, urejajo in shranjujejo.
+- Evidenca materialov, orodij in strojev pravilno deluje.
+- Sistem preprečuje dvojne rezervacije orodij in prekrivanje terminov strojev.
+- Čas izdelave in stroški se pravilno izračunavajo.
+- Ponudbe omogočajo izvoz v PDF.
+- Knjižnica izdelkov omogoča ponovno uporabo postopkov.
+- Kontrola kakovosti pravilno preverja tolerance.
+- Tehnične risbe je mogoče naložiti in prenesti.
+- Evidenca delavcev omogoča dodeljevanje operacij.
+- Vsi podatki ostanejo shranjeni po osvežitvi strani.
+- Vsi elementi so pravilno prikazani na črnem ozadju.
+- Postavitev se prilagaja telefonu, tablici in računalniku.
+- Aplikacija deluje na telefonu prek lokalnega omrežja.
+- Aplikacijo je mogoče zagnati z `npm run dev`.
+
+Pred zaključkom preveri delovanje vseh funkcionalnosti, pravilnost izračunov, povezavo s strežnikom in prikaz na različnih velikostih zaslona.
+
+**Končni cilj je profesionalna aplikacija za vodenje proizvodnje v strojni delavnici s sodobnim temnim videzom in popolno podporo mobilnim napravam.**
