@@ -1,12 +1,1 @@
-{
-  "name": "notebook-study-planner",
-  "version": "1.0.0",
-  "private": true,
-  "description": "Study planner built with HTML5, CSS3 and vanilla JavaScript.",
-  "type": "module",
-  "scripts": {
-    
-    "dev": "vite"
-  }
-}
-  
+{"name":"enia-417-belezka","private":true,"version":"1.0.0","type":"module","scripts":{"dev":"vite","build":"tsc -b && vite build","lint":"tsc -b"},"dependencies":{"react":"^19.0.0","react-dom":"^19.0.0"},"devDependencies":{"@tailwindcss/vite":"^4.0.0","@types/react":"^19.0.0","@types/react-dom":"^19.0.0","tailwindcss":"^4.0.0","typescript":"^5.8.0","vite":"^6.0.0"}}

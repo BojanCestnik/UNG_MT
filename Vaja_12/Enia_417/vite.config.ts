@@ -1,3 +1,3 @@
-// Placeholder included to match the requested project layout.
-// This project uses plain HTML/CSS/JavaScript and does not require Vite.
-export {};
+import { defineConfig } from 'vite';
+import tailwindcss from '@tailwindcss/vite';
+export default defineConfig({plugins:[tailwindcss()]});

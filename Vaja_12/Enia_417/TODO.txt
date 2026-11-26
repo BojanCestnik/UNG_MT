@@ -1,0 +1,7 @@
+Beležka – Enia_417
+[x] Dodajanje, urejanje in brisanje obveznosti
+[x] Rok, preostali dnevi in opozorila
+[x] Filtra po predmetu in vrsti
+[x] Opravljene obveznosti
+[x] localStorage
+[x] Odzivna postavitev
