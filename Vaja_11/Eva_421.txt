@@ -46,3 +46,9 @@ Oblikovanje naj bo čisto, zračno, kontrastno in intuitivno tako na mobilnih za
 Koda je namenjena nadaljnjemu razvoju, pregledu in vzdrževanju (študijski/projektni kontekst)[cite: 2, 3].
 - Prednost ima **berljivost, jasnost in vzdržljivost** pred »pametnimi« (skritimi ali pretirano zgostitvenimi) triki[cite: 2].
 - Uporabljaj smiselna imena spremenljivk in funkcij, kratke komentarje pri robnih primerih (npr. robni primeri pri datumih, prestopnih letih ali časovnih pasovih/lokalnem datumu brez zamikov zaradi UTC) ter čisto obravnavo praznih stanj (ko še ni shranjenih dogodkov).
+
+==================================================================================================================================
+
+Updejtana verzija aplikacije:
+
+Konkretnega prompta nimam, uporabila sem le screenshots aplikacije v Bolt-u, na podlagi katerih je Gemini moral izboljšati vizualni izgled.
