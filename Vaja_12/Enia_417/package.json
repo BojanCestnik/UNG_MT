@@ -5,6 +5,8 @@
   "description": "Study planner built with HTML5, CSS3 and vanilla JavaScript.",
   "type": "module",
   "scripts": {
-    "start": "echo Open index.html in your browser; no build step required"
+    
+    "dev": "vite"
   }
 }
+  
