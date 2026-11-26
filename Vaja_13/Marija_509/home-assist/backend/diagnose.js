@@ -12,7 +12,7 @@ try {
 
 const CLAUDE_MODEL = process.env.ANTHROPIC_MODEL || 'claude-sonnet-5-5';
 // Gemini: tries your GEMINI_MODEL first, then newer-to-older fallbacks if a name is not found
-const GEMINI_MODELS = [process.env.GEMINI_MODEL, 'gemini-3.8-flash', 'gemini-3.5-flash', 'gemini-2.5-flash'].filter(Boolean);
+const GEMINI_MODELS = [process.env.GEMINI_MODEL, 'gemini-3.8-flash', 'gemini-3.7-flash', 'gemini-3.5-flash'].filter(Boolean);
 const DANGER = /(wall socket|rewir|fuse box|consumer unit|live wire|mains (power|electric|water)|gas (leak|pipe|boiler|cooker|hob)|boiler|water main|stop ?cock)/i;
 
 // Simple in-memory limit: 20 scans per hour for the whole app
@@ -58,12 +58,13 @@ async function callClaude(key, system, mediaType, data, note) {
       signal: AbortSignal.timeout(60000),
     });
   } catch { throw fail(502, 'Could not reach the AI service. Check your internet connection.'); }
-  if (!res.ok) throw fail(502, res.status === 401 ? 'The Claude API key was rejected. Check backend/.env.' : 'The AI service had a problem. Please try again.');
+  if (!res.ok) { console.error('[diagnose] Claude HTTP', res.status, (await res.text().catch(() => '')).slice(0, 600)); throw fail(502, res.status === 401 ? 'The Claude API key was rejected. Check backend/.env.' : 'The AI service had a problem (' + res.status + ').'); }
   const j = await res.json();
   return (j.content || []).filter((b) => b.type === 'text').map((b) => b.text).join('');
 }
 
 async function callGemini(key, system, mediaType, data, note) {
+  const fails = [];
   for (const model of GEMINI_MODELS) {
     let res;
     try {
@@ -73,19 +74,30 @@ async function callGemini(key, system, mediaType, data, note) {
         body: JSON.stringify({
           systemInstruction: { parts: [{ text: system }] },
           contents: [{ role: 'user', parts: [{ inline_data: { mime_type: mediaType, data } }, { text: note }] }],
-          generationConfig: { responseMimeType: 'application/json', maxOutputTokens: 4000 },
+          generationConfig: { responseMimeType: 'application/json', maxOutputTokens: 8000 },
         }),
         signal: AbortSignal.timeout(60000),
       });
-    } catch { throw fail(502, 'Could not reach the AI service. Check your internet connection.'); }
-    if (res.status === 404) continue; // model name not available, try the next one
-    if (res.status === 400 || res.status === 403) throw fail(502, 'Google rejected the request. Check that GEMINI_API_KEY in backend/.env is correct.');
-    if (res.status === 429) throw fail(429, 'The free Gemini limit was reached for now. Try again in a minute, or tomorrow.');
-    if (!res.ok) throw fail(502, 'The AI service had a problem. Please try again.');
+    } catch (e) {
+      console.error('[diagnose] network error:', e.message);
+      throw fail(502, 'Could not reach Google. Check the internet connection on the laptop.');
+    }
+    if (!res.ok) {
+      const body = await res.text().catch(() => '');
+      let msg = body.slice(0, 200);
+      try { msg = JSON.parse(body).error.message || msg; } catch {}
+      console.error('[diagnose] Gemini', model, 'HTTP', res.status, body.slice(0, 600));
+      if (res.status === 429) throw fail(429, 'The free Gemini limit was reached for now. Try again in a minute, or tomorrow.');
+      const line = model + ' -> ' + res.status + ': ' + msg.slice(0, 120);
+      if (res.status === 404 || res.status === 500 || res.status === 503) { fails.push(line); continue; } // try the next model
+      throw fail(502, 'Google said (' + line + ')');
+    }
     const j = await res.json();
-    return ((j.candidates && j.candidates[0] && j.candidates[0].content && j.candidates[0].content.parts) || []).map((p) => p.text || '').join('');
+    const text = ((j.candidates && j.candidates[0] && j.candidates[0].content && j.candidates[0].content.parts) || []).map((p) => p.text || '').join('');
+    if (!text) { console.error('[diagnose] empty answer from', model, JSON.stringify(j).slice(0, 600)); fails.push(model + ' -> empty answer'); continue; }
+    return text;
   }
-  throw fail(502, 'None of the Gemini models were found. Set GEMINI_MODEL in backend/.env to a current model name.');
+  throw fail(502, 'No Gemini model worked. ' + fails.join(' | '));
 }
 
 async function diagnose({ photo, note }, toolNames) {

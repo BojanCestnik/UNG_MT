@@ -110,8 +110,8 @@ export default function App() {
   }
 
   return (
-    <div className="mx-auto flex h-dvh w-full max-w-[1500px] flex-col lg:p-5">
-      <div className="flex min-h-0 flex-1 flex-col overflow-hidden bg-white/35 backdrop-blur-sm lg:rounded-3xl lg:shadow-[0_20px_60px_rgba(80,110,170,.22)] lg:ring-1 lg:ring-white/70">
+    <div className="mx-auto flex h-full w-full max-w-[1500px] flex-col lg:p-5">
+      <div className="flex min-h-0 flex-1 flex-col overflow-hidden lg:bg-white/35 lg:rounded-3xl lg:shadow-[0_20px_60px_rgba(80,110,170,.22)] lg:ring-1 lg:ring-white/70">
         <header className="flex items-center gap-3 bg-gradient-to-r from-teal-500 via-sky-500 to-violet-500 px-4 pb-4 pt-[calc(1rem+env(safe-area-inset-top))] text-2xl font-bold text-white shadow-md lg:px-8 lg:py-5 lg:text-3xl">
           {inFlow && <button className="min-h-11 min-w-11 rounded-full text-xl hover:bg-white/20" aria-label="Back to guides" onClick={() => setScreen('home')}>←</button>}
           <span className="text-3xl">🔧</span>Home Assist

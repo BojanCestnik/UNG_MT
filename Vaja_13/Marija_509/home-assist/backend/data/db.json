@@ -1,219 +1,39 @@
 {
-  "guides": [
-    {
-      "id": "tap-washer",
-      "title": "Dripping tap washer",
-      "object": "Tap",
-      "problem": "Dripping",
-      "difficulty": "easy",
-      "minutes": 25,
-      "tools": [
-        "Adjustable wrench",
-        "Screwdriver"
-      ],
-      "materials": [
-        "Replacement washer",
-        "Cloth"
-      ],
-      "safetyNotes": [
-        "Turn off the water supply under the sink before you start.",
-        "Close the plug so small parts cannot fall down the drain."
-      ],
-      "steps": [
-        "Turn off the water supply and open the tap to empty it.",
-        "Remove the tap cover with the screwdriver.",
-        "Unscrew the tap body with the wrench.",
-        "Replace the old washer at the bottom with a new one.",
-        "Reassemble the tap and turn the water on slowly."
-      ]
-    },
-    {
-      "id": "chair-leg",
-      "title": "Loose chair leg",
-      "object": "Chair",
-      "problem": "Loose leg",
-      "difficulty": "easy",
-      "minutes": 30,
-      "tools": [
-        "Hammer",
-        "Clamp"
-      ],
-      "materials": [
-        "Wood glue",
-        "Cloth"
-      ],
-      "safetyNotes": [
-        "Do not sit on the chair until the glue has fully dried."
-      ],
-      "steps": [
-        "Pull the loose leg out of the seat.",
-        "Wipe off old glue and dust from the joint.",
-        "Spread wood glue on the end of the leg.",
-        "Push the leg back in and tap it with the hammer.",
-        "Clamp it and leave it to dry overnight."
-      ]
-    },
-    {
-      "id": "bike-tube",
-      "title": "Bicycle inner tube",
-      "object": "Bicycle",
-      "problem": "Flat tyre",
-      "difficulty": "medium",
-      "minutes": 35,
-      "tools": [
-        "Tyre levers",
-        "Pump"
-      ],
-      "materials": [
-        "Inner tube",
-        "Patch kit"
-      ],
-      "safetyNotes": [
-        "Park the bike on a flat, safe place away from traffic."
-      ],
-      "steps": [
-        "Remove the wheel from the bike.",
-        "Lever one side of the tyre off the rim.",
-        "Take out the old tube and check the tyre inside for sharp objects.",
-        "Fit the new tube with a little air in it.",
-        "Put the tyre back, pump it up and refit the wheel."
-      ]
-    },
-    {
-      "id": "blocked-sink",
-      "title": "Blocked sink",
-      "object": "Sink",
-      "problem": "Blocked drain",
-      "difficulty": "medium",
-      "minutes": 40,
-      "tools": [
-        "Plunger",
-        "Bucket"
-      ],
-      "materials": [
-        "Rubber gloves",
-        "Cloth"
-      ],
-      "safetyNotes": [
-        "Never mix drain cleaners. Wear rubber gloves.",
-        "If water comes up from other drains, call a professional."
-      ],
-      "steps": [
-        "Put on gloves and remove standing water with the bucket.",
-        "Block the overflow hole with a wet cloth.",
-        "Place the plunger over the drain.",
-        "Push and pull firmly about ten times.",
-        "Run hot water to check that the sink drains."
-      ]
-    },
-    {
-      "id": "wall-hole",
-      "title": "Small hole in a wall",
-      "object": "Wall",
-      "problem": "Small hole",
-      "difficulty": "medium",
-      "minutes": 45,
-      "tools": [
-        "Putty knife",
-        "Sandpaper"
-      ],
-      "materials": [
-        "Wall filler",
-        "Paint"
-      ],
-      "safetyNotes": [
-        "Check for hidden cables and pipes before you work near sockets or switches."
-      ],
-      "steps": [
-        "Remove loose pieces around the hole.",
-        "Press filler into the hole with the putty knife.",
-        "Smooth the surface and let it dry.",
-        "Sand it until it is flat.",
-        "Paint over the repair."
-      ]
-    },
-    {
-      "id": "loose-button",
-      "title": "Loose button",
-      "object": "Clothing",
-      "problem": "Loose button",
-      "difficulty": "easy",
-      "minutes": 15,
-      "tools": [
-        "Needle",
-        "Scissors"
-      ],
-      "materials": [
-        "Thread",
-        "Button"
-      ],
-      "safetyNotes": [
-        "Keep needles and scissors away from children."
-      ],
-      "steps": [
-        "Cut off the old thread.",
-        "Thread the needle and knot the end.",
-        "Sew through the holes four to six times.",
-        "Wind the thread under the button.",
-        "Knot the thread and cut it."
-      ]
-    },
-    {
-      "id": "door-hinge",
-      "title": "Squeaky door hinge",
-      "object": "Door",
-      "problem": "Squeaky hinge",
-      "difficulty": "easy",
-      "minutes": 15,
-      "tools": [
-        "Screwdriver",
-        "Hammer"
-      ],
-      "materials": [
-        "Lubricant spray",
-        "Cloth"
-      ],
-      "safetyNotes": [
-        "Hold the door while you work so it does not fall."
-      ],
-      "steps": [
-        "Open the door and find the hinge pin.",
-        "Tap the pin up with the screwdriver and hammer.",
-        "Wipe the pin and spray it with lubricant.",
-        "Put the pin back in.",
-        "Open and close the door to check the squeak is gone."
-      ]
-    },
-    {
-      "id": "cabinet-handle",
-      "title": "Loose cabinet handle",
-      "object": "Cabinet",
-      "problem": "Loose handle",
-      "difficulty": "easy",
-      "minutes": 15,
-      "tools": [
-        "Screwdriver",
-        "Pliers"
-      ],
-      "materials": [
-        "Longer screw",
-        "Wood glue"
-      ],
-      "safetyNotes": [
-        "Do not overtighten the screw, it can split the door."
-      ],
-      "steps": [
-        "Unscrew the handle from inside the door.",
-        "Check if the screw hole is worn out.",
-        "Put a little wood glue in a worn hole and let it dry.",
-        "Fit the handle with the screw.",
-        "Tighten gently and test the handle."
-      ]
-    }
-  ],
   "tools": [
     "Scissors",
     "Needle"
   ],
-  "log": []
+  "log": [],
+  "aiGuides": [
+    {
+      "id": "ai-1795699861107",
+      "title": "Fixing a Wobbly Folding Desk Chair",
+      "object": "Photo scan",
+      "problem": "AI scan",
+      "difficulty": "easy",
+      "minutes": 15,
+      "category": "AI scan",
+      "emoji": "🪑",
+      "summary": "It looks like your folding desk chair has loose joints or screws along the frame and writing arm. Over time, regular opening, closing, and leaning on the desk pad can loosen the hardware that holds it stable.",
+      "tools": [
+        "Screwdriver",
+        "Adjustable wrench",
+        "Cloth"
+      ],
+      "materials": [
+        "Spray lubricant"
+      ],
+      "safetyNotes": [
+        "Keep your fingers clear of metal hinges so they do not get pinched while working.",
+        "Work on a flat floor so the chair does not tip over."
+      ],
+      "steps": [
+        "🔍 Check all the screws and bolts under the seat pad, desk attachment, and leg joints to see which ones feel loose.",
+        "🪛 Tighten the screws holding the wooden writing desk to its metal arm using a screwdriver.",
+        "🔧 Use your wrench to gently tighten the bolts at the folding pivot points. | tip: do not overtighten or the chair will be hard to fold",
+        "🧼 Wipe down the joints with a clean cloth to clear away dust and grime.",
+        "🪑 Carefully open and close the chair to make sure everything folds smoothly and feels sturdy."
+      ]
+    }
+  ]
 }
