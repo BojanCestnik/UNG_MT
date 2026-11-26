@@ -205,3 +205,317 @@ HOW TO WORK
 4. After the code, tell me how to run the app (npm run dev) and give me a short checklist to test each of the 6 features in part 3.
 5. Remind me when to commit and push to GitHub and suggest short commit messages.
 
+____________________________________________________________________________________________________________________________________________________________
+
+
+Upgrade 1 (better functionality 2.0): The app gets more useful for everyday use. Users can edit a spool and delete a print to fix mistakes, and restore archived spools with a "Show archived" toggle. Prices are entered and shown in EUR. The Stats tab adds the average filament use per month and the estimated cost of the filament used (only for spools that have a price). The stock bar on each spool card is green while there is enough filament and turns red when the low-stock limit is reached. Dark filament colors get a lighter outline on the spool icon so they stay visible.
+
+NEW FULL PROMPT 2.0
+STORAGE.3D - PROMPT 2.0
+
+1. GOAL AND TONE
+
+Build a mobile-first filament inventory and print log app for 3D printers, called "Storage.3D".
+
+Who it is for: a 3D printing hobbyist who wants to know how much filament is left on each spool, how much material they use each month, and when to restock.
+
+What it should convey: a clean, technical, engineer-made tool. It should feel like a small measuring instrument or a datasheet, not a toy and not a generic to-do app.
+* Dark graphite theme with one engineering-orange accent color.
+* Simple and calm: only the essential information on each screen, lots of whitespace.
+* Numbers (grams, counts) in a monospace font, small uppercase labels with letter spacing.
+* Designed for a phone screen (like a native app), but it must also look fine on a desktop browser.
+
+This is version 1. It is simple on purpose: a small app that works is better than a big app that does not. Do not make it look or behave like a generic template. Detailed colors and layout rules will follow in a later part.
+
+
+2. TECHNOLOGY STACK
+
+Already set up in the project:
+* React + TypeScript
+* Vite
+* Tailwind CSS (v4, already configured)
+
+Rules:
+* Do NOT install any additional packages. Do NOT change package.json. Use only what is already there.
+* Do NOT use a different framework, a router, a chart library, a UI component library or an icon library.
+* Icons must be small inline SVG.
+* Do NOT use `any` in TypeScript.
+* Data is stored only in the browser (localStorage). No backend, no database, no login.
+
+
+3. FUNCTIONALITIES
+
+The app has three tabs: Spools, Print Log and Stats. Build exactly the features below and nothing else.
+
+3.1 Add a spool
+* A form shown inline at the top of the Spools tab (not a modal), opened and closed with a round "+" button.
+* Fields (all controlled inputs), using DROPDOWNS where the choices are fixed:
+  - Material (dropdown): PLA, PETG, ABS, ASA, TPU, Nylon, PC, Other
+  - Color (dropdown with a fixed list, each color has a name and a default hex code, shown as a small round swatch): Black, White, Gray, Silver, Red, Orange, Yellow, Green, Blue, Purple, Pink, Brown, Beige, Transparent, Other
+  - Brand (text input)
+  - Starting weight in grams (number, default 1000)
+  - Purchase date (date input, default today)
+  - Price (number, optional)
+* Required: material, color, starting weight. Show a short red error message under an invalid field (starting weight must be above 0, price cannot be negative).
+* After a successful save, the form closes and resets.
+
+3.2 Inventory list (Spools tab)
+* A big title "Spools" with a muted subtitle "N spools in inventory" (active spools only).
+* One card per active spool showing: a round spool icon in the spool's color, color name, "Brand . Material", the remaining grams (large, monospace) and a thin progress bar (remaining / starting weight).
+* Remaining weight is never typed in; it is calculated as starting weight minus the sum of all logged prints for that spool.
+* Low-stock warning: if the remaining grams are below the low-stock limit, the card shows a "LOW" badge and an amber accent. The limit is a number input (default 200 g) and applies immediately.
+* Each card has a "Mark empty" button. It archives the spool (it disappears from the list). Data is never deleted.
+* If there are no spools, show a friendly message and a button "Add your first spool".
+
+3.3 Filtering (Spools tab)
+* Two dropdowns: Material and Color, both with "All" as the default.
+* Both filters work together.
+* If nothing matches, show "No spools match your filters".
+
+3.4 Log a print (Print Log tab)
+* Fields: spool (dropdown of active spools, shown as "Material - Color - remaining g"), grams used (number), date (default today), print name (optional text).
+* Validation with clear error messages: a spool must be selected, grams used must be above 0, and grams used must not be higher than the spool's remaining grams.
+* After saving, the remaining weight of that spool updates automatically.
+* Below the form, a list of the 20 newest prints (newest first) with date, print name (or "Untitled"), spool and grams used.
+* If there are no active spools, show "Add a spool first" instead of the form.
+
+3.5 Monthly statistics (Stats tab), for the current calendar month
+* Total grams used this month
+* Number of prints this month
+* Average grams per print (show "-" if there are no prints)
+* Use by material: a simple horizontal bar list (material name, grams, bar width proportional to the largest value). Show "No prints this month" when empty.
+
+3.6 Saving data
+* Spools, prints and the low-stock limit are saved to localStorage and loaded again when the app starts.
+* If the saved data is missing or broken, the app must not crash; it starts with empty data and a 200 g limit.
+
+NOT INCLUDED IN VERSION 1 (do NOT build):
+Editing spools, deleting prints, a search field, showing or restoring archived spools, estimated days of stock left, price and cost calculations, scanning or barcodes, printer management, storage locations, cloud sync, export/import.
+
+Do not invent any other features. If something is unclear, ask me instead of guessing.
+
+
+4. CODE STRUCTURE
+
+I decide the structure of the code, you implement it. Do not put everything in one file. Props are passed from parent to child.
+
+4.1 Files and components (at least 7 components, each in its own file)
+* App - the only place that holds the app data (state) and the handler functions (add spool, mark spool empty, add print, change filters, change tab). It also shows the top row (app name with spool icon, the "+" button) and the page title with subtitle. It passes data and handler functions down to the other components as props.
+* TabBar - bottom navigation (Spools / Print Log / Stats). Receives the active tab and a function to change it.
+* FilterBar - material dropdown, color dropdown and the low-stock limit input. Receives the current values and change functions.
+* SpoolForm - the form for adding a spool. Keeps only its own temporary input values and error messages in local state; when the form is valid it calls the function it received from App.
+* SpoolList - receives the already filtered spools array and the remaining grams for each spool, and renders one card per spool (the card is part of this file).
+* PrintForm - the form for logging a print (same pattern as SpoolForm), plus the list of the 20 newest prints below it.
+* StatsPanel - receives the already calculated monthly stats as props and only displays them (stat tiles and the "use by material" bars).
+* SpoolIcon - a small helper component: the round spool SVG filled with a color it receives as a prop.
+
+Other files:
+* types.ts - all TypeScript types and interfaces.
+* constants.ts - the fixed lists: materials, and colors with their names and default hex codes:
+  Black #111111, White #F2F2F2, Gray #8A8F98, Silver #C0C4CC, Red #E5484D, Orange #F5821F, Yellow #F6C90E, Green #30A46C, Blue #3E63DD, Purple #8E4EC6, Pink #E93D82, Brown #8B5E3C, Beige #D9C3A0, Transparent #9FD3E6, Other #6B7280.
+* utils.ts - small pure helper functions (no React inside): getRemainingGrams, filterSpools, getMonthlyStats, getTodayString.
+
+4.2 Data model
+* Material = "PLA" | "PETG" | "ABS" | "ASA" | "TPU" | "Nylon" | "PC" | "Other"
+* Spool: id, material, colorName, colorHex, brand, startWeightG, purchaseDate, price (number or null), archived
+* PrintLog: id, spoolId, gramsUsed, date, name
+* Remaining weight is NOT stored. It is always calculated: startWeightG minus the sum of gramsUsed of all prints for that spool.
+* Use crypto.randomUUID() for ids. Dates are stored as "YYYY-MM-DD" strings. "This month" means the same year and month as today.
+
+4.3 State (useState in App)
+* active tab
+* spools array
+* prints array
+* low-stock limit
+* material filter
+* color filter
+* whether the add-spool form is open
+Everything else (filtered list, remaining grams, monthly stats) is calculated from this state with plain calculations in the component body. Do not store calculated values in state. Do not use useMemo, useReducer or context.
+
+4.4 Saving to localStorage (useEffect)
+* Keys: "storage3d.spools", "storage3d.prints", "storage3d.settings".
+* Load the data when the app starts using a lazy initializer: useState(() => ...). Wrap JSON.parse in try/catch and fall back to empty defaults (and a 200 g limit) if the data is missing or broken.
+* Use useEffect to save to localStorage whenever the spools, the prints or the limit change. Use the correct dependency array (spools, prints, limit). Do not leave the dependency array out.
+* Do not use useEffect for anything else.
+
+4.5 Rules
+* Every list item rendered with .map() must have a key prop that uses its id.
+* All form inputs are controlled inputs (value + onChange).
+* TypeScript: define types/interfaces for Material, Spool, PrintLog, Tab, MonthlyStats and for the props of every component. No `any`.
+* Components receive data and functions through props only. No global variables, no context.
+
+
+5. STYLING WITH MEASURABLE RULES
+
+Do not make it "nice" by your own taste. Follow these exact rules. Define the colors once as theme tokens in the existing src/index.css with Tailwind v4 @theme (do not change config files, do not install anything), and then use the token names in the components.
+
+5.1 Colors
+  Page background:             #0F1115  (dark graphite)
+  Card / panel:                #1A1D23
+  Raised element / input:      #23272F
+  Border (1px):                #2E333D
+  Primary text:                #F2F4F7
+  Muted text:                  #8B93A1
+  ACCENT (engineering orange): #FF7A1A
+  Accent hover:                #FF8F3D
+  Accent soft background:      #FF7A1A at 15% opacity
+  Warning (low stock):         #FFB020
+  Danger / errors:             #EF4444
+
+* Orange is the ONE accent color and is used consistently: active tab, primary buttons, progress bars, focus borders and small highlights. Amber is used only for low stock, red only for errors. Do not add any other accent color. (The filament colors on the spool icons are data, not part of the theme.)
+
+5.2 Shape, depth and spacing
+* Cards: rounded-2xl, 1px border, background #1A1D23, padding p-4, gap-3 between cards.
+* Inputs and dropdowns: rounded-xl, background #23272F, 1px border, orange border on focus, height at least 44px.
+* The two filter dropdowns and the badges ("LOW") are pill-shaped (rounded-full). Dropdowns use appearance-none with a small inline SVG chevron on the right.
+* Buttons: primary = orange background with dark text, secondary = #23272F background with a border. Subtle hover states with a short transition. All tap targets at least 44px high.
+* No shadow heavier than shadow-md.
+* Generous whitespace: at least 16px (p-4 / gap-4) between sections.
+
+5.3 Layout
+* Target screen: phone, 360-430px wide. Layout is centered horizontally with a max width of 480px. On desktop it stays in the centered column.
+* The app must feel like a fixed, native phone app, NOT like a long scrolling web page. The whole app is exactly as tall as the screen (use h-dvh, with overflow-hidden on the outer container) and the browser page itself never scrolls.
+* The screen has three fixed zones:
+  - Top zone (fixed): the top row (app name, "+" button), the page title with subtitle, and on the Spools tab the filter bar.
+  - Middle zone (the only part that scrolls): the content of the current tab (spool cards, the print form and print list, or the stats). Use flex-1 with overflow-y-auto so only this area scrolls, and only when its content is taller than the space available. The inline add-spool form also appears at the top of this middle zone.
+  - Bottom zone (fixed): the floating tab bar.
+* The Stats tab must fit on one screen without scrolling on a normal phone.
+* Top row: small orange spool icon (inline SVG) next to the app name "Storage.3D" (the ".3D" part in orange) on the left; on the right a round orange "+" button, shown only on the Spools tab.
+* Page title: text-3xl, bold, with a muted subtitle under it.
+* Bottom tab bar: floating, rounded-3xl, background #1A1D23, 1px border, always visible at the bottom and centered, same max width as the page. Each tab has an inline SVG icon above a small label. The active tab is orange text on a soft orange background pill; inactive tabs are muted gray. Add enough bottom padding inside the scrolling middle zone so the tab bar never covers the last item.
+* Spool card layout: round spool icon on the left (about 48px), color name (bold) and "Brand . Material" (muted) in the middle, remaining grams (large, monospace) with a small muted "left" on the right, the progress bar along the bottom of the card, "Mark empty" as a small secondary button.
+* Visual reference: a modern dark filament-inventory phone app with a big title and a spool count at the top, pill-shaped filter dropdowns, rounded spool cards with a colored spool icon on the left and the remaining grams on the right, and a floating rounded bottom tab bar.
+
+5.3.1 Typography
+* Clean sans-serif font for text.
+* font-mono with tabular-nums for ALL numbers and grams, so the digits line up and do not jump.
+* Small UPPERCASE labels with letter spacing (for example "REMAINING", "MATERIAL", "LOW STOCK (g)", "TOTAL USED") to give a datasheet / technical-drawing feel.
+
+5.4 One small touch and an upper limit
+* The one small touch: the orange spool icon next to the app name "Storage.3D".
+* Technical, clean, not overloaded. Do not add gradients, animations (except short hover/focus transitions), emojis or decorative elements.
+
+
+6. PURPOSE AND QUALITY OF THE CODE
+
+Who the code is for: I am an industrial engineering student with no coding experience. This is my first app, made for a college class. I will read the code, run it, test it and later extend it myself with the help of AI tools. The app itself is for a 3D printing hobbyist (me).
+
+What counts as good:
+* It works without errors on the first run (npm run dev) and every feature in part 3 can be tested.
+* Simple and readable: clear variable and function names, simple logic, no unnecessary abstractions, short functions.
+* Easy to extend later (for example adding edit, delete or search) without rewriting the app.
+* Short comments that explain what each part does, so I can learn from the code.
+
+Keep the code clean and readable - this will be used to teach React fundamentals, so prefer clarity over cleverness.
+
+
+HOW TO WORK
+1. Read the whole prompt first. If something is unclear or missing, ask me before writing code.
+2. Then list all the files you will create (with their folders), and give me each file with its name above the code block.
+3. Do not install anything and do not change package.json.
+4. After the code, tell me how to run the app (npm run dev) and give me a short checklist to test each of the 6 features in part 3.
+5. Remind me when to commit and push to GitHub and suggest short commit messages.
+
+
+7. UPGRADE 1 - BETTER FUNCTIONALITY
+
+The app described in sections 1-6 is already built and works. This upgrade MODIFIES the existing code. Do not rebuild the app from scratch and do not change anything that is not mentioned here. Everything that already works (tabs, layout, colors, filters, validation, localStorage keys) must keep working exactly as before. Data that is already saved in localStorage must still load without any loss and without a reset.
+
+7.1 GOAL OF THE UPGRADE
+
+Make the app more useful for everyday use: mistakes can be fixed (edit a spool, delete a print), archived spools can be brought back, prices are in EUR, the Stats tab shows the average monthly use and the estimated cost of the filament used, and the stock bar of each spool is green while there is enough filament and turns red when the low-stock limit is reached. This upgrade overrides these items of the "NOT INCLUDED IN VERSION 1" list: editing spools, deleting prints, showing/restoring archived spools, and price and cost calculations (only the ones described below).
+
+Stack rules stay the same: React + TypeScript + Vite + Tailwind v4. Do NOT install any packages, do NOT change package.json, no `any`.
+
+
+7.2 NEW AND CHANGED FUNCTIONALITIES
+
+7.2.1 Edit a spool (Spools tab)
+* Every ACTIVE spool card gets an "Edit" button next to "Mark empty".
+* Edit opens the same SpoolForm inline at the top of the scrolling area, pre-filled with the values of that spool. The form title says "Edit spool" and the save button says "Save changes".
+* Editable fields: material, color, brand, starting weight, purchase date, price.
+* Same validation as when adding a spool. One extra rule: the starting weight must not be lower than the grams already used by prints of that spool. Error message: "Starting weight cannot be below the X g already used."
+* If the color is changed, the spool uses the default hex code of the newly chosen color.
+* Editing never changes the spool's id, so all its prints stay linked to it. Remaining grams, filters and stats update automatically because they are calculated.
+* Only one form can be open at a time: opening Edit closes the "add spool" form and the other way round. Cancel closes the form without changes.
+
+7.2.2 Delete a print (Print Log tab)
+* Every print in the "Recent prints" list gets a small delete button (inline SVG trash icon, tap area at least 44px).
+* Before deleting, ask for confirmation with window.confirm("Delete this print? The grams go back to the spool.").
+* Deleting removes only that print. The spool is not changed; its remaining grams are higher again because they are calculated from the prints.
+* Deleting works for prints of archived spools as well.
+
+7.2.3 Show and restore archived spools (Spools tab)
+* A toggle "Show archived" is placed on the same line as the subtitle, on the right (a small pill-shaped toggle; the tap area is at least 44px high). Default: off.
+* When it is on, archived spools are also shown in the list. They look muted (reduced opacity), have a gray "ARCHIVED" badge, no LOW badge and a gray progress bar. They have only one button: "Restore" (sets archived back to false). They have no Edit and no Mark empty button.
+* Archived spools are still NOT offered in the Print Log dropdown, and still NOT counted in the subtitle "N spools in inventory". The subtitle keeps counting active spools only.
+* The material and color filters work on archived spools as well when they are shown.
+* Empty states: if there are no spools at all, show the existing "Add your first spool" box. If the toggle is on and there are only archived spools, show them (no empty box).
+
+7.2.4 Price in EUR
+* The price field in the spool form is labeled "Price (EUR)" (number, optional, 2 decimals allowed, cannot be negative). The stored value is a plain number in EUR (the data model does not change, so old saved data stays valid).
+* Prices are displayed with two decimals and the euro sign after the number, for example "12.99 €". Put this in one helper function formatEuro in utils.ts.
+
+7.2.5 Cost calculations
+* Price per gram of a spool = price / startWeightG. Spools without a price (price is null) have no cost and are skipped in all cost calculations.
+* Cost of one print = gramsUsed x price per gram of its spool. This also works for prints of archived spools.
+* In the "Recent prints" list, show the cost of the print under or next to the grams (muted, for example "0.45 €"), only if the spool has a price.
+
+7.2.6 Statistics upgrade (Stats tab)
+Keep all existing stats and add:
+* AVG PER MONTH (g): average grams used per month. Calculation: total grams of ALL prints divided by the number of months from the month of the first print up to and including the current month (months without prints count as 0; minimum 1 month). Show "-" if there are no prints.
+* Under it, in small muted text: the average cost per month in EUR, calculated the same way from the cost of all prints that have a price (for example "≈ 8.40 € / month"). Show nothing there if no print has a price.
+* COST THIS MONTH (EUR): the sum of the cost of this month's prints (current calendar month). Show "-" if there is no priced print this month.
+* If some of this month's prints belong to spools without a price, show a small muted note under the tile: "N prints without price not included".
+* The Stats tab may now scroll inside the middle zone if it does not fit on a small phone. Layout of the tiles (2 columns): TOTAL USED (full width), PRINTS, AVG PER PRINT, AVG PER MONTH, COST THIS MONTH, then "Use by material".
+
+7.2.7 Spool icon visibility
+* The outline of the round spool icon gets lighter and a bit thicker so dark filaments (for example Black) are visible on the dark card: outline color #8B93A1 at about 60% opacity, 1.5px.
+* For very dark filament colors, draw the thin rings in white at about 20% opacity instead of black at 25%, so the rings stay visible. Put the "is this color dark?" check in one small helper function isDarkColor(hex) in utils.ts (simple brightness formula from the red, green and blue values).
+
+
+7.2.8 Stock bar colors: green / red (this overrides the amber low-stock look from section 3.2)
+* The progress bar on every ACTIVE spool card shows the stock state by color: GREEN (#22C55E) while the remaining grams are above the low-stock limit, and RED (#EF4444) as soon as the remaining grams are at or below the limit. The bar is no longer orange.
+* The color is calculated on every render from the remaining grams and the limit (not stored), so it changes immediately when a print is logged or when the user changes the low-stock limit.
+* "Low stock" now means "at or below the limit" (before: below the limit). Put this rule in ONE small helper function isLowStock(remainingG, limit) in utils.ts and use it everywhere on the card.
+* The rest of the low-stock look changes from amber to red, so the card is consistent: red "LOW" badge, red card border, red remaining-grams number. When the stock is OK, the card keeps the normal border color and the grams number stays white.
+* The state must not depend on color alone: the "LOW" badge keeps it readable for people who cannot tell red and green apart.
+* Archived spools keep the gray bar. The bar stays thin (h-1.5) on the #23272F track; its width is still remaining / starting weight.
+* Amber (#FFB020) is no longer used anywhere in the app. The "Use by material" bars on the Stats tab stay orange, because they are not stock bars.
+
+7.3 CODE CHANGES (keep the structure, no new architecture)
+
+* No new components are needed. Change only what is necessary in: App, SpoolForm, SpoolList, FilterBar or the subtitle line in App (for the toggle), PrintForm, StatsPanel, SpoolIcon, types.ts and utils.ts.
+* New state in App (useState): the id of the spool that is being edited (string or null), and show archived (boolean). Everything else is still calculated, not stored. Still no useMemo, useReducer or context.
+* New handler functions in App: update a spool, restore a spool, delete a print, start/stop editing. App is still the only place that changes the data; components receive data and functions through props.
+* SpoolForm gets an optional prop for the spool to edit (and the grams already used by that spool, calculated in App). Without it, the form works exactly as before. It keeps its own input values in local state, started from the spool's values when editing.
+* utils.ts: extend or add small pure helper functions: filterSpools (new "show archived" parameter), getPrintCost, getMonthlyStats (extended with the new values), formatEuro, isDarkColor. Update the MonthlyStats type and the props types in types.ts. No `any`.
+* The useEffect for saving to localStorage stays as it is. The localStorage keys and the data model of Spool and PrintLog do not change.
+* Every list item still needs a key prop that uses its id. All inputs stay controlled.
+
+
+7.4 STYLING FOR THE UPGRADE
+
+* Use the existing colors and rules from section 5, plus one new status color: success green #22C55E (stock is OK, used only for the stock bar). Orange stays the one accent color for the interface (buttons, active tab, focus borders). Green = enough stock, red #EF4444 = low stock, errors and the hover color of the print delete button, gray = archived. Amber is no longer used.
+* Edit and Mark empty are secondary buttons of the same size, side by side on the bottom row of the card. The percentage text ("90% OF 1000 G") may move to its own small line above the buttons so everything fits on a 360px wide phone.
+* Restore is a secondary button. The delete button on a print is a small icon button in muted gray that turns red on hover.
+* Tap targets stay at least 44px high. No new animations, gradients or shadows.
+
+
+7.5 NOT INCLUDED IN THIS UPGRADE (do NOT build)
+
+Editing prints, permanent deletion of spools, search, estimated days of stock left, other currencies than EUR, price history, scanning/barcodes, printer management, storage locations, cloud sync, export/import, any chart library.
+
+Do not invent any other features. If something is unclear, ask me instead of guessing.
+
+
+7.6 HOW TO WORK FOR THE UPGRADE
+
+1. First list which files you will change and what changes in each one (one short line per file).
+2. Give me the COMPLETE new content of every changed file, with the file name above each code block, so I can copy and replace the whole file. Do not give me only fragments.
+3. Do not touch files that do not need to change, do not install anything and do not change package.json.
+4. Keep the code clean and readable and add short comments for the new parts. I am a beginner and want to learn from it.
+5. After the code, give me a short checklist to test each upgrade (edit, delete a print, restore, price in EUR, new stats, icon outline, green/red stock bar) and one check that my old saved data still loads.
+6. Remind me when to commit and push to GitHub and suggest short commit messages, for example "Add edit spool", "Add delete print and restore archived", "Add monthly average and cost stats".
+
+
