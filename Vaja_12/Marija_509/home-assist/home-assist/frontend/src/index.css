@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 html, body { height: 100%; overflow: hidden; overscroll-behavior: none; }
-#root { height: 100%; }
+#root { height: 100vh; height: 100dvh; }
 :root {
   --ink: #26384a;
   --brand-a: #2fa89a; --brand-b: #4f8fe8; --brand-c: #8b7be0;
