@@ -1,105 +1,140 @@
-Enia_417 eniaaaaa
-1. Goals
+KORAK 1 – CILJ IN TON
+Izdelaj preprosto, sodobno in pregledno spletno aplikacijo Beležka, ki študentom pomaga pri organizaciji izpitov, nalog in drugih študijskih obveznosti.
 
-Develop a web application called Notebook (Study Planner) designed for high school and university students to organize their academic responsibilities
+Uporabnik lahko dodaja, ureja in briše obveznosti, spremlja njihove roke ter jih označi kot opravljene. Aplikacija obveznosti samodejno razvrsti po datumu in prikaže, koliko dni je še do posameznega roka. Posebej označi zamujene in bližajoče se roke.
 
-2. Technology Stack
+Aplikacija naj bo elegantna, intuitivna, v celoti v slovenščini in prilagojena mobilnim telefonom.
 
-Use:
-HTML5
-JavaScript (ES6)
+KORAK 2 – TEHNOLOGIJA IN OMEJITVE
+Uporabi React, TypeScript, Vite in Tailwind CSS v4.
+Za shranjevanje študijskih obveznosti uporabi localStorage.
+Aplikacija naj deluje brez zalednega strežnika, zunanjih API-jev, podatkovne baze in uporabniških računov.
+Vsi napisi, gumbi, opozorila in sporočila naj bodo v slovenščini.
+Za izračun preostalih dni uporabi standardne JavaScript funkcije za delo z datumi.
+Do NOT install any additional packages.
 
-Restrictions:
-No React
-No external libraries
-No Bootstrap
-No database
+KORAK 3 – FUNKCIONALNOSTI
+3.1. Dodajanje obveznosti
+Na začetnem zaslonu prikaži naslov Beležka in gumb Nova obveznost.
+S klikom na gumb odpri obrazec za vnos nove obveznosti.
+Obrazec naj vsebuje naslednja polja:
+Vrsta obveznosti: izpit, naloga ali drugo.
+Ime predmeta.
+Naslov obveznosti.
+Datum roka.
+Neobvezna opomba.
+Preveri, ali so vsa obvezna polja izpolnjena.
+Po uspešnem vnosu zapri obrazec in prikaži novo obveznost na seznamu.
+Dodaj možnost preklica vnosa brez shranjevanja.
+3.2. Pregled in razvrščanje obveznosti
+Vse neopravljene obveznosti prikaži v obliki preglednih kartic.
+Obveznosti samodejno razvrsti po datumu roka, od najzgodnejšega do najpoznejšega.
+Pri enakem datumu uporabi abecedni vrstni red naslovov.
+Vsaka kartica naj vsebuje vrsto obveznosti, predmet, naslov, datum roka, opombo in število preostalih dni.
+Če uporabnik nima dodanih obveznosti, prikaži sporočilo Tvoj seznam je prazen.
+3.3. Spremljanje rokov
+Pri vsaki neopravljeni obveznosti izračunaj število dni do roka.
+Obveznosti, katerih rok je že potekel, označi z rdečo barvo.
+Obveznosti z rokom v naslednjih treh dneh označi z oranžno barvo.
+Obveznosti, katerih rok je danes, označi z napisom Danes.
+Obveznosti, katerih rok je jutri, označi z napisom Jutri.
+Pri drugih obveznostih prikaži število preostalih dni, na primer Čez 5 dni.
+Pri zamujenih obveznostih prikaži število dni zamude.
+3.4. Urejanje in brisanje obveznosti
+Pri vsaki obveznosti dodaj gumba Uredi in Izbriši.
+S klikom na gumb Uredi odpri obrazec z že vnesenimi podatki.
+Uporabniku omogoči spreminjanje vseh podatkov obveznosti.
+Po shranjevanju sprememb samodejno posodobi seznam.
+Pred brisanjem zahtevaj potrditev uporabnika.
+Izbrisano obveznost odstrani iz seznama in localStorage.
+3.5. Opravljene obveznosti
+Pri vsaki obveznosti prikaži potrditveni gumb.
+Ko uporabnik označi obveznost kot opravljeno, jo premakni v ločen zavihek Opravljene.
+Opravljene obveznosti označi z zeleno barvo in prečrtanim naslovom.
+Omogoči ponovno označevanje obveznosti kot neopravljene.
+Opravljene obveznosti naj ostanejo shranjene tudi po osvežitvi strani.
+Če uporabnik nima opravljenih obveznosti, prikaži sporočilo Še ni opravljenih obveznosti.
+3.6. Filtriranje obveznosti
+Dodaj filter po vrsti obveznosti z možnostmi:
+Vse vrste.
+Izpit.
+Naloga.
+Drugo.
+Dodaj filter po predmetu.
+Seznam predmetov samodejno sestavi iz vnesenih obveznosti, brez podvajanja.
+Omogoči hkratno uporabo obeh filtrov.
+Dodaj gumb Ponastavi, ki odstrani vse izbrane filtre.
+Če ni ustreznih rezultatov, prikaži sporočilo Ni zadetkov.
+3.7. Statistični pregled
+Na začetnem zaslonu prikaži štiri pregledne statistične kartice:
 
-3. Features
-Adding Tasks:
-Task title
-Subject
-Exam
-Assignment
-Project
-Due date
-List Display
+Število vseh neopravljених obveznosti.
+Število obveznosti z rokom v naslednjih treh dneh.
+Število obveznosti z zamujenim rokom.
+Število opravljenih obveznosti.
+Podatke samodejno posodobi ob dodajanju, brisanju, urejanju ali označevanju obveznosti.
 
-Each task should display:
+3.8. Shranjevanje podatkov
+Vsaka obveznost naj ima enolični ID.
+Vse obveznosti in njihovo stanje shrani v localStorage.
+Ob ponovnem odpiranju aplikacije samodejno naloži shranjene podatke.
+Če podatkov še ni, prikaži prazen seznam.
+Poskrbi za pravilno delovanje aplikacije tudi ob neveljavnih shranjenih podatkih.
+KORAK 4 – ZGRADBA KODE
+Aplikacijo razdeli na pet preglednih React komponent.
 
-Title
-Subject
-Type
-Due date
-Status
-Marking as Completed
+App – upravlja stanje aplikacije, seznam obveznosti, filtre in navigacijo.
+ObligationForm – omogoča dodajanje in urejanje obveznosti.
+ObligationCard – prikazuje posamezno obveznost, rok, stanje in gumbe za upravljanje.
+Filters – omogoča filtriranje po vrsti obveznosti in predmetu.
+Stats – prikazuje statistični pregled študijskih obveznosti.
+Uporabi useState za upravljanje stanja aplikacije.
+Uporabi useEffect za zapis podatkov v localStorage ob spremembah.
+Podatke in funkcije med komponentami prenašaj prek props.
+Za študijske obveznosti uporabi TypeScript vmesnik Obligation.
+Ne uporabljaj tipa any.
+Podatkovne tipe in funkcije za izračun rokov shrani v ločeno datoteko src/model.ts.
+Vsaka obveznost naj vsebuje naslednje podatke:
 
-Completed tasks should have:
-Strikethrough text
-Green indicator
-Reduced emphasis
-Deleting Tasks
+id – enolični identifikator.
+type – vrsta obveznosti.
+course – ime predmeta.
+title – naslov obveznosti.
+due – datum roka.
+note – neobvezna opomba.
+done – stanje opravljene obveznosti.
+KORAK 5 – OBLIKOVANJE Z MERLJIVIMI NAVODILI
+Aplikacija naj ima eleganten, svetel in minimalističen videz, ki spominja na sodoben študijski planer.
 
-Filtering:
-All
-Active
-Completed
-Data Persistence:
-Data should not be lost when the page is refreshed
+Ozadje – svetlo sivkino #F6F5FA.
+Kartice – bele #FFFFFF, z zaobljenimi robovi in nežno senco.
+Glavno besedilo – temno modro-vijolično #29263E.
+Glavni gumbi – temno vijolični #49406E z belim besedilom.
+Poudarki – svetlo vijolični #EEE9F8.
+Zamujeni roki – rdeči #A63F54.
+Bližajoči se roki – oranžni #D6A04C.
+Opravljene obveznosti – zeleni #39725D.
+Postavitev – največja širina vsebine 960 px. Na računalniku vsebino postavi na sredino.
+Razmiki – 12–16 px med karticami ter 16–24 px notranjega odmika.
+Tipografija – elegantna serifna pisava za glavne naslove in preprosta sans-serifna pisava za ostalo besedilo.
+Gumbi in vnosna polja – najmanjša višina 44 px za enostavno uporabo na dotik.
+Navigacija – uporabi zavihka Neopravljene in Opravljene. Aktivni zavihek jasno poudari.
+Naslovni zaslon – dodaj preprosto ilustracijo beležke, trenutni datum in motivacijski napis.
+Mobilni prikaz – preveri postavitev pri širini 375 px. Izogibaj se vodoravnemu pomikanju in nepotrebnim animacijam.
+KORAK 6 – NAMEN KODE IN MERILO KAKOVOSTI
+Aplikacija je študentski projekt za prikaz osnov uporabe Reacta, TypeScripta, upravljanja podatkov, CRUD operacij, filtriranja, razvrščanja, dela z datumi in shranjevanja v localStorage.
 
-4. Code Structure
+Koda naj bo čista, pregledna in razumljiva začetniku. Uporabljaj jasna imena komponent, funkcij in spremenljivk ter preprosto logiko.
 
-HTML
-Application title
-Form for adding tasks
-Filters
-Task list
+Merila uspešnosti
 
-CSS:
-Layout styling
-Color scheme
-Responsiveness
-Animations
-
-JavaScript:
-addTask()
-renderTasks()
-deleteTask()
-toggleTaskStatus()
-filterTasks()
-saveTasks()
-loadTasks()
-
-5. Design
-Color Scheme:
-Primary: #2563EB (Blue)
-Success: #16A34A (Green)
-Warning: #F59E0B (Orange)
-Background: #F8FAFC
-
-Layout:
--Cards with rounded corners
--Shadows under elements
-Sufficient whitespace
-Responsive Design
-Mobile phone
-Tablet
-Desktop computer
-Interactions
-Hover effects
-Smooth transitions
-Pleasant animations
-
-6. Purpose and Quality
-
-Purpose:
-Beginners
-Computer science students
-Learning web development
-
-Quality Requirements:
-Clear and meaningful variable names
-No duplicated code
-Well-written comments
-Good user experience
--Easy maintenance and future upgrades
+Uporabnik lahko uspešno doda, uredi in izbriše obveznost.
+Obveznosti so pravilno razvrščene po datumu roka.
+Število preostalih dni je pravilno izračunano.
+Zamujeni roki so označeni rdeče, roki v naslednjih treh dneh pa oranžno.
+Opravljene obveznosti se premaknejo v ločen zavihek.
+Filtra po predmetu in vrsti obveznosti delujeta hkrati.
+Statistične kartice prikazujejo pravilno število obveznosti.
+Vsi podatki ostanejo shranjeni po osvežitvi strani.
+Aplikacija je uporabna na telefonu in računalniku.
+Ukaza npm run build in npm run lint se izvedeta brez napak.
