@@ -1,0 +1,11 @@
+NOTEBOOK — TODO
+
+[x] Add tasks with title, subject, type and due date
+[x] Display tasks
+[x] Filter all, active and completed tasks
+[x] Mark tasks as completed
+[x] Delete tasks
+[x] Save tasks in localStorage
+[x] Responsive desktop, tablet and mobile layout
+[ ] Add task editing
+[ ] Add task search

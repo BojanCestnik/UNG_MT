@@ -1,0 +1,1129 @@
+[
+ {
+  "id": "tap-aerator",
+  "title": "Clean a tap aerator",
+  "object": "Tap",
+  "problem": "Low pressure",
+  "difficulty": "easy",
+  "minutes": 10,
+  "category": "Plumbing",
+  "emoji": "🚰",
+  "tools": [
+   "Pliers",
+   "Cloth",
+   "Toothbrush"
+  ],
+  "materials": [
+   "White vinegar"
+  ],
+  "safetyNotes": [
+   "Put a cloth around the aerator so the pliers do not scratch it."
+  ],
+  "steps": [
+   "🚰 Unscrew the aerator at the tap end by hand or with pliers over a cloth.",
+   "🧽 Rinse out loose grit in the sink.",
+   "🍶 Soak it in vinegar for 30 minutes.",
+   "🪥 Brush the mesh with a toothbrush.",
+   "✅ Screw it back on and run the tap."
+  ]
+ },
+ {
+  "id": "flush-rim",
+  "title": "Weak toilet flush",
+  "object": "Toilet",
+  "problem": "Weak flush",
+  "difficulty": "easy",
+  "minutes": 20,
+  "category": "Plumbing",
+  "emoji": "🚽",
+  "tools": [
+   "Toothbrush",
+   "Cloth"
+  ],
+  "materials": [
+   "White vinegar"
+  ],
+  "safetyNotes": [
+   "Never mix vinegar with bleach."
+  ],
+  "steps": [
+   "🚽 Lift the seat and look under the rim for clogged holes.",
+   "🍶 Pour a cup of vinegar into the overflow tube in the tank. :: The overflow tube is the open pipe inside the tank.",
+   "⏳ Wait 30 minutes.",
+   "🪥 Scrub the rim holes with a toothbrush.",
+   "✅ Flush twice to rinse."
+  ]
+ },
+ {
+  "id": "shower-hose",
+  "title": "Replace a shower hose",
+  "object": "Shower",
+  "problem": "Cracked hose",
+  "difficulty": "easy",
+  "minutes": 15,
+  "category": "Plumbing",
+  "emoji": "🚿",
+  "tools": [
+   "Adjustable wrench",
+   "Cloth"
+  ],
+  "materials": [
+   "New shower hose",
+   "Rubber washers"
+  ],
+  "safetyNotes": [
+   "Do not overtighten. Plastic and chrome fittings crack."
+  ],
+  "steps": [
+   "🚿 Unscrew the old hose at both ends, with the wrench over a cloth.",
+   "🔍 Check the old rubber washers and replace them.",
+   "🔄 Screw the new hose on at the tap end by hand.",
+   "🔧 Tighten a quarter turn with the wrench.",
+   "💧 Run the water and check for drips."
+  ]
+ },
+ {
+  "id": "outdoor-tap",
+  "title": "Dripping outdoor tap",
+  "object": "Outdoor tap",
+  "problem": "Dripping",
+  "difficulty": "easy",
+  "minutes": 20,
+  "category": "Plumbing",
+  "emoji": "💧",
+  "tools": [
+   "Adjustable wrench"
+  ],
+  "materials": [
+   "Rubber washer",
+   "Thread tape"
+  ],
+  "safetyNotes": [
+   "Turn off the water supply to the outdoor tap first."
+  ],
+  "steps": [
+   "💧 Turn off the supply valve inside the house.",
+   "🔧 Unscrew the tap cap with the wrench.",
+   "⭕ Replace the rubber washer. :: Take the old one to the shop to match the size.",
+   "🧵 Wrap thread tape on the threads.",
+   "✅ Reassemble and turn the water on slowly."
+  ]
+ },
+ {
+  "id": "sink-plug",
+  "title": "Sink plug does not hold water",
+  "object": "Sink",
+  "problem": "Plug leaks",
+  "difficulty": "easy",
+  "minutes": 10,
+  "category": "Plumbing",
+  "emoji": "🪠",
+  "tools": [
+   "Pliers"
+  ],
+  "materials": [
+   "New sink plug"
+  ],
+  "safetyNotes": [
+   "Wear gloves when you clean out hair and dirt."
+  ],
+  "steps": [
+   "🔍 Lift the plug out and look at the rubber seal.",
+   "🧽 Clean the plug and the drain edge.",
+   "🔧 Unscrew the old plug from its chain with pliers.",
+   "⭕ Fit a new plug of the same size.",
+   "💧 Fill the sink and check that the water stays."
+  ]
+ },
+ {
+  "id": "burnt-pan",
+  "title": "Burnt pan",
+  "object": "Pan",
+  "problem": "Burnt food",
+  "difficulty": "easy",
+  "minutes": 30,
+  "category": "Kitchen & cleaning",
+  "emoji": "🍳",
+  "tools": [
+   "Scrubbing brush",
+   "Sponge"
+  ],
+  "materials": [
+   "Baking soda",
+   "Water"
+  ],
+  "safetyNotes": [
+   "Let the pan cool before you touch it."
+  ],
+  "steps": [
+   "🍳 Cover the burnt part with water and a spoon of baking soda.",
+   "♨️ Heat it gently for 10 minutes. :: Stay in the kitchen while it heats.",
+   "⏳ Turn off the heat and let it cool.",
+   "🧽 Scrub with the brush.",
+   "✅ Wash with soap and dry."
+  ]
+ },
+ {
+  "id": "wooden-board",
+  "title": "Refresh a wooden chopping board",
+  "object": "Chopping board",
+  "problem": "Smells and stains",
+  "difficulty": "easy",
+  "minutes": 20,
+  "category": "Kitchen & cleaning",
+  "emoji": "🔪",
+  "tools": [
+   "Sponge",
+   "Cloth"
+  ],
+  "materials": [
+   "Coarse salt",
+   "Lemon",
+   "Food-safe oil"
+  ],
+  "safetyNotes": [
+   "Use only food-safe oil. Cooking oil goes rancid."
+  ],
+  "steps": [
+   "🧂 Sprinkle coarse salt over the board.",
+   "🍋 Rub it with half a lemon.",
+   "⏳ Leave it for 5 minutes, then rinse.",
+   "🧽 Dry it completely with a cloth.",
+   "🫒 Rub in a little food-safe oil."
+  ]
+ },
+ {
+  "id": "grout-clean",
+  "title": "Dirty tile grout",
+  "object": "Tiles",
+  "problem": "Dirty grout",
+  "difficulty": "easy",
+  "minutes": 30,
+  "category": "Kitchen & cleaning",
+  "emoji": "🧼",
+  "tools": [
+   "Toothbrush",
+   "Scrubbing brush",
+   "Sponge"
+  ],
+  "materials": [
+   "Baking soda",
+   "Water"
+  ],
+  "safetyNotes": [
+   "Wear gloves. Never mix cleaners."
+  ],
+  "steps": [
+   "🧤 Put on gloves.",
+   "🥄 Mix baking soda and water into a paste.",
+   "🪥 Spread it on the grout and leave for 15 minutes.",
+   "🧽 Scrub with a toothbrush.",
+   "💧 Rinse and dry."
+  ]
+ },
+ {
+  "id": "window-clean",
+  "title": "Streaky windows",
+  "object": "Window",
+  "problem": "Streaks",
+  "difficulty": "easy",
+  "minutes": 25,
+  "category": "Kitchen & cleaning",
+  "emoji": "🪟",
+  "tools": [
+   "Squeegee",
+   "Microfibre cloth",
+   "Spray bottle"
+  ],
+  "materials": [
+   "White vinegar",
+   "Water"
+  ],
+  "safetyNotes": [
+   "Do not lean out of upper windows. Clean from inside where you can."
+  ],
+  "steps": [
+   "🍶 Fill a spray bottle with half vinegar, half water.",
+   "💦 Spray the glass.",
+   "⬇️ Pull the squeegee from top to bottom. :: Wipe the blade after every pull.",
+   "🧽 Dry the edges with the microfibre cloth.",
+   "✨ Polish any streaks."
+  ]
+ },
+ {
+  "id": "carpet-stain",
+  "title": "Fresh stain on a carpet",
+  "object": "Carpet",
+  "problem": "Stain",
+  "difficulty": "easy",
+  "minutes": 20,
+  "category": "Kitchen & cleaning",
+  "emoji": "🍷",
+  "tools": [
+   "Cloth",
+   "Sponge"
+  ],
+  "materials": [
+   "Cold water",
+   "Salt",
+   "Soda water"
+  ],
+  "safetyNotes": [
+   "Test on a hidden corner first."
+  ],
+  "steps": [
+   "🧽 Blot the stain with a clean cloth. :: Never rub, it pushes the stain deeper.",
+   "💦 Dab with cold soda water.",
+   "🧂 Cover with salt to soak up the stain.",
+   "⏳ Wait 15 minutes and vacuum it up.",
+   "✅ Blot with cold water and let it dry."
+  ]
+ },
+ {
+  "id": "dishwasher-clean",
+  "title": "Clean a dishwasher",
+  "object": "Dishwasher",
+  "problem": "Smell",
+  "difficulty": "easy",
+  "minutes": 30,
+  "category": "Appliances",
+  "emoji": "🍽️",
+  "tools": [
+   "Cloth",
+   "Toothbrush"
+  ],
+  "materials": [
+   "White vinegar",
+   "Baking soda"
+  ],
+  "safetyNotes": [
+   "Unplug the dishwasher before you clean the filter."
+  ],
+  "steps": [
+   "🔌 Unplug it and take out the bottom rack.",
+   "🧽 Remove the filter and rinse it under the tap.",
+   "🪥 Scrub the filter with a toothbrush.",
+   "🍶 Put a cup of vinegar on the bottom and run a hot cycle.",
+   "🥄 Sprinkle baking soda and run a short cycle."
+  ]
+ },
+ {
+  "id": "microwave-clean",
+  "title": "Clean a microwave",
+  "object": "Microwave",
+  "problem": "Splatters",
+  "difficulty": "easy",
+  "minutes": 15,
+  "category": "Appliances",
+  "emoji": "🍲",
+  "tools": [
+   "Cloth",
+   "Sponge"
+  ],
+  "materials": [
+   "Lemon",
+   "Water"
+  ],
+  "safetyNotes": [
+   "The bowl will be very hot. Take it out with care."
+  ],
+  "steps": [
+   "🍋 Put lemon slices and water in a bowl.",
+   "⏱️ Heat for 3 minutes, then leave the door closed for 5.",
+   "🧤 Take the bowl out carefully.",
+   "🧽 Wipe the walls with a sponge.",
+   "✅ Dry the inside with a cloth."
+  ]
+ },
+ {
+  "id": "fridge-clean",
+  "title": "Clean the fridge and its seals",
+  "object": "Fridge",
+  "problem": "Smell and dirty seals",
+  "difficulty": "easy",
+  "minutes": 40,
+  "category": "Appliances",
+  "emoji": "🧊",
+  "tools": [
+   "Cloth",
+   "Sponge",
+   "Toothbrush"
+  ],
+  "materials": [
+   "Baking soda",
+   "Warm water"
+  ],
+  "safetyNotes": [
+   "Unplug the fridge. Put the food in a cool box."
+  ],
+  "steps": [
+   "🔌 Unplug it and put the food in a cool box.",
+   "🧺 Take out the shelves and wash them.",
+   "🧽 Wipe the inside with baking soda and warm water.",
+   "🪥 Clean the rubber seals with a toothbrush.",
+   "✅ Dry everything and plug it in."
+  ]
+ },
+ {
+  "id": "vacuum-clean",
+  "title": "Vacuum cleaner has lost suction",
+  "object": "Vacuum cleaner",
+  "problem": "Weak suction",
+  "difficulty": "easy",
+  "minutes": 25,
+  "category": "Appliances",
+  "emoji": "🧹",
+  "tools": [
+   "Scissors",
+   "Brush",
+   "Cloth"
+  ],
+  "materials": [
+   "Spare filter"
+  ],
+  "safetyNotes": [
+   "Unplug the vacuum cleaner first."
+  ],
+  "steps": [
+   "🔌 Unplug it and empty the dust bin.",
+   "🧵 Cut hair wrapped around the brush roll with scissors.",
+   "🧽 Wash the filter and let it dry for 24 hours. :: A wet filter makes bad smells.",
+   "🔍 Check the hose for blockages.",
+   "✅ Put it back together and test."
+  ]
+ },
+ {
+  "id": "security-check",
+  "title": "Do a home security check",
+  "object": "Home",
+  "problem": "Security check",
+  "difficulty": "easy",
+  "minutes": 20,
+  "category": "Security",
+  "emoji": "🔦",
+  "tools": [
+   "Torch"
+  ],
+  "materials": [
+   "Notebook"
+  ],
+  "safetyNotes": [
+   "Never leave a spare key under the door mat or in a flower pot."
+  ],
+  "steps": [
+   "🚪 Check that your door lock turns smoothly and locks fully.",
+   "🪟 Check every window lock, including upstairs.",
+   "🔦 Walk around outside and look for dark corners.",
+   "🔑 Count your keys and note who has a spare.",
+   "📝 Write down anything to fix first."
+  ]
+ },
+ {
+  "id": "door-viewer",
+  "title": "Fit a door viewer",
+  "object": "Front door",
+  "problem": "No way to see outside",
+  "difficulty": "medium",
+  "minutes": 30,
+  "category": "Security",
+  "emoji": "👁️",
+  "tools": [
+   "Drill",
+   "Tape measure",
+   "Pencil"
+  ],
+  "materials": [
+   "Door viewer kit"
+  ],
+  "safetyNotes": [
+   "Wear safety glasses.",
+   "Check that the door is thick enough for the viewer."
+  ],
+  "steps": [
+   "📏 Measure the door thickness and check it fits the kit. :: Kits state the door thickness they suit.",
+   "✏️ Mark the hole at eye level.",
+   "🕳️ Drill the hole from the outside with the right drill size.",
+   "🔩 Push in the viewer and screw on the inside part.",
+   "✅ Check the view from inside."
+  ]
+ },
+ {
+  "id": "window-lock",
+  "title": "Fit a window lock",
+  "object": "Window",
+  "problem": "No lock",
+  "difficulty": "medium",
+  "minutes": 30,
+  "category": "Security",
+  "emoji": "🔒",
+  "tools": [
+   "Screwdriver",
+   "Drill",
+   "Pencil"
+  ],
+  "materials": [
+   "Window lock",
+   "Screws"
+  ],
+  "safetyNotes": [
+   "Keep a key where you can reach it fast. Windows are also exits in a fire."
+  ],
+  "steps": [
+   "📏 Choose the spot where frame and window meet.",
+   "✏️ Mark the screw holes.",
+   "🕳️ Drill small pilot holes.",
+   "🔩 Screw on the lock.",
+   "🔑 Test it with the window closed, and keep the key nearby."
+  ]
+ },
+ {
+  "id": "patio-bar",
+  "title": "Secure a sliding door",
+  "object": "Sliding door",
+  "problem": "Easy to force open",
+  "difficulty": "easy",
+  "minutes": 20,
+  "category": "Security",
+  "emoji": "🚪",
+  "tools": [
+   "Tape measure",
+   "Hand saw",
+   "File"
+  ],
+  "materials": [
+   "Wooden rod",
+   "Felt pads"
+  ],
+  "safetyNotes": [
+   "Make sure you can remove the bar quickly from inside."
+  ],
+  "steps": [
+   "📏 Measure the empty track when the door is closed.",
+   "🪚 Cut the rod to that length.",
+   "🧽 File the edges smooth.",
+   "📎 Stick felt pads on the ends.",
+   "✅ Lay the bar in the track."
+  ]
+ },
+ {
+  "id": "nail-hole",
+  "title": "Fill a nail hole",
+  "object": "Wall",
+  "problem": "Nail hole",
+  "difficulty": "easy",
+  "minutes": 20,
+  "category": "Walls & doors",
+  "emoji": "🕳️",
+  "tools": [
+   "Filling knife",
+   "Sanding block",
+   "Paint brush"
+  ],
+  "materials": [
+   "Filler",
+   "Paint"
+  ],
+  "safetyNotes": [
+   "Wear a dust mask when sanding."
+  ],
+  "steps": [
+   "🧹 Wipe dust from the hole.",
+   "🧱 Press filler in with the knife.",
+   "⏳ Let it dry.",
+   "🧽 Sand it flat.",
+   "🎨 Touch up with paint."
+  ]
+ },
+ {
+  "id": "wall-scuff",
+  "title": "Scuff marks on a wall",
+  "object": "Wall",
+  "problem": "Scuff marks",
+  "difficulty": "easy",
+  "minutes": 15,
+  "category": "Walls & doors",
+  "emoji": "🧽",
+  "tools": [
+   "Sponge",
+   "Cloth"
+  ],
+  "materials": [
+   "Baking soda",
+   "Water"
+  ],
+  "safetyNotes": [
+   "Test on a small hidden spot first."
+  ],
+  "steps": [
+   "🥄 Mix baking soda with a few drops of water.",
+   "🧽 Rub the paste gently on the mark.",
+   "🧽 Wipe off with a damp sponge.",
+   "✅ Dry with a cloth."
+  ]
+ },
+ {
+  "id": "paint-wall",
+  "title": "Paint a wall",
+  "object": "Wall",
+  "problem": "Needs painting",
+  "difficulty": "medium",
+  "minutes": 120,
+  "category": "Walls & doors",
+  "emoji": "🎨",
+  "tools": [
+   "Paint brush",
+   "Roller",
+   "Paint tray",
+   "Dust sheet"
+  ],
+  "materials": [
+   "Paint",
+   "Masking tape",
+   "Filler"
+  ],
+  "safetyNotes": [
+   "Open a window. Use a stable step ladder."
+  ],
+  "steps": [
+   "🛋️ Move furniture away and cover the floor with a dust sheet.",
+   "🧱 Fill holes and sand them.",
+   "📏 Tape the edges of the wall.",
+   "🖌️ Paint the edges with a brush first. :: Do the corners before the roller.",
+   "🎨 Roll on the first coat and let it dry.",
+   "🖌️ Apply a second coat and remove the tape while the paint is slightly wet."
+  ]
+ },
+ {
+  "id": "mirror-hang",
+  "title": "Hang a heavy mirror",
+  "object": "Wall",
+  "problem": "Hang a heavy mirror",
+  "difficulty": "hard",
+  "minutes": 60,
+  "category": "Walls & doors",
+  "emoji": "🪞",
+  "tools": [
+   "Drill",
+   "Spirit level",
+   "Stud finder",
+   "Pencil"
+  ],
+  "materials": [
+   "Mirror hanging kit",
+   "Screws and wall plugs"
+  ],
+  "safetyNotes": [
+   "Ask someone to help. Heavy mirrors can seriously hurt you.",
+   "Check for cables and pipes before drilling.",
+   "Do not hang a heavy mirror over a bed."
+  ],
+  "steps": [
+   "🔍 Check the weight limit of the kit and scan the wall.",
+   "✏️ Mark two fixing points at the same height.",
+   "🕳️ Drill and fit strong wall plugs.",
+   "🔩 Fit the hooks and check them with the level.",
+   "🪞 Lift the mirror on together with someone."
+  ]
+ },
+ {
+  "id": "door-bumper",
+  "title": "Door slams into the wall",
+  "object": "Door",
+  "problem": "Hits the wall",
+  "difficulty": "easy",
+  "minutes": 10,
+  "category": "Walls & doors",
+  "emoji": "🚪",
+  "tools": [
+   "Screwdriver"
+  ],
+  "materials": [
+   "Door stop"
+  ],
+  "safetyNotes": [
+   "Hold the door while you work."
+  ],
+  "steps": [
+   "🚪 Open the door and see where the handle hits.",
+   "📏 Mark the spot on the wall or floor.",
+   "🔩 Screw on a door stop. :: Use stick-on stops on soft walls.",
+   "✅ Test the door."
+  ]
+ },
+ {
+  "id": "regrout",
+  "title": "Replace old grout",
+  "object": "Tiles",
+  "problem": "Cracked grout",
+  "difficulty": "hard",
+  "minutes": 90,
+  "category": "Walls & doors",
+  "emoji": "🧱",
+  "tools": [
+   "Utility knife",
+   "Sponge",
+   "Scrubbing brush"
+  ],
+  "materials": [
+   "Grout",
+   "Water"
+  ],
+  "safetyNotes": [
+   "Wear safety glasses and a dust mask.",
+   "Do not use the shower for 48 hours afterwards."
+  ],
+  "steps": [
+   "🔪 Scrape out the cracked grout with the knife.",
+   "🧹 Brush out the dust.",
+   "🧴 Mix new grout as the pack says.",
+   "🧽 Press it into the gaps.",
+   "🧽 Wipe off extra with a damp sponge. :: Wipe diagonally so you do not pull grout out.",
+   "⏳ Let it set for 48 hours."
+  ]
+ },
+ {
+  "id": "sofa-leg",
+  "title": "Loose sofa leg",
+  "object": "Sofa",
+  "problem": "Loose leg",
+  "difficulty": "easy",
+  "minutes": 15,
+  "category": "Furniture",
+  "emoji": "🛋️",
+  "tools": [
+   "Allen key",
+   "Screwdriver"
+  ],
+  "materials": [
+   "Felt pads"
+  ],
+  "safetyNotes": [
+   "Ask someone to lift the sofa. Do not tip it on your own."
+  ],
+  "steps": [
+   "🛋️ Ask someone to tilt the sofa back.",
+   "🔍 Check how the leg is fixed.",
+   "🔩 Tighten it with the Allen key or by screwing it in.",
+   "📎 Stick a felt pad under the leg.",
+   "✅ Put the sofa down and test it."
+  ]
+ },
+ {
+  "id": "anti-tip",
+  "title": "Secure tall furniture to the wall",
+  "object": "Bookcase or wardrobe",
+  "problem": "Might tip over",
+  "difficulty": "medium",
+  "minutes": 30,
+  "category": "Furniture",
+  "emoji": "📚",
+  "tools": [
+   "Drill",
+   "Stud finder",
+   "Pencil",
+   "Spirit level"
+  ],
+  "materials": [
+   "Anti-tip strap kit",
+   "Screws and wall plugs"
+  ],
+  "safetyNotes": [
+   "Check for cables and pipes before drilling.",
+   "Tall furniture can fall and cause serious injury."
+  ],
+  "steps": [
+   "🔍 Empty the top of the furniture and scan a safe wall spot.",
+   "✏️ Mark the fixing points.",
+   "🕳️ Drill the holes and fit the wall plugs.",
+   "🔩 Screw the strap to the wall and to the furniture.",
+   "✅ Pull gently on the top to test it."
+  ]
+ },
+ {
+  "id": "drawer-runner",
+  "title": "Drawer comes off its runners",
+  "object": "Drawer",
+  "problem": "Falls off",
+  "difficulty": "medium",
+  "minutes": 25,
+  "category": "Furniture",
+  "emoji": "🗄️",
+  "tools": [
+   "Screwdriver",
+   "Hammer"
+  ],
+  "materials": [
+   "Wax",
+   "Wood glue"
+  ],
+  "safetyNotes": [
+   "Empty the drawer first. Mind your fingers."
+  ],
+  "steps": [
+   "🗄️ Take out the drawer and empty it.",
+   "🔍 Look for broken or bent runners.",
+   "🪛 Tighten the screws or fix the runner with glue.",
+   "🕯️ Rub wax on the rails.",
+   "✅ Slide the drawer in and out."
+  ]
+ },
+ {
+  "id": "desk-wobble",
+  "title": "Wobbly desk",
+  "object": "Desk",
+  "problem": "Wobbles",
+  "difficulty": "easy",
+  "minutes": 15,
+  "category": "Furniture",
+  "emoji": "🖥️",
+  "tools": [
+   "Allen key",
+   "Spirit level"
+  ],
+  "materials": [
+   "Felt pads",
+   "Cardboard"
+  ],
+  "safetyNotes": [
+   "Move heavy objects off the desk first."
+  ],
+  "steps": [
+   "🔍 Press each corner to find the short leg.",
+   "🔩 Tighten all leg bolts with the Allen key.",
+   "📎 Add felt pads under the short leg.",
+   "⚖️ Check it with the level.",
+   "✅ Put your things back."
+  ]
+ },
+ {
+  "id": "darn-sock",
+  "title": "Hole in a sock",
+  "object": "Sock",
+  "problem": "Hole",
+  "difficulty": "easy",
+  "minutes": 15,
+  "category": "Clothes",
+  "emoji": "🧦",
+  "tools": [
+   "Needle",
+   "Scissors"
+  ],
+  "materials": [
+   "Thread"
+  ],
+  "safetyNotes": [
+   "Keep needles away from children."
+  ],
+  "steps": [
+   "🧦 Turn the sock inside out and spread the hole.",
+   "🧵 Sew running stitches around the edge.",
+   "🪡 Weave thread across the hole.",
+   "🪡 Weave thread the other way.",
+   "✂️ Knot and cut."
+  ]
+ },
+ {
+  "id": "sleeve-hem",
+  "title": "Sleeves too long",
+  "object": "Shirt or jacket",
+  "problem": "Sleeves too long",
+  "difficulty": "medium",
+  "minutes": 40,
+  "category": "Clothes",
+  "emoji": "👔",
+  "tools": [
+   "Needle",
+   "Scissors",
+   "Tape measure",
+   "Pins"
+  ],
+  "materials": [
+   "Thread"
+  ],
+  "safetyNotes": [
+   "Keep pins and needles away from children."
+  ],
+  "steps": [
+   "📏 Try it on and mark the length with a pin.",
+   "📏 Measure the same length on the other sleeve.",
+   "✂️ Cut, leaving 3 cm to fold.",
+   "📍 Fold twice and pin it.",
+   "🪡 Sew small stitches all around."
+  ]
+ },
+ {
+  "id": "sneaker-clean",
+  "title": "Dirty white sneakers",
+  "object": "Sneakers",
+  "problem": "Dirty",
+  "difficulty": "easy",
+  "minutes": 25,
+  "category": "Clothes",
+  "emoji": "👟",
+  "tools": [
+   "Toothbrush",
+   "Sponge"
+  ],
+  "materials": [
+   "Baking soda",
+   "Mild soap",
+   "Water"
+  ],
+  "safetyNotes": [
+   "Do not put glued shoes in the washing machine."
+  ],
+  "steps": [
+   "👟 Remove laces and insoles.",
+   "🥄 Mix baking soda with a little water and soap.",
+   "🪥 Scrub the soles and sides with a toothbrush.",
+   "🧽 Wipe off the foam with a damp sponge.",
+   "⏳ Let them dry away from direct sun."
+  ]
+ },
+ {
+  "id": "zip-pull",
+  "title": "Zip pull is missing",
+  "object": "Zip",
+  "problem": "Pull broken",
+  "difficulty": "easy",
+  "minutes": 10,
+  "category": "Clothes",
+  "emoji": "🤐",
+  "tools": [
+   "Pliers"
+  ],
+  "materials": [
+   "Replacement zip pull"
+  ],
+  "safetyNotes": [
+   "Keep small parts away from children."
+  ],
+  "steps": [
+   "🔍 Look at what is left of the slider.",
+   "🔧 Open the loop of a new pull with pliers.",
+   "🔗 Thread it through the slider hole.",
+   "🔧 Close the loop firmly.",
+   "✅ Test the zip."
+  ]
+ },
+ {
+  "id": "patch-knee",
+  "title": "Hole in the knee of trousers",
+  "object": "Trousers",
+  "problem": "Hole in knee",
+  "difficulty": "medium",
+  "minutes": 30,
+  "category": "Clothes",
+  "emoji": "👖",
+  "tools": [
+   "Needle",
+   "Scissors"
+  ],
+  "materials": [
+   "Fabric patch",
+   "Thread",
+   "Pins"
+  ],
+  "safetyNotes": [
+   "Keep needles and scissors away from children."
+  ],
+  "steps": [
+   "👖 Turn the trousers inside out.",
+   "✂️ Cut a patch 2 cm bigger than the hole.",
+   "📍 Pin it behind the hole.",
+   "🪡 Sew all around with small stitches.",
+   "✅ Knot, trim and try them on."
+  ]
+ },
+ {
+  "id": "bike-chain-clean",
+  "title": "Dirty, noisy bike chain",
+  "object": "Bicycle",
+  "problem": "Noisy chain",
+  "difficulty": "easy",
+  "minutes": 25,
+  "category": "Bikes",
+  "emoji": "⛓️",
+  "tools": [
+   "Brush",
+   "Cloth"
+  ],
+  "materials": [
+   "Chain lube",
+   "Degreaser"
+  ],
+  "safetyNotes": [
+   "Wear gloves. Degreaser irritates skin."
+  ],
+  "steps": [
+   "🧽 Wipe the chain with a cloth to remove dirt.",
+   "🪥 Scrub it with a brush and degreaser.",
+   "🧽 Wipe it dry.",
+   "🛢️ Drop lube on each link while turning the pedals.",
+   "✅ Wipe off the extra."
+  ]
+ },
+ {
+  "id": "bike-gears",
+  "title": "Bike gears jump",
+  "object": "Bicycle",
+  "problem": "Gears jump",
+  "difficulty": "medium",
+  "minutes": 30,
+  "category": "Bikes",
+  "emoji": "⚙️",
+  "tools": [
+   "Screwdriver"
+  ],
+  "materials": [
+   "Chain lube"
+  ],
+  "safetyNotes": [
+   "Test ride in a quiet place before you ride on the road."
+  ],
+  "steps": [
+   "🔍 Shift through the gears and note where it jumps.",
+   "🔄 Find the cable adjuster near the rear gear. :: It looks like a small barrel on the cable.",
+   "🪛 Turn it a quarter turn.",
+   "🔄 Test the gears again.",
+   "✅ Repeat until it shifts cleanly."
+  ]
+ },
+ {
+  "id": "bike-pedal",
+  "title": "Loose bike pedal",
+  "object": "Bicycle",
+  "problem": "Loose pedal",
+  "difficulty": "easy",
+  "minutes": 15,
+  "category": "Bikes",
+  "emoji": "🚲",
+  "tools": [
+   "Pedal wrench"
+  ],
+  "materials": [
+   "Grease"
+  ],
+  "safetyNotes": [
+   "The left pedal turns the opposite way to the right one."
+  ],
+  "steps": [
+   "🔍 Check which pedal is loose.",
+   "🧴 Put a little grease on the thread.",
+   "🔧 Tighten the right pedal clockwise.",
+   "🔧 Tighten the left pedal anticlockwise.",
+   "✅ Test by turning the pedals."
+  ]
+ },
+ {
+  "id": "gate-hinge",
+  "title": "Squeaky garden gate",
+  "object": "Gate",
+  "problem": "Squeaks",
+  "difficulty": "easy",
+  "minutes": 15,
+  "category": "Garden",
+  "emoji": "🚪",
+  "tools": [
+   "Screwdriver",
+   "Cloth"
+  ],
+  "materials": [
+   "Lubricant spray"
+  ],
+  "safetyNotes": [
+   "Hold the gate while you work."
+  ],
+  "steps": [
+   "🔍 Find the hinges.",
+   "🧽 Wipe off rust and dirt.",
+   "🛢️ Spray lubricant on each hinge.",
+   "🔩 Tighten loose hinge screws.",
+   "✅ Swing the gate a few times."
+  ]
+ },
+ {
+  "id": "hose-repair",
+  "title": "Leaking garden hose",
+  "object": "Garden hose",
+  "problem": "Leak",
+  "difficulty": "easy",
+  "minutes": 15,
+  "category": "Garden",
+  "emoji": "🪴",
+  "tools": [
+   "Utility knife",
+   "Screwdriver"
+  ],
+  "materials": [
+   "Hose connector"
+  ],
+  "safetyNotes": [
+   "Turn off the tap first.",
+   "Cut away from your hand."
+  ],
+  "steps": [
+   "🚰 Turn off the tap and drain the hose.",
+   "🔪 Cut the hose straight at the damaged part.",
+   "🔩 Push each end into the connector.",
+   "🪛 Tighten the clamps.",
+   "💧 Turn the tap on and check for leaks."
+  ]
+ },
+ {
+  "id": "repot-plant",
+  "title": "Repot a plant",
+  "object": "Houseplant",
+  "problem": "Too small pot",
+  "difficulty": "easy",
+  "minutes": 20,
+  "category": "Garden",
+  "emoji": "🪴",
+  "tools": [
+   "Gardening gloves"
+  ],
+  "materials": [
+   "Bigger pot",
+   "Compost",
+   "Newspaper"
+  ],
+  "safetyNotes": [
+   "Some plants irritate skin. Wear gloves."
+  ],
+  "steps": [
+   "🗞️ Put newspaper down.",
+   "🪴 Loosen the plant gently from the old pot.",
+   "🌱 Put compost in the new pot.",
+   "🪴 Place the plant at the same depth.",
+   "💧 Fill with compost and water it."
+  ]
+ },
+ {
+  "id": "prune-shrub",
+  "title": "Prune a small shrub",
+  "object": "Shrub",
+  "problem": "Overgrown",
+  "difficulty": "medium",
+  "minutes": 30,
+  "category": "Garden",
+  "emoji": "✂️",
+  "tools": [
+   "Secateurs",
+   "Gardening gloves"
+  ],
+  "materials": [
+   "Bin bag"
+  ],
+  "safetyNotes": [
+   "Wear gloves and eye protection.",
+   "Do not prune in frost or hot sun."
+  ],
+  "steps": [
+   "✂️ Look for dead or damaged branches.",
+   "✂️ Cut them back to healthy wood. :: Cut just above a bud.",
+   "🌿 Remove branches that cross.",
+   "🧹 Collect the cuttings.",
+   "💧 Water it afterwards."
+  ]
+ }
+]

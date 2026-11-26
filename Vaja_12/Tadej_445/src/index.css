@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+@theme {
+  --color-accent: #ff8fa3;
+  --animate-gentle-pulse: gentle-pulse 1.2s ease-in-out infinite;
+
+  @keyframes gentle-pulse {
+    50% {
+      transform: scale(1.025);
+    }
+  }
+}

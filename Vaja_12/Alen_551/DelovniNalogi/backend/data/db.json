@@ -1,6 +1,47 @@
 {
-  "workOrders": [],
-  "materials": [],
-  "tools": [],
+  "workOrders": [
+    {
+      "id": "b1a98d58-0892-4b99-87cf-1250df968b13",
+      "number": "DN-0001",
+      "product": "izdelek",
+      "customer": "jani",
+      "description": "opis delovnega naloga",
+      "quantity": 1,
+      "startDate": "2026-11-25",
+      "deadline": "2026-11-27",
+      "priority": "medium",
+      "status": "planned",
+      "notes": "",
+      "operations": [],
+      "materialAssignments": [],
+      "createdAt": "2026-11-25T12:35:51.291Z",
+      "completedAt": null
+    }
+  ],
+  "materials": [
+    {
+      "id": "ba735dab-50a9-4cb2-8dae-9af1a7674015",
+      "name": "les",
+      "standard": "lll42",
+      "shape": "Okrogla palica",
+      "dimensions": "dim",
+      "quantity": 3,
+      "unit": "kos",
+      "location": "doma"
+    }
+  ],
+  "tools": [
+    {
+      "id": "bdf062db-a382-408e-9e39-7628f3b9e976",
+      "name": "stružnica",
+      "category": "Stružni noži",
+      "manufacturer": "remco",
+      "specification": "ozn",
+      "size": "13 mm",
+      "location": "doma",
+      "condition": "available",
+      "notes": "ni opomb"
+    }
+  ],
   "toolReservations": []
 }

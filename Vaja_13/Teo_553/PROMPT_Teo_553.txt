@@ -1,0 +1,124 @@
+Teo_553
+
+STRUKTURIRAN PROMPT ZA APLIKACIJO »MOJ PROJEKT«
+
+KORAK 1: CILJ IN TON
+
+Izdelaj prijazno, praktično in pregledno spletno aplikacijo »Moj Projekt«, ki se odzivno prilagaja telefonu, tablici, prenosniku in velikemu računalniškemu zaslonu. Namenjena je ljudem, ki doma ali v delavnici sami izdelujejo, popravljajo ali izboljšujejo različne izdelke. Uporabnik lahko za vsak projekt pripravi seznam materiala in njegove podskupine, spremlja stroške, razdeli faze dela na podfaze, beleži napredek, zapisuje meritve in opombe ter dodaja fotografije projekta. Na večjih zaslonih naj aplikacija smiselno izkoristi celotno širino okna.
+
+Občutek pri uporabi naj bo preprost, urejen in zanesljiv, kot osebni pomočnik pri delu v delavnici. Aplikacija naj bo majhen, delujoč prvi prototip (MVP), brez nepotrebnih funkcij.
+
+Aplikacija NE omogoča skupinskega sodelovanja, NE naroča materiala prek spleta in NE uporablja umetne inteligence. Podpira samo dodajanje fotografij k projektu, ne pa skic, videoposnetkov ali drugih priponk. Fotografij ne analizira samodejno.
+
+KORAK 2: TEHNOLOGIJA IN OMEJITVE
+
+Sprednji del (frontend): React + TypeScript, Vite in Tailwind CSS v4, v mapi »frontend«.
+
+Zaledni del (backend): navadni Node.js z vgrajenima moduloma »http« in »fs«, napisan v JavaScriptu, v mapi »backend«. Strežnik deluje na vratih 3001. Sprednji del deluje na vratih 5173, zato mora zaledni del omogočati CORS in pravilno odgovoriti tudi na zahteve OPTIONS.
+
+Ne nameščaj dodatnih paketov, razen tistih, ki jih zahtevata standardna predloga Vite React-TS in Tailwind CSS v4. Ne uporabljaj Expressa, axiosa, knjižnic za usmerjanje, knjižnic uporabniškega vmesnika ali knjižnic ikon (uporabi lahko emoji).
+
+Ne dodajaj podatkovne baze, uporabniških računov, prijave, registracije, storitev v oblaku, storitev umetne inteligence ali ključev API.
+
+Ne spreminjaj konfiguracijskih datotek, razen če je to nujno za delovanje Tailwind CSS v4 ali obstoječe razvojne nastavitve. Zagon mora ostati preprost in dokumentiran, brez datotek .bat.
+
+Shranjevanje: zaledni del hrani projekte, njihove faze, podfaze, skupine materialov in nastavitve prikaza v datoteki »backend/data/db.json«. Začetna vsebina datoteke je {"projects": [], "settings": {"projectView": "grid", "cardSize": "medium", "detailView": "tabs", "sidebarCollapsed": false}}. Fotografije hrani kot ločene datoteke v »backend/data/images/«, v db.json pa samo njihove metapodatke. Sprednji del za shranjevanje projektov ali nastavitev NE uporablja localStorage. S sprednjim delom zaledni del komunicira prek REST API. Uporabi samo vgrajene module Node.js, brez dodatnih paketov za nalaganje slik.
+
+Vsi napisi, gumbi, opozorila in sporočila v aplikaciji naj bodo v slovenščini.
+
+KORAK 3: FUNKCIONALNOSTI
+
+3.1. Seznam projektov (začetni zaslon)
+Na vrhu prikaži naslov »Moj Projekt« in gumb »Nov projekt«. Pod njima prikaži vse projekte. Vsak projekt prikazuje ime, stanje (»Načrtovan«, »V teku« ali »Zaključen«), datum začetka, napredek v odstotkih in skupni predvideni strošek; če ima slike, lahko prikaže prvo kot sličico. Dotik kartice ali vrstice odpre podrobnosti. Če ni nobenega projekta, prikaži »Ni še ustvarjenih projektov«. Uporabnik lahko preklopi med prikazom »Mreža«, »Seznam« in »Kompaktno« ter v mreži izbere velikost kartic »Majhne«, »Srednje« ali »Velike«. Izbira vpliva na število stolpcev, ne na velikost besedila pod berljivo mejo. Izbrani način se shrani v nastavitve na strežniku.
+
+3.2. Ustvarjanje in urejanje projekta
+Obrazec vsebuje »Ime projekta« (obvezno), »Opis« (neobvezno), »Datum začetka« (privzeto današnji datum) in »Stanje« (privzeto »Načrtovan«). Uporabnik lahko projekt ustvari, pozneje uredi ali izbriše. Prazno ime povzroči opozorilo »Vnesi ime projekta« in prepreči shranjevanje. Pred izbrisom vprašaj »Ali res želiš izbrisati projekt?«. Stanje izbere uporabnik; ne spreminjaj ga samodejno glede na napredek.
+
+3.3. Seznam materiala
+Znotraj vsakega projekta prikaži razdelek »Material«. Uporabnik lahko doda material z imenom, količino, ceno na enoto v EUR in potrditvenim poljem »Kupljeno«. Material lahko uredi, označi kot kupljen, prestavi v drugo skupino ali izbriše. Za vsako postavko izračunaj: strošek = količina × cena na enoto. Pod seznamom prikaži »Skupni predvideni strošek«, ki sešteje vse postavke, tudi še nekupljene, ne glede na to, ali so njihovi podmeniji odprti ali zaprti. Zneske prikaži z dvema decimalkama, npr. »25,50 €«. Količina mora biti večja od 0, cena pa ne sme biti negativna. Če materiala ni, je skupni strošek »0,00 €«.
+
+3.3.1. Skupine in podskupine materiala (razširljivi podmeniji)
+Uporabnik lahko z gumboma »Nova skupina« in »Dodaj podskupino« uredi material v največ dve ravni: »Material > Skupina > Podskupina > Posamezne postavke«. Primer: »Les > Plošče > Vezana plošča« ali »Pritrdilni elementi > Vijaki > Vijak M6«. Skupino in podskupino lahko preimenuje, razširi/skrije, izbere kot cilj pri dodajanju materiala ali izbriše po potrditvi. Vsaka postavka pripada eni skupini oziroma podskupini ali razdelku »Brez skupine«. Pri brisanju skupine materiali ne smejo izginiti: njene neposredne postavke prestavi v »Brez skupine«, njene podskupine pa ohrani kot samostojne glavne skupine skupaj z njihovimi materiali. Pri brisanju podskupine prestavi njene postavke v nadrejeno skupino. Pri vseh premikih ohrani ID, količino, ceno in status »Kupljeno«. Pri vsaki skupini prikaži njen delni strošek in pri vsaki podskupini strošek njenih postavk; materialov pri skupnem seštevku ne štej dvakrat. Podmeniji morajo delovati s klikom ali dotikom in biti dostopni s tipkovnico.
+
+3.4. Faze dela in napredek
+Znotraj projekta prikaži razdelek »Faze dela« s seznamom glavnih faz in potrditvenimi polji. Uporabnik lahko doda fazo, jo preimenuje, označi kot opravljeno ali neopravljeno ter jo izbriše po potrditvi. Prikaži vrstico napredka in odstotek. Če projekt nima faz, pokaži »0 %« in ne deli z nič. Napredek se posodobi po vsaki spremembi.
+
+3.4.1. Podfaze (razširljivi podmeniji faz)
+Vsaki glavni fazi dodaj gumb »Dodaj podfazo« in možnost razširitve/skritja podfaz. Primer: »Izdelava ogrodja > Razrez lesa, Vrtanje, Sestavljanje«. Podfazo lahko uporabnik doda, preimenuje, označi kot opravljeno/neopravljeno in izbriše. Dovoljena je ena raven podfaz; podfaza nima svojih dodatnih podfaz. Če ima glavna faza podfaze, je označena kot opravljena samo, ko so opravljene vse njene podfaze. Potrditev glavne faze označi vse podfaze kot opravljene; odstranitev potrditve jih označi kot neopravljene. Če glavna faza nima podfaz, njeno potrditveno polje deluje samostojno. Pri dodajanju prve podfaze že označeni fazi jo nastavi kot opravljeno, da obstoječe stanje ostane smiselno; pri dodajanju naslednjih podfaz naj bodo nove privzeto neopravljene.
+Napredek izračunaj na podlagi končnih opravil, brez dvojnega štetja: glavna faza brez podfaz šteje kot eno opravilo; glavna faza s podfazami prispeva samo svoje podfaze. Formula: (število opravljenih končnih opravil / število vseh končnih opravil) × 100, zaokroženo na celo število. Npr. ena dokončana samostojna faza in ena faza z dvema podfazama, od katerih je ena dokončana, pomeni 2 od 3 opravil oziroma 67 %. Pokaži napredek projekta in vsake glavne faze s podfazami.
+
+3.5. Zapiski in meritve
+Vsak projekt ima razdelek »Zapiski in meritve« z večvrstičnim besedilnim poljem. Vanj lahko uporabnik prosto vnese mere, opombe in ugotovitve, npr. »Dolžina 120 cm, širina 60 cm«. Na voljo je gumb »Shrani zapiske«. Zapiski se ob ponovnem odpiranju projekta ohranijo. Polje je lahko prazno.
+
+3.6. Podrobnosti projekta in navigacija
+Začetni zaslon prikazuje seznam projektov. Z izbiro projekta se odpre zaslon s podatki projekta. Na vrhu podrobnosti prikaži ime in stanje, pod njima odstotek napredka in skupne stroške. Podatke razdeli v zavihke »Pregled«, »Material«, »Faze dela«, »Zapiski in meritve« ter »Slike«. Uporabnik lahko v nastavitvah preklopi med načinom »Zavihki« in »Vsi razdelki« (en za drugim na isti strani). Aktivni zavihek mora biti jasno označen, dostopen s tipkovnico, na telefonu pa morajo biti zavihki vodoravno pomični ali prilagojeni ozkemu zaslonu. Gumb »Nazaj na projekte« vrne uporabnika na seznam. Gumba za urejanje in brisanje projekta sta jasno ločena od običajnih opravil.
+
+3.6.1. Levi stranski meni za hitro izbiro projektov
+Na namiznem zaslonu prikaži na levi strani stalni meni širine približno 260 px z naslovom »Projekti«, gumbom »Nov projekt« in pomičnim seznamom vseh projektov. Aktivni projekt vidno označi; s klikom na drug projekt takoj odpri njegove podrobnosti brez vračanja na začetni zaslon. Če je projektov veliko, omogoči iskanje po imenu v meniju. Dodaj gumb za skrčenje/razširitev menija. Na manjših zaslonih (telefon, ožja tablica) naj se meni skrije in odpre z gumbom »Meni« oziroma hamburger gumbom kot stranski predal, ki ga je mogoče zapreti tudi s tipko Escape, klikom zunaj ali izbiro projekta. Meni ne sme prekrivati vsebine, ko je zaprt, ali preprečiti uporabe aplikacije.
+
+3.6.2. Slike posameznega projekta
+Vsak projekt ima v zavihku »Slike« galerijo sličic ter gumb »Dodaj sliko«. Uporabnik lahko izbere in doda fotografijo v formatu JPG/JPEG, PNG ali WebP, ji po želji doda kratek opis, jo odpre v večjem prikazu ali odstrani po potrditvi. Dovoli največ 6 slik na projekt, vsako do 2 MB. Neveljaven tip, poškodovano datoteko ali večjo sliko zavrni tako na sprednjem kot na zalednem delu z razumljivim rdečim sporočilom; aplikacija se ne sme sesuti. Datoteke shrani v »backend/data/images/« pod varnimi enoličnimi imeni, v db.json pa shrani samo id, ime, opis, MIME-tip in ime datoteke. Ne uporabljaj zunanjega gostovanja slik ali storitev AI. Ob brisanju slike oziroma projekta izbriši tudi pripadajoče slikovne datoteke. Če ni slik, prikaži »Za ta projekt še ni slik«.
+
+3.7. Shranjevanje podatkov
+Vsak projekt, glavna faza, podfaza, skupina materiala, material in slika dobi enolični ID. Ob ustvarjanju, urejanju ali brisanju se spremembe pošljejo zalednemu delu. Projektni podatki in nastavitve prikaza se zapišejo v »db.json«, slike pa kot ločene datoteke. Po osvežitvi strani ali ponovnem zagonu strežnika morajo ostati ohranjeni hierarhija skupin in podfaz, podatki, povezave slik ter izbrana postavitev. Izračunane skupne stroške in odstotek napredka določi iz podatkov, ne shranjuj ju kot ločeni ročno urejani vrednosti. Začetni projekt naj ima prazne sezname faz, skupin, materialov in slik.
+
+3.8. REST API
+Vsi odgovori so v obliki JSON, tudi pri slikah; napake so v obliki {"error": "sporočilo"} s pravilno kodo HTTP. Pripravi naslednje poti:
+- GET /api/projects – vrne seznam projektov.
+- GET /api/projects/:id – vrne izbrani projekt.
+- POST /api/projects – ustvari projekt.
+- PUT /api/projects/:id – posodobi projekt, vključno s skupinami materialov, materiali, fazami, podfazami in zapiski; obdrži shranjene metapodatke slik.
+- DELETE /api/projects/:id – izbriše projekt in njegove slike.
+- GET /api/settings in PUT /api/settings – prebere oziroma shrani nastavitve prikaza in stranskega menija.
+- POST /api/projects/:id/images – prejme JSON {fileName, mimeType, description, dataBase64}, preveri dejanski tip in velikost dekodirane slike ter shrani datoteko in metapodatke; največji JSON zahtevek omeji na 3 MB.
+- GET /api/projects/:id/images/:imageId – vrne JSON {mimeType, dataBase64} za prikaz slike.
+- DELETE /api/projects/:id/images/:imageId – odstrani metapodatke in datoteko slike.
+Med čakanjem na odgovor prikaži »Nalaganje ...«. Če zaledni del ni dosegljiv, prikaži »Povezava s strežnikom ni uspela« in gumb »Poskusi znova«. Ne prikazuj uspešnega shranjevanja, dokler strežnik ne potrdi spremembe.
+
+3.9. Robni primeri in podatkovni model
+Neznan ID projekta ali slike vrne HTTP 404 in razumljivo sporočilo (za projekt zaslon »Projekt ni najden«). Neveljavno ime projekta, skupine, podskupine, faze ali podfaze ter neveljavna količina ali cena vrne HTTP 400. Zavrni krožne povezave in več kot eno raven podskupin materiala oziroma podfaz. Pravila preverjanja naj veljajo na sprednjem in zalednem delu. Če datoteka »db.json« še ne obstaja, jo zaledni del ustvari z začetnimi podatki; obstoječe stare projekte brez novih polj pa dopolni s praznimi seznami brez izgube podatkov. Če ni materiala, skupin, faz ali slik, aplikacija še vedno normalno deluje in prikaže ustrezna prazna stanja. Če je odprt meni s projektom, ki ga uporabnik izbriše, preklopi na začetni seznam.
+
+Podatkovni model:
+Project {id, name, description, startDate, status, materialGroups[], materials[], phases[], notes, images[]}
+MaterialGroup {id, name, parentId?} – parentId kaže na glavno skupino; največ dve ravni skupin.
+Material {id, name, quantity, unitPrice, purchased, groupId?} – groupId kaže na skupino/podskupino ali je prazen.
+Phase {id, name, completed, subphases[]}
+Subphase {id, name, completed}
+ProjectImage {id, fileName, originalName, description, mimeType}
+Settings {projectView: "grid" | "list" | "compact", cardSize: "small" | "medium" | "large", detailView: "tabs" | "sections", sidebarCollapsed: boolean}
+status = "planned" | "in_progress" | "done"
+V uporabniškem vmesniku so stanja prevedena v slovenščino: »Načrtovan«, »V teku«, »Zaključen«.
+
+KORAK 4: ZGRADBA KODE
+
+4.1. Projekt razdeli v dve glavni mapi: »frontend« za uporabniški vmesnik in »backend« za strežnik. Koda ne sme biti napisana v eni veliki datoteki.
+4.2. V »frontend/src« uporabi »App.tsx« (glavni prikaz in izbira zaslona), »types.ts« (tipi Project, Material, MaterialGroup, Phase, Subphase, ProjectImage in Settings) ter »api.ts« (vsi klici REST API z vgrajenim fetch). Ne dodajaj usmerjevalnika; izbiro zaslonov, zavihkov in projektov vodi stanje aplikacije.
+4.3. Pripravi komponente »ProjectList«, »ProjectForm«, »ProjectDetail«, »MaterialList«, »MaterialGroups«, »PhaseList«, »SubphaseList«, »NotesEditor«, »ProjectImages«, »ProjectSidebar« in »LayoutSettings«. Vsaka ima jasno nalogo. Podatke in funkcije za spremembe prejema prek props, brez podvajanja poslovnega stanja.
+4.4. V Reactu uporabljaj useState za seznam projektov, izbrani projekt, aktivni zavihek, odprtost menija in podmenijev, prikazani zaslon, podatke obrazcev ter sporočila o nalaganju in napakah. Uporabi useEffect za začetni prenos projektov in nastavitev s strežnika. Ne dodajaj globalnega upravljalnika stanja. Odprte podmenije ohrani med preklopom zavihkov, če je to smiselno; mobilni predal po izbiri projekta zapri.
+4.5. Klice GET, POST, PUT in DELETE izvajaj v »api.ts«. Dodaj funkcije za pridobivanje in shranjevanje nastavitev ter nalaganje, prikazovanje in brisanje fotografij. Po uspešni spremembi osveži potrebne podatke iz odgovora API ali s ponovnim branjem s strežnika. Če zahteva ni uspešna, pokaži napako in ne prikazuj spremembe kot potrjene. Prepreči dvojno pošiljanje istega obrazca med shranjevanjem.
+4.6. V »backend« pripravi »server.js«, »data/db.json« in mapo »data/images«. Strežnik naj z moduloma http in fs obdela zahtevane poti, preveri vhodne podatke, prebere in posodobi JSON ter za slike shrani ali prebere binarne datoteke. Imena datotek na disku ustvari iz ID in preverjenega MIME-tipa, nikoli neposredno iz uporabniško podanega imena. Pri nalaganju slik preveri dekodirano velikost in podpis datoteke (JPG/PNG/WebP); ne dovoli SVG, izvršljivih datotek ali poti, kot je »../«. Ob neznani poti vrni HTTP 404, pri neveljavnih podatkih 400, pri preveliki zahtevi 413. Omogoči CORS in odgovor na OPTIONS. Uporabi varno zaporedje zapisov, da napaka pri shranjevanju ne pokvari obstoječega db.json.
+4.7. V TypeScriptu uporabi določene tipe in ne uporabljaj »any«. Imena komponent, spremenljivk in funkcij naj jasno povedo, kaj počnejo.
+4.8. Omogoči zagon s standardnima ukazoma »npm install« in »npm run dev« iz glavne mape projekta. Po potrebi uporabi majhen Node.js zagonski skript, ki hkrati zažene Vite in backend, brez dodatnih paketov in brez datotek .bat. V README navedi zahteve, zagon ter mapo za shranjevanje fotografij in projektov.
+
+KORAK 5: OBLIKOVANJE
+
+5.1. Aplikacija naj bo popolnoma odzivna (responsive) na katerikoli običajni velikosti zaslona. Na telefonu širine približno 320–639 px prikaži vsebino v enem stolpcu in stranski meni v predalu. Na tablici približno 640–1023 px uporabi dva stolpca projektov, kadar je dovolj prostora, in zložljiv meni. Pri širini 1024 px ali več prikaži stalni levi stranski meni in glavno vsebino, ki zapolni preostanek okna. Velika namizja naj podpirajo 2–4 stolpce projektov (glede na izbrano velikost kartic in dejansko širino). Brez omejitve glavne vsebine na 480 px: na računalniku naj aplikacija zaseda celotno razpoložljivo širino in po potrebi višino zaslona (100 % oziroma 100vh). Ne dovoli vodoravnega drsenja celotne strani zaradi preširokih elementov.
+5.2. Uporabi svetlo ozadje #F7F7F2, bele kartice #FFFFFF, temno besedilo #1F2937 in eno glavno poudarjeno barvo #256D5B (umirjena zelena). Rdečo #B91C1C uporabi le za napake oziroma nevarna dejanja, kot je brisanje.
+5.3. Na telefonu uporabi približno 16 px notranjega odmika; na računalniku 24–32 px. Med karticami naj bo 12–20 px prostora. Kartice naj imajo zaobljene robove (rounded-xl) in nežno senco (shadow-sm); ne uporabljaj močnih senc ali motečih animacij. Levi meni naj bo visok najmanj toliko kot okno, njegov seznam projektov pa se ob daljšem seznamu pomika neodvisno od glavne vsebine.
+5.4. Naslov aplikacije naj bo izrazit (približno 24 px), naslovi razdelkov okoli 18 px, osnovno besedilo pa najmanj 16 px. Uporabi lahko berljivo sistemsko pisavo.
+5.5. Gumbi in potrditvena polja naj imajo dovolj veliko območje za dotik (najmanj 44 × 44 px). Glavni gumb »Nov projekt« naj bo jasno viden na vrhu začetnega zaslona in v levem meniju. Gumba za razširitev/skritje podfaz in podskupin materiala naj jasno kažeta stanje, npr. s puščico navzdol ali desno.
+5.6. Na kartici projekta naj bodo podatki razporejeni po vrstnem redu: ime, stanje in datum, vrstica napredka, nato stroški; sličico prikaži le, če obstaja. Na širokih zaslonih naj podrobnosti projekta uporabijo zavihke ali več stolpcev za posamezne razdelke, pri načinu »Vsi razdelki« pa ostanejo smiselno berljive. Na mobilnem telefonu se elementi zložijo navpično. Pri skupinah materiala vizualno pokaži zamik ene ravni podskupin, pri fazah pa zamik podfaz.
+5.7. Vrstica napredka naj bo zelena, visoka približno 8 px, zraven naj bo izpisan odstotek. Sporočila o napaki naj bodo besedilna in jasno vidna; ne zanašaj se le na barvo. Emoji lahko uporabiš varčno, največ enega pri glavnem naslovu ali praznem seznamu.
+5.8. Zaslon naj ostane preprost in nepreobremenjen: razen zahtevanega levega menija, podmenijev ter zavihkov ne dodajaj drugih navigacijskih sistemov. Vsi obrazci naj imajo vidne oznake polj, izbire postavitve pa razumljiva imena in jasen aktivni način.
+5.9. Slike v galeriji naj bodo odzivne: v mreži sličic uporabijo obrezavo brez popačenja, pri odprtem večjem prikazu pa se ohrani celotna slika in pravilno razmerje stranic. Naloži jih šele, ko so potrebne, da več fotografij ne upočasni odpiranja projekta. Poskrbi za opisno nadomestno besedilo (alt).
+5.10. Preveri videz in uporabnost najmanj pri širinah 375 px, 768 px, 1366 px in 1920 px. Stranski meni, preklop mreže/seznama, zavihki in razširljivi podmeniji morajo delovati tudi z zaslonom na dotik in s tipkovnico; ob odprtem mobilnem meniju ustrezno upravljaj fokus.
+
+KORAK 6: NAMEN IN KAKOVOST
+
+6.1. Aplikacija je namenjena posameznikom, ki želijo domače in delavniške projekte voditi bolj pregledno, ter študijskemu prikazu osnov Reacta, TypeScripta in komunikacije z REST API. Prednost daj jasni in berljivi kodi pred zapletenimi rešitvami.
+6.2. Koda naj bo razdeljena na kratke, razumljive komponente in funkcije. Uporabi opisna imena, dosledne tipe in kratke komentarje le tam, kjer razlaga ni očitna. Ne dodajaj nepotrebnih abstrakcij ali knjižnic.
+6.3. Pomembna je pravilnost: ustvarjanje, prikaz, urejanje in brisanje projektov morajo delovati; stroški se izračunajo brez dvojnega štetja med podskupinami, napredek pa brez dvojnega štetja glavnih faz in podfaz. Pravilno morajo delovati tudi prazni seznami in brisanje skupin brez izgube materiala.
+6.4. Pomembna je trajnost podatkov: po osvežitvi strani ali ponovnem zagonu strežnika morajo ostati shranjeni projekti, vse faze in podfaze, skupine materialov, fotografije ter nastavitve postavitve. Stare projekte brez novih polj je treba odpreti brez izgube podatkov. Napake strežnika ne smejo povzročiti sesutja uporabniškega vmesnika.
+6.5. Pomembna je uporabnost: vse bistvene funkcije morajo biti dosegljive na telefonu, tablici in namizju; glavni del naj izkoristi cel zaslon, stranski meni pa omogoča hitro izbiro projekta. Besedilo in gumbi naj bodo jasno vidni, sporočila pa razumljiva in v slovenščini.
+6.6. Končni rezultat naj bo delujoč, razumljiv in nadgradljiv prototip. Uspeh pomeni, da je mogoče ustvariti projekt, dodati skupino in podskupino materiala, sešteti njihove stroške, dodati fazo in podfaze, pravilno izračunati napredek, shraniti zapiske, dodati slike, preklopiti postavitev in iz levega menija odpreti drug projekt. Po osvežitvi strani morajo ostati enaki podatki in nastavitve.
+6.7. Pri preverjanju izrecno testiraj: (a) napredek pri projektu brez faz in s kombinacijo podfaz ter samostojnih faz; (b) skupni strošek pri odprtih in zaprtih skupinah; (c) brisanje skupine brez brisanja materiala; (d) uspešno dodajanje veljavne slike, zavrnitev napačnega formata in slike nad 2 MB na obeh straneh; (e) pravilno brisanje slik s strežnika; (f) obnovitev nastavitev »Mreža/Seznam/Kompaktno«, velikosti kartic in zavihkov; (g) mobilni meni ter postavitev na 375, 768, 1366 in 1920 px.
