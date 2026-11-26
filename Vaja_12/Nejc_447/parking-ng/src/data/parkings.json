@@ -1,0 +1,10 @@
+[
+  { "id": "ng-1", "name": "Trg Evrope Car Park", "address": "Erjavčeva ulica 4, Nova Gorica", "totalSpaces": 120, "pricePerHour": 1.2, "openingHours": "Open 24 hours" },
+  { "id": "ng-2", "name": "Bevkov Trg Car Park", "address": "Bevkov trg 1, Nova Gorica", "totalSpaces": 60, "pricePerHour": 0.8, "openingHours": "Mon–Sat 6:00–22:00" },
+  { "id": "ng-3", "name": "Sports Hall Car Park", "address": "Delpinova ulica 16, Nova Gorica", "totalSpaces": 150, "pricePerHour": 0, "openingHours": "Open 24 hours" },
+  { "id": "ng-4", "name": "Hospital Car Park", "address": "Ulica padlih borcev 13a, Nova Gorica", "totalSpaces": 90, "pricePerHour": 1.5, "openingHours": "Open 24 hours" },
+  { "id": "ng-5", "name": "Railway Station Car Park", "address": "Kolodvorska pot 2, Nova Gorica", "totalSpaces": 40, "pricePerHour": 0.5, "openingHours": "Open 24 hours" },
+  { "id": "ng-6", "name": "Shopping Centre Car Park", "address": "Kidričeva ulica 20, Nova Gorica", "totalSpaces": 140, "pricePerHour": 1, "openingHours": "Mon–Sat 7:00–21:00" },
+  { "id": "ng-7", "name": "Old Town Car Park", "address": "Gradnikove brigade 11, Nova Gorica", "totalSpaces": 20, "pricePerHour": 2, "openingHours": "Mon–Fri 7:00–19:00" },
+  { "id": "ng-8", "name": "University Car Park", "address": "Vipavska cesta 13, Nova Gorica", "totalSpaces": 75, "pricePerHour": 0.9, "openingHours": "Mon–Fri 6:00–22:00" }
+]
