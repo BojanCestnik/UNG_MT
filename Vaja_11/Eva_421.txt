@@ -52,3 +52,5 @@ Koda je namenjena nadaljnjemu razvoju, pregledu in vzdrževanju (študijski/proj
 Updejtana verzija aplikacije:
 
 Konkretnega prompta nimam, uporabila sem le screenshots aplikacije v Bolt-u, na podlagi katerih je Gemini moral izboljšati vizualni izgled.
+
+==================================================================================================================================
